@@ -26,4 +26,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    order by rand() limit #{num} 
  </select>
  
+ <!-- 장바구니 데이터 가져오기 --> 
+ <select id="selectCartListAll" parameterType="string" resultType="g_dto">
+  select c.goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
+   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state
+   from cart inner join goods on cart.goods_id = goods.goods_id
+   where user_id = #{user_id}
+ </select>
+ 
+ <!-- 장바구니 데이터 입력하기 -->
+ <insert id="insertCartGoods" parameterType="c_bean">
+ 	insert into cart(cart_id, user_id, goods_id, cart_goods_cont) 
+ 	value(#{cart_id}, #{user_id}, #{goods_id}, #{cart_goods_cont}) 
+ </insert>
+ 
 </mapper>

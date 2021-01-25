@@ -60,7 +60,7 @@ public class GoodsDetailController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "getGoodsRandomList", method=RequestMethod.GET)
+	@RequestMapping(value = "goodsRandom", method=RequestMethod.GET)
 	public ModelAndView getGoodsRandom1List(@RequestParam("num") int num) {
 		/* 
 		 * 무작위 상품 가져오기, index에서 활용예정.   

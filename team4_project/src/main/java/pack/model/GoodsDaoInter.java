@@ -2,6 +2,8 @@ package pack.model;
 
 import java.util.List;
 
+import pack.controller.CartBean;
+
 public interface GoodsDaoInter {
 
 	// product를 클릭하게 되면 해당 상품을 가져오기 
@@ -17,7 +19,8 @@ public interface GoodsDaoInter {
 	public List<GoodsDto> getGoodsRandom4List(int num);
 	
 	// cartList에 보여질 상품 리스트 가져오기   
-	public List<GoodsDto> getCartGoodsList();
+	public List<GoodsDto> getCartGoodsList(String user_id);
 	
-	
+	// cartList에 보여질 상품 리스트 가져오기   
+	public Boolean insertCartGoods(CartBean cartBean);
 }

@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<!-- aop로 로그인 기능이 구현되어야함. 
+로그인이 되어있지 않으면 로그인 페이지로 이동.
+--> 
+장바구니 목록 : ${cartList}
+데이터 타입 : ArrayLis<\GoodsDto>
+
 <!--   
 	cartList에서 구현해야할 기본 내용  
 	- 장바구니에 담은 객체 보여주기.(db 에서 가져와야함)  

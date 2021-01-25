@@ -7,6 +7,8 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pack.controller.CartBean;
+
 @Repository
 public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	@Autowired
@@ -40,9 +42,17 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 
 
 	@Override
-	public List<GoodsDto> getCartGoodsList() {
+	public List<GoodsDto> getCartGoodsList(String user_id) {
 		// TODO Auto-generated method stub
-		return null;
+		return getSqlSession().selectList("selectCartListAll", user_id);
+	}
+
+	@Override
+	public Boolean insertCartGoods(CartBean cartBean) {
+		// TODO Auto-generated method stub
+		int re = getSqlSession().insert("insertCartGoods", cartBean);
+		if (re == 1) return true; 
+		else return false;
 	}
 	
 	
