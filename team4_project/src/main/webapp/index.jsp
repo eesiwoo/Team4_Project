@@ -21,5 +21,9 @@
 	추가내용 
 	- 설 얼리버드 특가 레이아웃에 시간 줄어드는거 표시 
  -->
+ 
+  <!-- review test -->
+ <a href="goodsDetail?goods_id=7">7</a>
+ <a href="goodsDetail?goods_id=8">8</a>
 </body>
 </html>

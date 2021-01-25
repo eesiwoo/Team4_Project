@@ -9,5 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	where goods_id = #{goods_id} 
   	order by review_asc
  </select>
+ 
+  <!-- 좋아요 갯수 조회 --> 
+ <select id="countLikes" parameterType="LikesDto" resultType="LikesDto">
+  	select * from likes
+  	where review_id = #{review_id} and likes_isLike = 1
+ </select>
 
 </mapper>
