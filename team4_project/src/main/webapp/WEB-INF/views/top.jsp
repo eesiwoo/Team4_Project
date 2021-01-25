@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="goodsList">상품 페이지 테스트</a>
 <!--  
 	top은 모든 페이지에 include 할것. 
 	top에서 구현해야할 기본내용 

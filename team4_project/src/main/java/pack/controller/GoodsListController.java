@@ -19,17 +19,14 @@ public class GoodsListController {
 	
 	@RequestMapping(value = "goodsList", method=RequestMethod.GET)
 	public ModelAndView productList() {
+		System.out.println("1");
 		List<GoodsDto> list = goodsDaoInter.getGoodsList();
+		System.out.println("2");
+		System.out.println(list);
 		
-		ModelAndView view = new ModelAndView("goodsList");
-		view.addObject("list", list);
+		ModelAndView mav = new ModelAndView("goodsList");
+		mav.addObject("list", list);
 		
-		/* 
-		 * 상품 리스트 모두 가져오기
-		 *  
-		 */
-		
-		ModelAndView mav = new ModelAndView("goodsList");	
 		return mav;
 	}
 	

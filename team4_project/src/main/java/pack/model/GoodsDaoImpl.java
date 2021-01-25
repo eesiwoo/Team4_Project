@@ -1,6 +1,6 @@
 package pack.model;
 
-import java.util.ArrayList;
+import java.util.List; 
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
@@ -26,25 +26,25 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	}
 
 	@Override
-	public ArrayList<GoodsDto> getGoodsList() {
+	public List<GoodsDto> getGoodsList() {
+		// 상품 리스트 가져오기
+		return getSqlSession().selectList("selectGoodsAll");
+	}
+
+	@Override
+	public List<GoodsDto> getRandom4GoodsList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<GoodsDto> getRandom4GoodsList() {
+	public List<GoodsDto> getRecentGoodsList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<GoodsDto> getRecentGoodsList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<GoodsDto> getCartGoodsList() {
+	public List<GoodsDto> getCartGoodsList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

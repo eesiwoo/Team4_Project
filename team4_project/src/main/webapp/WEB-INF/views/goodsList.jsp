@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,11 @@
 </head>
 <body>
 
-
+<c:forEach var="i" items="${list }">
+	${i.goods_id}
+	${i.goods_name}
+	${i.category_id}
+</c:forEach>
 	
 <!-- 
 	productList에서 구현해야할 기본 내용  

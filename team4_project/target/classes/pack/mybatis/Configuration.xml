@@ -4,11 +4,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 <typeAliases>
-
+	<typeAlias type="pack.model.GoodsDto" alias="g_dto"/>
+	<typeAlias type="pack.model.ReviewDto" alias="ReviewDto"/>
 </typeAliases>
 
 
  <mappers>
+  <mapper resource="pack/mybatis/GoodsMapper.xml"/>
   <mapper resource="pack/mybatis/review.xml" />
  </mappers>
 </configuration>
