@@ -25,7 +25,8 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	<!--  spring-upload -->
 	
-	<context:component-scan base-package="team4.project.marketKuly" />
+	<context:component-scan base-package="pack.model" />
+	<context:component-scan base-package="pack.controller" />
 	
 	
 	

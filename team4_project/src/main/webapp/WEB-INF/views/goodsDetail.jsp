@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,5 +25,22 @@
 
 
 -->
+
+<!-- review -->
+<table>
+  <tr>
+  	<th>번호</th><th>제  목</th><th>작성자</th><th>작성일</th><th>도움</th><th>조회</th>
+  </tr>
+  <c:forEach var="r" items="${reviews}">
+  <tr>
+  	<td>${r.review_asc}</td>
+  	<td>${r.review_title }</td>
+  	<td>${r.user_id}</td>
+  	<td>${r.review_date}</td>
+  	<td>00</td> <!-- 나중에 수정 -->
+  	<td>${r.review_viewCount}</td>
+  </tr>	
+  </c:forEach>
+</table>
 </body>
 </html>

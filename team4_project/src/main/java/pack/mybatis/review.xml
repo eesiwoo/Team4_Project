@@ -4,10 +4,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
- <select id="selectReview" parameterType="ReviewDto" resultType="ReviewDto">
+ <!-- 상품별 리뷰 조회 -->
+ <select id="selectReview" parameterType="pack.model.ReviewDto" resultType="pack.model.ReviewDto">
   	select * from review
   	where goods_id = #{goods_id} 
-  	order by review_asc
+  	order by review_asc desc, review_answer asc
+ </select>
+
+ <!-- 좋아요 갯수 조회 --> 
+ <select id="countLikes" parameterType="pack.model.LikesDto" resultType="pack.model.LikesDto">
+  	select * from likes
+  	where review_id = #{review_id} and likes_isLike = 1
  </select>
 
 </mapper>
