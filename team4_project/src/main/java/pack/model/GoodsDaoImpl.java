@@ -15,36 +15,36 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	}
 	
 	@Override
-	public GoodstDto getGoodsSearch(String goods_id) {
+	public GoodsDto getGoodsSearch(String goods_id) {
 		return null;
 	}
 
 	@Override
-	public GoodstDto getGoodsRandom1List() {
+	public GoodsDto getGoodsRandom1List() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<GoodstDto> getGoodsList() {
+	public ArrayList<GoodsDto> getGoodsList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<GoodstDto> getRandom4GoodsList() {
+	public ArrayList<GoodsDto> getRandom4GoodsList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<GoodstDto> getRecentGoodsList() {
+	public ArrayList<GoodsDto> getRecentGoodsList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<GoodstDto> getCartGoodsList() {
+	public ArrayList<GoodsDto> getCartGoodsList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

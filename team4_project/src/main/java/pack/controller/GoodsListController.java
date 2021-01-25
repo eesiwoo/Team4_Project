@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import pack.model.GoodsDaoInter;
+import pack.model.GoodsDto;
 
 @Controller
 public class GoodsListController {
@@ -18,9 +19,9 @@ public class GoodsListController {
 	
 	@RequestMapping(value = "goodsList", method=RequestMethod.GET)
 	public ModelAndView productList() {
-		List<GoodsDto> list = goodsDaoInter.
+		List<GoodsDto> list = goodsDaoInter.getGoodsList();
 		
-		ModelAndView view = new ModelAndView("jikwonlist");
+		ModelAndView view = new ModelAndView("goodsList");
 		view.addObject("list", list);
 		
 		/* 

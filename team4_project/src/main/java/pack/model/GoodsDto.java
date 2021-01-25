@@ -2,7 +2,7 @@ package pack.model;
 
 import java.sql.Timestamp;
 
-public class GoodstDto {
+public class GoodsDto {
 	
 	private int goods_id, category_id, goods_price;
 	private String goods_name, goods_detail, goods_delivery, goods_img, goods_reg, goods_state;

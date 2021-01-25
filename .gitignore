@@ -16,6 +16,7 @@ local.properties
 .recommenders
 /classes/
 /test-classes/
+target/
 
 # External tool builders
 .externalToolBuilders/
