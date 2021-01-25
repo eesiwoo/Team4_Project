@@ -1,3 +1,5 @@
+<%@page import="pack.model.GoodsDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,7 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<% ArrayList<GoodsDto> recentGoods = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); %><br>
+<%=recentGoods.get(1).getGoods_id() %>
+상품 : ${goods.goods_id}
 <!-- 
 	productDetail에서 구현해야할 기본 내용  
 	- 왼쪽에 큰 이미지, 오른쪽에 정보나열

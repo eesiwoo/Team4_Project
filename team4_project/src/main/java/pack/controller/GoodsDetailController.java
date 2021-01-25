@@ -26,18 +26,35 @@ public class GoodsDetailController {
 	public ModelAndView goods(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("goods_id") int goods_id) {
 		HttpSession session = request.getSession();
-		
+		ModelAndView mav = new ModelAndView();
+		System.out.println("session : " + session);
+		ArrayList<GoodsDto> goodsList;
 		GoodsDto goods = goodsDaoInter.getGoodsSearch(goods_id);
-		ArrayList<GoodsDto> goodsList = new ArrayList<GoodsDto>();
-		goodsList.add(goods);
+		if (goods == null) {
+			mav.setViewName("goodserror");
+			String msg = "가져온 상품이 없습니다." ;
+			mav.addObject("error", msg);
+			return mav;
+		}
+		System.out.println("goods : " + goods);
+		// session이 비어있나 확인 
+		if (session.getAttribute("recentGoodsList") != null) {
+			goodsList = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); 
+			System.out.println("session is not null");
+		} else {
+			goodsList = new ArrayList<GoodsDto>();
+			System.out.println("session is null");
+		}
+		System.out.println("if문 통과 ");
+		goodsList.add(goods);		
+	
+		System.out.println("goodsList  : " + goodsList);
+		// 최근 본 상품 리스트에 추가.
+		session.setAttribute("recentGoodsList", goodsList);
 		
-		ModelAndView mav = new ModelAndView("goodDetail");
 		// 클릭된 상품 내보내기  
 		mav.addObject("goods", goods);
-		
-		// 최근 본 상품 리스트에 추가.
-		session.setAttribute("goodsList", goodsList);
-		
+		mav.setViewName("goodsDetail");
 		
 		return mav;
 	}

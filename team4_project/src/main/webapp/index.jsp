@@ -9,6 +9,7 @@
 </head>
 <body>
 <a href="goodsList">상품 페이지 테스트123</a>
+<a href="goods?goods_id=2">상품 클릭 테스트123</a>
 <!--   
 	index에서 구현해야할 기본 내용  
 	- jquery 이미지 슬라이드   
