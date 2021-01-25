@@ -13,9 +13,9 @@ import pack.model.GoodsDaoInter;
 public class GoodsListController {
 	
 	@Autowired
-	private GoodsDaoInter productDaoInter;
+	private GoodsDaoInter goodsDaoInter;
 	
-	@RequestMapping(value = "productList", method=RequestMethod.GET)
+	@RequestMapping(value = "goodsList", method=RequestMethod.GET)
 	public ModelAndView productList() {
 		
 		/* 
@@ -23,12 +23,12 @@ public class GoodsListController {
 		 * productList에 뿌리기 
 		 */
 		
-		ModelAndView mav = new ModelAndView("productList");	
+		ModelAndView mav = new ModelAndView("goodsList");	
 		return mav;
 	}
 	
-	@RequestMapping(value = "random4ProductList", method=RequestMethod.GET)
-	public ModelAndView random4ProductList() {
+	@RequestMapping(value = "random4GoodsList", method=RequestMethod.GET)
+	public ModelAndView random4GoodsList() {
 		
 		/* 
 		 * 무작위 4개 상품 리스트 가져오기

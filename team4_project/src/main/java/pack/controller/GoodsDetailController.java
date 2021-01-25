@@ -13,10 +13,10 @@ import pack.model.GoodsDaoInter;
 public class GoodsDetailController {
 	
 	@Autowired
-	private GoodsDaoInter productDaoInter;
+	private GoodsDaoInter goodsDaoInter;
 	
-	@RequestMapping(value = "product", method=RequestMethod.GET)
-	public ModelAndView product(@RequestParam("prd_no") String prd_no) {
+	@RequestMapping(value = "goods", method=RequestMethod.GET)
+	public ModelAndView goods(@RequestParam("goods_id") String goods_id) {
 		
 		/* 
 		 * prd_no인 상품 1개 가져오기
@@ -27,12 +27,12 @@ public class GoodsDetailController {
 		 * - 최근 본 상품 리스트에 추가. 
 		 */
 		
-		ModelAndView mav = new ModelAndView("productDetail");
+		ModelAndView mav = new ModelAndView("goodDetail");
 		return mav;
 	}
 	
-	@RequestMapping(value = "getProductRandom1List", method=RequestMethod.GET)
-	public ModelAndView getProductRandom1List() {
+	@RequestMapping(value = "getGoodsRandom1List", method=RequestMethod.GET)
+	public ModelAndView getGoodsRandom1List() {
 		
 		/* 
 		 * 무작위 상품 1개 가져오기, index에서 활용예정.   

@@ -13,16 +13,16 @@ import pack.model.GoodsDaoInter;
 public class InsertGoodsController {
 
 	@Autowired
-	private GoodsDaoInter productDaoInter;
+	private GoodsDaoInter goodsDaoInter;
 	
-	@RequestMapping(value = "insertProduct", method=RequestMethod.GET)
-	public String insertProduct() {
+	@RequestMapping(value = "insertGoods", method=RequestMethod.GET)
+	public String insertGoods() {
 		// admin 으로 이동 	 
 		return "admin";
 	}
 	
-	@RequestMapping(value = "insertProduct", method=RequestMethod.POST)
-	public ModelAndView insertProduct(GoodsBean bean) {
+	@RequestMapping(value = "insertGoods", method=RequestMethod.POST)
+	public ModelAndView insertGoods(GoodsBean bean) {
 		
 		/* 
 		 * admin 계정일때 db로 상품 데이터를 insert하는 메서드 

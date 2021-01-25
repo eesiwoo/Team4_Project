@@ -12,10 +12,10 @@ import pack.model.GoodsDaoInter;
 public class CartListController {
 	
 	@Autowired
-	private GoodsDaoInter productDaoInter;
+	private GoodsDaoInter goodsDaoInter;
 	
-	@RequestMapping(value = "cartProduct", method=RequestMethod.GET)
-	public ModelAndView showCartProduct() {
+	@RequestMapping(value = "cartGoods", method=RequestMethod.GET)
+	public ModelAndView showCartGoods() {
 		
 		/* 
 		 * DB에서 장바구니 데이터를 가져와서 장바구니 페이지로 이동  
@@ -26,8 +26,8 @@ public class CartListController {
 	}
 	
 	
-	@RequestMapping(value = "insertCartProduct", method=RequestMethod.POST)
-	public ModelAndView insertCartProduct() {
+	@RequestMapping(value = "insertCartGoods", method=RequestMethod.POST)
+	public ModelAndView insertCartGoods() {
 		
 		/* 
 		 * 장바구니에 상품 추가하기. if문으로 중복된 상품은 제거. 
