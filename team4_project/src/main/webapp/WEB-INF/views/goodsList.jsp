@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<!-- 테스트 -->
 <c:forEach var="i" items="${list }">
 	${i.goods_id}
 	${i.goods_name}

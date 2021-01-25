@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>aa.bb</groupId>
 	<artifactId>cc</artifactId>
-	<name>sprweb23_upload_from_gogle</name>
+	<name>team4_project</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

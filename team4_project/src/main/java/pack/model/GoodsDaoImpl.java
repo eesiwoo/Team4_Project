@@ -15,8 +15,10 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	}
 	
 	@Override
-	public GoodsDto getGoodsSearch(String goods_id) {
-		return null;
+	public GoodsDto getGoodsSearch(int goods_id) {
+		// 클릭된 상품 가져오기.
+		
+		return getSqlSession().selectOne("selectGoodsOne", goods_id);
 	}
 
 	@Override

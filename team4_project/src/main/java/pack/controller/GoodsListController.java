@@ -19,10 +19,7 @@ public class GoodsListController {
 	
 	@RequestMapping(value = "goodsList", method=RequestMethod.GET)
 	public ModelAndView productList() {
-		System.out.println("1");
 		List<GoodsDto> list = goodsDaoInter.getGoodsList();
-		System.out.println("2");
-		System.out.println(list);
 		
 		ModelAndView mav = new ModelAndView("goodsList");
 		mav.addObject("list", list);

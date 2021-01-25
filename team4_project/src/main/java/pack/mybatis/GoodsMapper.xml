@@ -8,4 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    goods_delivery, goods_img, goods_reg, goods_regDate, goods_state 
    from goods;
  </select>
+ 
+ <select id="selectGoodsOne" parameterType="int" resultType="g_dto">
+  select goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
+   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state
+   from goods 
+   where goods_id=#{goods_id};
+ </select>
 </mapper>
