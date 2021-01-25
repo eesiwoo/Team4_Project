@@ -27,16 +27,6 @@ public class GoodsListController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "random4GoodsList", method=RequestMethod.GET)
-	public ModelAndView random4GoodsList() {
-		
-		/* 
-		 * 무작위 4개 상품 리스트 가져오기
-		 * index에 뿌리기   
-		 */
-			
-		return null;
-	}
 
 	
 }

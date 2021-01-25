@@ -1,6 +1,7 @@
 package pack.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,13 +60,29 @@ public class GoodsDetailController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "getGoodsRandom1List", method=RequestMethod.GET)
-	public ModelAndView getGoodsRandom1List() {
-		
+	@RequestMapping(value = "getGoodsRandomList", method=RequestMethod.GET)
+	public ModelAndView getGoodsRandom1List(@RequestParam("num") int num) {
 		/* 
-		 * 무작위 상품 1개 가져오기, index에서 활용예정.   
+		 * 무작위 상품 가져오기, index에서 활용예정.   
 		*/
+		System.out.println("num : " + num);
+		ModelAndView mav = new ModelAndView("temp");
 		
-		return null;
+			// 임의의 상품 1개
+		if (num == 1) {
+			GoodsDto goods;
+			goods = goodsDaoInter.getGoodsRandom1List(num);
+			mav.addObject("goods", goods);
+			System.out.println("goods : "+ goods);
+		} else {
+			// 임의의 상품 4개
+			ArrayList<GoodsDto> list;
+			list = (ArrayList<GoodsDto>)goodsDaoInter.getGoodsRandom4List(num);
+			mav.addObject("goods", list);
+			System.out.println("list : "+ list);
+		}
+		
+		return mav;
 	}
+	
 }

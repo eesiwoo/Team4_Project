@@ -17,14 +17,13 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	@Override
 	public GoodsDto getGoodsSearch(int goods_id) {
 		// 클릭된 상품 가져오기.
-		
 		return getSqlSession().selectOne("selectGoodsOne", goods_id);
 	}
 
 	@Override
-	public GoodsDto getGoodsRandom1List() {
-		// TODO Auto-generated method stub
-		return null;
+	public GoodsDto getGoodsRandom1List(int num) {
+		// 랜덤으로 1개 상품 가져오기
+		return getSqlSession().selectOne("selectRandGoods", num);
 	}
 
 	@Override
@@ -34,16 +33,11 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	}
 
 	@Override
-	public List<GoodsDto> getRandom4GoodsList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<GoodsDto> getGoodsRandom4List(int num) {
+		// 랜덤으로 2개 이상 상품 가져오기
+		return getSqlSession().selectList("selectRandGoods", num);
 	}
 
-	@Override
-	public List<GoodsDto> getRecentGoodsList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<GoodsDto> getCartGoodsList() {

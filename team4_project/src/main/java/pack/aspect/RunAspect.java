@@ -1,4 +1,4 @@
-package pack.model;
+package pack.aspect;
 
 import java.util.Scanner;
 
