@@ -25,6 +25,9 @@
 <a href="goodsRandom?num=4">상품 임의 4개 테스트1</a><br>
 <a href="cartGoods?user_id=user_id 01">장바구니 페이지 테스트</a><br>
 <a href="insertCartGoods?cart_id=cart_id 13&goods_id=2&user_id=user_id 03&cart_goods_cont=2">장바구니 담기 테스트</a><br>
+<!-- review test -->
+<a href="goodsDetail?goods_id=7">7</a><br>
+<a href="goodsDetail?goods_id=8">8</a><br>
 <!--   
 	index에서 구현해야할 기본 내용  
 	- jquery 이미지 슬라이드   
@@ -35,11 +38,6 @@
 	추가내용 
 	- 설 얼리버드 특가 레이아웃에 시간 줄어드는거 표시 
  -->
- 
-  <!-- review test -->
- <a href="goodsDetail?goods_id=7">7</a><br>
- <a href="goodsDetail?goods_id=8">8</a><br>
- 
  
 	<div id="container">
 		<header>
@@ -107,25 +105,40 @@
 				<h2>이 상품 어때요?</h2>
 				<section class="regular slider">
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
-						상품명<br /> 가격<br />
-						<del>원래가격</del>
-						<br />
+						<a href="#"><img id="index_image1" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id1">상품명</div> 
+						<del id="index_goods_Bprice1">원래가격 : </del><br />
+						<div id="index_goods_Pprice1">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image2" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id2">상품명</div> 
+						<del id="index_goods_Bprice2">원래가격 : </del><br />
+						<div id="index_goods_Pprice2">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image3" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id3">상품명</div> 
+						<del id="index_goods_Bprice3">원래가격 : </del><br />
+						<div id="index_goods_Pprice3">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image4" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id4">상품명</div> 
+						<del id="index_goods_Bprice4">원래가격 : </del><br />
+						<div id="index_goods_Pprice4">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image5" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id5">상품명</div> 
+						<del id="index_goods_Bprice5">원래가격 : </del><br />
+						<div id="index_goods_Pprice5">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image6" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id6">상품명</div> 
+						<del id="index_goods_Bprice6">원래가격 : </del><br />
+						<div id="index_goods_Pprice6">가격</div>
 					</div>
 				</section>
 				<br /> <br /> <br />
@@ -138,7 +151,10 @@
 					⏰ 망설이면 늦어요!<br />
 				</div>
 				<div class="earlyBirdPic">
-					<a href="#"><img src="http://placehold.it/600x400?text=1" /></a>
+					<a href="#"><img id="index_image25" src="http://placehold.it/600x400?text=1" /></a>
+					<div id="index_goods_id25">상품명</div> 
+					<del id="index_goods_Bprice25">원래가격 : </del><br />
+					<div id="index_goods_Pprice25">가격</div>
 				</div>
 				<br /> <br /> <br /> <br />
 			</div>
@@ -148,22 +164,40 @@
 				<h2>이벤트 소식 ></h2>
 				<section class="regular2 slider">
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image7" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id7">상품명</div> 
+						<del id="index_goods_Bprice7">원래가격 : </del><br />
+						<div id="index_goods_Pprice7">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image8" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id8">상품명</div> 
+						<del id="index_goods_Bprice8">원래가격 : </del><br />
+						<div id="index_goods_Pprice8">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image9" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id9">상품명</div> 
+						<del id="index_goods_Bprice9">원래가격 : </del><br />
+						<div id="index_goods_Pprice9">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image10" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id10">상품명</div> 
+						<del id="index_goods_Bprice10">원래가격 : </del><br />
+						<div id="index_goods_Pprice10">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image11" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id11">상품명</div> 
+						<del id="index_goods_Bprice11">원래가격 : </del><br />
+						<div id="index_goods_Pprice11">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image12" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id12">상품명</div> 
+						<del id="index_goods_Bprice12">원래가격 : </del><br />
+						<div id="index_goods_Pprice12">가격</div>
 					</div>
 				</section>
 				<br /> <br /> <br />
@@ -174,22 +208,40 @@
 				<h2>알뜰 상품 ></h2>
 				<section class="regular slider">
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image13" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id13">상품명</div> 
+						<del id="index_goods_Bprice13">원래가격 : </del><br />
+						<div id="index_goods_Pprice13">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image14" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id14">상품명</div> 
+						<del id="index_goods_Bprice14">원래가격 : </del><br />
+						<div id="index_goods_Pprice14">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image15" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id15">상품명</div> 
+						<del id="index_goods_Bprice15">원래가격 : </del><br />
+						<div id="index_goods_Pprice15">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image16" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id16">상품명</div> 
+						<del id="index_goods_Bprice16">원래가격 : </del><br />
+						<div id="index_goods_Pprice16">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image17" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id17">상품명</div> 
+						<del id="index_goods_Bprice17">원래가격 : </del><br />
+						<div id="index_goods_Pprice17">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image18" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id18">상품명</div> 
+						<del id="index_goods_Bprice18">원래가격 : </del><br />
+						<div id="index_goods_Pprice18">가격</div>
 					</div>
 				</section>
 				<br /> <br /> <br />
@@ -199,22 +251,40 @@
 				<h2>오늘의 신상품 ></h2>
 				<section class="regular slider">
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image19" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id19">상품명</div> 
+						<del id="index_goods_Bprice19">원래가격 : </del><br />
+						<div id="index_goods_Pprice19">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image20" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id20">상품명</div> 
+						<del id="index_goods_Bprice20">원래가격 : </del><br />
+						<div id="index_goods_Pprice20">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image21" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id21">상품명</div> 
+						<del id="index_goods_Bprice21">원래가격 : </del><br />
+						<div id="index_goods_Pprice21">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image22" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id22">상품명</div> 
+						<del id="index_goods_Bprice22">원래가격 : </del><br />
+						<div id="index_goods_Pprice22">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image23" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id23">상품명</div> 
+						<del id="index_goods_Bprice23">원래가격 : </del><br />
+						<div id="index_goods_Pprice23">가격</div>
 					</div>
 					<div>
-						<a href="#"><img src="http://placehold.it/250x320?text=1" /></a>
+						<a href="#"><img id="index_image24" src="http://placehold.it/250x320?text=1" /></a>
+						<div id="index_goods_id24">상품명</div> 
+						<del id="index_goods_Bprice24">원래가격 : </del><br />
+						<div id="index_goods_Pprice24">가격</div>
 					</div>
 				</section>
 				<br /> <br /> <br />
@@ -322,7 +392,34 @@
 		<script type="text/javascript" src="resources/js/slick.min.js"></script>
 		<script type="text/javascript" id="multiSlider">
 			$(document).on('ready', function() {
-
+				// 상품 : 6개 * 4 24개를 가져와서 
+			 	// 상품 넣고 ajax 처리. 
+			 	$.ajax({
+					type:"get",
+					url:"goodsRandom",
+					dataType:"json",
+					data:{"num":25},
+					success:function(goodsList){
+					//alert(goodsList.datas);
+						let list = goodsList.datas;
+						$(list).each(function(idx, dto){
+							// alert(idx); 0 ~ 17
+							idx ++;
+							let img = "resources/images/goods/"+dto["goods_img"]+".jpg"
+							let resultPrice = Number(dto["goods_price"]) * (100-Number(dto["goods_discountRate"])) / 100;
+							resultPrice += "원"
+							$("#index_image"+idx).attr("src", img);
+							$("#index_goods_id"+idx).text(dto["goods_name"]);
+							$("#index_goods_Bprice"+idx).text(dto["goods_price"]+"원");
+							$("#index_goods_Pprice"+idx).text(resultPrice); 
+													
+						}); 
+					
+					
+			}, error:function(){		
+			}
+		});
+			 	
 				$(".regular").slick({
 					dots : false,
 					infinite : true,

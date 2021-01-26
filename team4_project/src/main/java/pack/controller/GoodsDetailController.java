@@ -1,7 +1,8 @@
 package pack.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import pack.model.GoodsDaoInter;
@@ -61,28 +63,36 @@ public class GoodsDetailController {
 	}
 	
 	@RequestMapping(value = "goodsRandom", method=RequestMethod.GET)
-	public ModelAndView getGoodsRandom1List(@RequestParam("num") int num) {
+	@ResponseBody
+	public Map<String, Object> getGoodsRandom(@RequestParam("num") int num) {
 		/* 
 		 * 무작위 상품 가져오기, index에서 활용예정.   
 		*/
 		System.out.println("num : " + num);
-		ModelAndView mav = new ModelAndView("temp");
+		ArrayList<GoodsDto> list = (ArrayList<GoodsDto>)goodsDaoInter.getGoodsRandomList(num);
+		System.out.println("list : " + list);
 		
-			// 임의의 상품 1개
-		if (num == 1) {
-			GoodsDto goods;
-			goods = goodsDaoInter.getGoodsRandom1List(num);
-			mav.addObject("goods", goods);
-			System.out.println("goods : "+ goods);
-		} else {
-			// 임의의 상품 4개
-			ArrayList<GoodsDto> list;
-			list = (ArrayList<GoodsDto>)goodsDaoInter.getGoodsRandom4List(num);
-			mav.addObject("goods", list);
-			System.out.println("list : "+ list);
+		Map<String, String> data = null;
+		ArrayList<Map<String, String>> datalist = new ArrayList<Map<String, String>>();
+		
+		// 상품 이미지, 가격, 할인률  
+		for(GoodsDto dto :list) {
+			data = new HashMap<String, String>();
+			data.put("goods_name", dto.getGoods_name());
+			data.put("goods_img", dto.getGoods_img());
+			data.put("goods_price", Integer.toString(dto.getGoods_price()));
+			data.put("goods_discountRate", Integer.toString(dto.getGoods_discountRate()));
+			datalist.add(data);
+			
+//			System.out.println("goods_discountRate : " + Integer.toString(dto.getGoods_discountRate()));
+//			System.out.println("goods_price : " + Integer.toString(dto.getGoods_price()));
 		}
 		
-		return mav;
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("datas", datalist);
+		
+		
+		return result;
 	}
 	
 }
