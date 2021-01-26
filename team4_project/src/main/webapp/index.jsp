@@ -23,8 +23,8 @@
 <a href="goods?goods_id=2">상품 클릭 테스트</a><br>
 <a href="goodsRandom?num=1">상품 임의 1개 테스트</a><br>
 <a href="goodsRandom?num=4">상품 임의 4개 테스트1</a><br>
-<a href="cartGoods?goods_id=2&user_id=jang">장바구니 페이지 테스트</a><br>
-<a href="insertCartGoods?goods_id=2&user_id=jang">장바구니 담기 테스트</a><br>
+<a href="cartGoods?user_id=user_id 01">장바구니 페이지 테스트</a><br>
+<a href="insertCartGoods?cart_id=cart_id 13&goods_id=2&user_id=user_id 03&cart_goods_cont=2">장바구니 담기 테스트</a><br>
 <!--   
 	index에서 구현해야할 기본 내용  
 	- jquery 이미지 슬라이드   
@@ -56,7 +56,7 @@
 				</div>
 			</div>
 			<div class="bottom">
-				<img src="./kurly.jpg" alt="logo" />
+				<img src="resources/images/kurly.jpg" alt="logo" />
 			</div>
 		</header>
 		<nav>
