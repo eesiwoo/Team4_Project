@@ -35,7 +35,7 @@ public class CartListController {
 	}
 	
 	
-	@RequestMapping(value = "insertCartGoods", method=RequestMethod.GET)
+	@RequestMapping(value = "insertCartGoods", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> insertCartGoods(CartBean cartBean) {
 //		System.out.println("cartbean.getCart_id() : "+ cartBean.getCart_id());

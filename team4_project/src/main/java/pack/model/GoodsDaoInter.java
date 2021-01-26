@@ -8,19 +8,16 @@ public interface GoodsDaoInter {
 
 	// product를 클릭하게 되면 해당 상품을 가져오기 
 	public GoodsDto getGoodsSearch(int goods_id);
-
-	// index에 보여질 상품 무작위로 1개 가져오기 
-	public GoodsDto getGoodsRandom1List(int num);
 	
 	// productList에 보여질 상품 모두 가져오기  
 	public List<GoodsDto> getGoodsList();
 	
-	// index에 보여질 상품 무작위로 4개 가져오기 
-	public List<GoodsDto> getGoodsRandom4List(int num);
+	// index에 보여질 상품 무작위로 num개 가져오기 
+	public List<GoodsDto> getGoodsRandomList(int num);
 	
 	// cartList에 보여질 상품 리스트 가져오기   
 	public List<GoodsDto> getCartGoodsList(String user_id);
 	
-	// cartList에 보여질 상품 리스트 가져오기   
+	// cartList에 상품 추가하기   
 	public Boolean insertCartGoods(CartBean cartBean);
 }

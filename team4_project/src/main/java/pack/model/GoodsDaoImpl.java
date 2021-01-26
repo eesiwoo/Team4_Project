@@ -23,19 +23,13 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	}
 
 	@Override
-	public GoodsDto getGoodsRandom1List(int num) {
-		// 랜덤으로 1개 상품 가져오기
-		return getSqlSession().selectOne("selectRandGoods", num);
-	}
-
-	@Override
 	public List<GoodsDto> getGoodsList() {
 		// 상품 리스트 가져오기
 		return getSqlSession().selectList("selectGoodsAll");
 	}
 
 	@Override
-	public List<GoodsDto> getGoodsRandom4List(int num) {
+	public List<GoodsDto> getGoodsRandomList(int num) {
 		// 랜덤으로 2개 이상 상품 가져오기
 		return getSqlSession().selectList("selectRandGoods", num);
 	}

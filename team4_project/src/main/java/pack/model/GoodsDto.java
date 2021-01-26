@@ -4,9 +4,17 @@ import java.sql.Timestamp;
 
 public class GoodsDto {
 	
-	private int goods_id, category_id, goods_price;
+	private int goods_id, category_id, goods_price, goods_discountRate;
 	private String goods_name, goods_detail, goods_delivery, goods_img, goods_reg, goods_state;
 	private Timestamp goods_saleBegin, goods_saleEnd, goods_regDate;
+	
+	public int getGoods_discountRate() {
+		return goods_discountRate;
+	}
+	public void setGoods_discountRate(int goods_discountRate) {
+		this.goods_discountRate = goods_discountRate;
+	}
+	
 	public int getGoods_id() {
 		return goods_id;
 	}
