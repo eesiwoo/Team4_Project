@@ -347,6 +347,10 @@
 
 
 <!-- review test -->
+	<div id="review">
+	
+	</div>
+
 <table>
   <tr style="background-color: silver;">
   	<th>번호</th><th>제  목</th><th>작성자</th><th>작성일</th><th>좋아요</th><th>조회</th>
@@ -365,7 +369,7 @@
   </tr>
   </c:forEach>
   </table>
-  
+
   <!-- 글 상세보기 함수 --> 
   <script type="text/javascript"> 
   $(document).ready(function(){
