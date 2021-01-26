@@ -4,10 +4,48 @@ import java.sql.Timestamp;
 
 public class GoodsDto {
 	
-	private int goods_id, category_id, goods_price, goods_discountRate;
+	private int goods_id, category_id, goods_price, goods_discountRate, goods_saleUnit, goods_weight;
 	private String goods_name, goods_detail, goods_delivery, goods_img, goods_reg, goods_state;
+	private String goods_shortDesc, goods_shelfLife, goods_allergy, goods_info;
 	private Timestamp goods_saleBegin, goods_saleEnd, goods_regDate;
 	
+	
+	public int getGoods_saleUnit() {
+		return goods_saleUnit;
+	}
+	public void setGoods_saleUnit(int goods_saleUnit) {
+		this.goods_saleUnit = goods_saleUnit;
+	}
+	public int getGoods_weight() {
+		return goods_weight;
+	}
+	public void setGoods_weight(int goods_weight) {
+		this.goods_weight = goods_weight;
+	}
+	public String getGoods_shortDesc() {
+		return goods_shortDesc;
+	}
+	public void setGoods_shortDesc(String goods_shortDesc) {
+		this.goods_shortDesc = goods_shortDesc;
+	}
+	public String getGoods_shelfLife() {
+		return goods_shelfLife;
+	}
+	public void setGoods_shelfLife(String goods_shelfLife) {
+		this.goods_shelfLife = goods_shelfLife;
+	}
+	public String getGoods_allergy() {
+		return goods_allergy;
+	}
+	public void setGoods_allergy(String goods_allergy) {
+		this.goods_allergy = goods_allergy;
+	}
+	public String getGoods_info() {
+		return goods_info;
+	}
+	public void setGoods_info(String goods_info) {
+		this.goods_info = goods_info;
+	}
 	public int getGoods_discountRate() {
 		return goods_discountRate;
 	}
