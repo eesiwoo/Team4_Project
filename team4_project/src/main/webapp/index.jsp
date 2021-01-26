@@ -151,7 +151,10 @@
 					⏰ 망설이면 늦어요!<br />
 				</div>
 				<div class="earlyBirdPic">
-					<a href="#"><img src="http://placehold.it/600x400?text=1" /></a>
+					<a href="#"><img id="index_image25" src="http://placehold.it/600x400?text=1" /></a>
+					<div id="index_goods_id25">상품명</div> 
+					<del id="index_goods_Bprice25">원래가격 : </del><br />
+					<div id="index_goods_Pprice25">가격</div>
 				</div>
 				<br /> <br /> <br /> <br />
 			</div>
@@ -395,7 +398,7 @@
 					type:"get",
 					url:"goodsRandom",
 					dataType:"json",
-					data:{"num":24},
+					data:{"num":25},
 					success:function(goodsList){
 					//alert(goodsList.datas);
 						let list = goodsList.datas;
