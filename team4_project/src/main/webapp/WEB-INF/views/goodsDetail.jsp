@@ -12,7 +12,9 @@
 	<title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 	<link rel="shortcut icon" href="resources/images/kurly_mark.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-	
+	<script type="text/javascript">
+		
+	</script>
 	<style type="text/css"> /* 글 눌렀을 때 글 나오게 하기 위함*/
 	.review_content {
 		display : none;
@@ -21,7 +23,7 @@
 	
 </head>
 <body>
-<% ArrayList<GoodsDto> recentGoods = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); %><br>
+<%-- <% ArrayList<GoodsDto> recentGoods = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); %><br> --%>
 <%-- <%=recentGoods.get(1).getGoods_id() %>
 상품 : ${goods.goods_id} --%>
 <!-- 
