@@ -31,19 +31,25 @@ public class CartListController {
 	}
 	
 	
-	@RequestMapping(value = "insertCartGoods", method=RequestMethod.POST)
-	public ModelAndView insertCartGoods(CartBean cartbean) {
-		System.out.println("cartbean.getCart_id() : "+ cartbean.getCart_id());
+	@RequestMapping(value = "insertCartGoods", method=RequestMethod.GET)
+	public ModelAndView insertCartGoods(CartBean cartBean) {
+		System.out.println("cartbean.getCart_id() : "+ cartBean.getCart_id());
+		// json으로 넘겨줘야하나? msg : 장바구니 담기 성공 or 실패.
+		// ajax 처리 추가로하기 
+		// test하기 위해 잠시 RequestMethod.get으로 변경 
+
+		if(goodsDaoInter.insertCartGoods(cartBean)) {
+			// 성공하면
+			// 장바구니에 담겼습니다를 표시 
+		} else {
+			// 실패 
+		}
 		
 		/* 
 		 * 장바구니에 상품 추가하기. if문으로 중복된 상품은 제거.
 		 * user_id, cart_id는 히든으로 넘겼겠지~?
 		 * 근데 cart_id는 user_id 와 goods_id 조합해야됨. 
 		 */
-		
-		
-		
-		
 		
 		return null;
 	}

@@ -6,8 +6,8 @@ public class CartBean {
 	public String getCart_id() {
 		return cart_id;
 	}
-	public void setCart_id(String cart_id) {
-		this.cart_id = cart_id;
+	public void setCart_id(String goods_id, String user_id) {
+		this.cart_id = user_id+"_"+goods_id;
 	}
 	public String getUser_id() {
 		return user_id;
