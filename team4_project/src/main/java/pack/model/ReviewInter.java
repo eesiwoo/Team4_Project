@@ -36,7 +36,4 @@ public interface ReviewInter {
  	
  	//좋아요 수 조회하기
  	public ArrayList<LikesDto> countLikes(int review_id);
- 	
- 	
- 	
 }
