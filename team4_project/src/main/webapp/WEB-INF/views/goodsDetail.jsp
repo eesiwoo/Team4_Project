@@ -20,6 +20,7 @@
 		display : none;
 	}
 	</style>
+	
 </head>
 <body>
 <%-- <% ArrayList<GoodsDto> recentGoods = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); %><br> --%>
@@ -273,6 +274,12 @@
           </div>
         </div>
       </div>
+      
+    <div id="review">
+	
+	</div>
+      
+      
     </main>
       <footer>
         <div class="inner_footer">
@@ -348,41 +355,106 @@
 
 
 
-<!-- review test -->
-<table>
-  <tr style="background-color: silver;">
-  	<th>번호</th><th>제  목</th><th>작성자</th><th>작성일</th><th>좋아요</th><th>조회</th>
-  </tr>
-  <c:forEach var="r" items="${reviews}">
-  <tr class = "view_content" id="${r.review_id }">
-  	<td>${r.review_asc}</td>
-  	<td>${r.review_title }</td>
-  	<td>${r.user_id}</td>
-  	<td>${r.review_date}</td>
-  	<td>--</td>
-  	<td>${r.review_viewCount}</td>
-  </tr>
-  	<td><div id="${r.review_id }_content" class="review_content">${r.review_content }</div></td>
-  <tr>
-  </tr>
-  </c:forEach>
-  </table>
+<!-- review test -->	
+	
+  <script type="text/javascript">
+  /* 페이지 로딩될 때 1 페이지 표시됨 */
+  $(function(){
+		var pageId = 1;
+		callReview(pageId);
+	 });  
   
-  <!-- 글 상세보기 함수 --> 
-  <script type="text/javascript"> 
-  $(document).ready(function(){
-	  
-	  $(".view_content").click(function(){
-		var id = this.id + '_content';
-		//alert(id);
+ 	 
+  /* url에서 id 가져오기 */
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+              results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  
+  /* 리뷰 상세내용 표시 */
+  $(document).on('click', '.view_content',function(){
+		var id = this.id + "_content";
 		if(document.getElementById(id).style.display === 'block') {
 			document.getElementById(id).style.display = 'none';
 		}else {
-			document.getElementById(id).style.display = 'block'
+			document.getElementById(id).style.display = 'block';
 		};
 		
 	  });
-  });
-  </script>
+  
+  /* 페이지 변경 */
+  $(document).on('click', '.pagebtn', function(){
+	  var pageId = this.id;
+	  callReview(pageId);
+  });		 
+
+  /* 리뷰목록 불러오기 */
+  function callReview(pageId) {
+	 $("#review").empty(); 
+	 var goods_id = getParameterByName('goods_id');
+	 
+	   $.ajax({
+		   type : "get",
+		   url : "reviewList",
+		   data : {"goods_id" : goods_id,
+			       "page" : pageId},
+		   dataType : "json",
+		   success : function(review) {
+				var str = "<table>";
+				    str += "<tr style='background-color: silver;'>";
+					str += "<th>번호</th><th>제  목</th><th>작성자</th><th>작성일</th><th>좋아요</th><th>조회</th>";
+					str += "</tr>";
+					
+				let list = review.datas;
+				$(list).each(function(i, rd){
+					/* 리뷰목록 */
+					str += "<tr class='view_content' id='" + rd.review_id + "_review'>";
+					str += "<td>" + rd.review_asc + "</td>";
+					str += "<td>" + rd.review_title + "</td>";
+					str += "<td>" + rd.user_id + "</td>";
+					str += "<td>" + rd.review_date + "</td>";
+					str += "<td>" + rd.likes_count + "</td>";
+					str += "<td>" + rd.review_viewCount + "</td>";
+					str += "</tr>";
+					/* 리뷰 내용 */
+					str += "<tr>";
+					str += "<td><div class='review_content' id='"
+					     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
+					str += "</tr>"
+				});
+				
+					/* 페이징 */
+					str += "<tr>";
+					str += "<td>";
+				let totalPage = review.totalPage;
+				let page = review.page;
+				for(var pageNum = 1; pageNum<=totalPage; pageNum++){
+					if(pageNum == page){
+					str += "<span class='pagebtn' id='" + pageNum + "'> <b>" + pageNum + "</b> </span>";
+					}
+					else{
+					str += "<span class='pagebtn' id='" + pageNum + "'>" + pageNum + " </span>";
+					}
+				}
+					str += "</td>";
+					str += "</tr>";
+				    str += "</table>";
+				    
+				    
+				    
+				    $("#review").html(str);
+		},
+		   error : function(){
+			   alert("오류발생");
+			   
+		   }
+	   });
+	
+	}; 
+
+  </script>	
+
 </body>
 </html>
