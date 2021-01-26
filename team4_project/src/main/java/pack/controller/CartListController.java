@@ -1,12 +1,16 @@
 package pack.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import pack.model.GoodsDaoInter;
@@ -32,26 +36,27 @@ public class CartListController {
 	
 	
 	@RequestMapping(value = "insertCartGoods", method=RequestMethod.GET)
-	public ModelAndView insertCartGoods(CartBean cartBean) {
-		System.out.println("cartbean.getCart_id() : "+ cartBean.getCart_id());
-		// json으로 넘겨줘야하나? msg : 장바구니 담기 성공 or 실패.
-		// ajax 처리 추가로하기 
-		// test하기 위해 잠시 RequestMethod.get으로 변경 
-
-		if(goodsDaoInter.insertCartGoods(cartBean)) {
-			// 성공하면
-			// 장바구니에 담겼습니다를 표시 
-		} else {
-			// 실패 
-		}
-		
+	@ResponseBody
+	public Map<String, Object> insertCartGoods(CartBean cartBean) {
+//		System.out.println("cartbean.getCart_id() : "+ cartBean.getCart_id());
 		/* 
-		 * 장바구니에 상품 추가하기. if문으로 중복된 상품은 제거.
-		 * user_id, cart_id는 히든으로 넘겼겠지~?
-		 * 근데 cart_id는 user_id 와 goods_id 조합해야됨. 
+		 * cart_id =user_id +'_'+ goods_id;  
 		 */
+		Map<String, Object> isSuccess = new HashMap<String, Object>();
+		cartBean.setCart_id(cartBean.getUser_id()+"_"+cartBean.getGoods_id());
 		
-		return null;
+		if(goodsDaoInter.insertCartGoods(cartBean)) {
+			// 성공
+			System.out.println("장바구니 담기 성공");
+			isSuccess.put("msg", "success");
+		} else {
+			// 실패
+			System.out.println("장바구니 담기 실패");
+			isSuccess.put("msg", "fail");
+		}
+		return isSuccess;
+		
+		
 	}
 	
 }
