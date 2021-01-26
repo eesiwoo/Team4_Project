@@ -5,31 +5,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev">
  <!-- 상품 모두 가져오기 -->
  <select id="selectGoodsAll" resultType="g_dto">
-  select goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
-   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state 
-   from goods
+  select * from goods
  </select>
  
  <!-- 상품 하나 가져오기 --> 
  <select id="selectGoodsOne" parameterType="int" resultType="g_dto">
-  select goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
-   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state
-   from goods 
-   where goods_id=#{goods_id}
+  select * from goods where goods_id=#{goods_id}
  </select>
  
  <!-- 상품 ?개 랜덤으로 가져오기 --> 
  <select id="selectRandGoods" parameterType="int" resultType="g_dto">
-  select goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
-   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state, goods_discountRate
-   from goods
-   order by rand() limit #{num} 
+  select * from goods order by rand() limit #{num} 
  </select>
  
  <!-- 장바구니 데이터 가져오기 --> 
  <select id="selectCartListAll" parameterType="string" resultType="g_dto">
   select cart.goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
-   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state
+   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state, goods_discountRate, goods_shortDesc, goods_saleUnit, 
+   goods_weight, goods_shelfLife, goods_allergy, goods_info
    from cart inner join goods on cart.goods_id = goods.goods_id
    where user_id = #{user_id}
  </select>

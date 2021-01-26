@@ -33,6 +33,8 @@ public class GoodsDetailController {
 		System.out.println("session : " + session);
 		ArrayList<GoodsDto> goodsList;
 		GoodsDto goods = goodsDaoInter.getGoodsSearch(goods_id);
+		
+		// db에 상품이 없으면 
 		if (goods == null) {
 			mav.setViewName("goodserror");
 			String msg = "가져온 상품이 없습니다." ;
@@ -40,7 +42,7 @@ public class GoodsDetailController {
 			return mav;
 		}
 		System.out.println("goods : " + goods);
-		// session이 비어있나 확인 
+		// session이 비어있나 확인  - aop 로 빼놓을 예정 
 		if (session.getAttribute("recentGoodsList") != null) {
 			goodsList = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); 
 			System.out.println("session is not null");
@@ -78,6 +80,7 @@ public class GoodsDetailController {
 		// 상품 이미지, 가격, 할인률  
 		for(GoodsDto dto :list) {
 			data = new HashMap<String, String>();
+			data.put("goods_id", Integer.toString(dto.getGoods_id()));
 			data.put("goods_name", dto.getGoods_name());
 			data.put("goods_img", dto.getGoods_img());
 			data.put("goods_price", Integer.toString(dto.getGoods_price()));
