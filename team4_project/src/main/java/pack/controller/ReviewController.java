@@ -56,12 +56,11 @@ public class ReviewController {
 		return totalPage;
 	}
 	
+	//goodsDetail 페이지로 이동
 	@RequestMapping(value = "goodsDetail", method=RequestMethod.GET)
 	public String goToReviewDetail() {
 		return "goodsDetail";
 	}
-	
-	
 	
 	//GoodsDtail에서 리뷰 리스트 불러오기
 	@RequestMapping(value = "reviewList", method=RequestMethod.GET)
@@ -99,4 +98,6 @@ public class ReviewController {
 
 		return datas;
 	}
+
+	
 }

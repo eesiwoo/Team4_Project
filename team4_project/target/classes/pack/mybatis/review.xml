@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
+ <!-- 리뷰 조회 -->
  <select id="selectReview" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
   	where goods_id = #{goods_id} 
@@ -16,4 +17,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	where review_id = #{review_id} and likes_isLike = 1
  </select>
 
+  <!-- MaxReview_id 조회 -->
+ <select id="MaxReview_id" resultType="integer">
+  	select max(review_id)
+  	from review
+ </select>
+ 
+  <!-- MaxReview_asc 조회 -->
+ <select id="MaxReview_asc" resultType="integer">
+  	select max(review_asc)
+  	from review
+  	where goods_id = #{goods_id}
+ </select>
+
+ <!-- 리뷰 추가 -->
+ <insert id="insertReview" parameterType="ReviewDto">
+ 	insert into review (goods_id, user_id, review_title, review_content, review_viewCount,
+ 	review_star, review_isPrivate, review_asc, review_answer, review_date)
+ 	values(#{goods_id},#{user_id},#{review_title},#{review_content},0,
+ 	#{review_star},#{review_isPrivate},#{review_asc},0,now())
+ </insert>
 </mapper>
