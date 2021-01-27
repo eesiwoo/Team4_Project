@@ -1,7 +1,6 @@
 package pack.model;
 
-import java.util.List;
-
+import java.util.List; 
 import pack.controller.CartBean;
 
 public interface GoodsDaoInter {
@@ -20,4 +19,7 @@ public interface GoodsDaoInter {
 	
 	// cartList에 상품 추가하기   
 	public Boolean insertCartGoods(CartBean cartBean);
+	
+	// category 가져오기   
+	public List<CategoryDto> selectCategory();
 }

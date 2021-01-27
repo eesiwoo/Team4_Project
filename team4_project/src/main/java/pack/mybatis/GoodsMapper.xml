@@ -33,4 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	value(#{cart_id}, #{user_id}, #{goods_id}, #{cart_goods_cont}) 
  </insert>
   
+  
+  <!-- 카테고리 가져오기 -->
+ <select id="selectCategoryAll" resultType="cg_dto">
+ 	 select category_id, category_name from category
+ </select>
+  
 </mapper>

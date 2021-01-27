@@ -37,18 +37,20 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 
 	@Override
 	public List<GoodsDto> getCartGoodsList(String user_id) {
-		// TODO Auto-generated method stub
 		return getSqlSession().selectList("selectCartListAll", user_id);
 	}
 
 	@Override
 	public Boolean insertCartGoods(CartBean cartBean) {
-		// TODO Auto-generated method stub
 		int re = getSqlSession().insert("insertCartGoods", cartBean);
 		if (re == 1) return true; 
 		else return false;
 	}
 	
+	@Override
+	public List<CategoryDto> selectCategory() {
+		return getSqlSession().selectList("selectCategoryAll");
+	}
 	
 	
 }

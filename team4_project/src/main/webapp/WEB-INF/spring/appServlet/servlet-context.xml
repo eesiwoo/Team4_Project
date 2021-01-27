@@ -22,8 +22,10 @@
 	</beans:bean>
 	
 	<!--  spring-upload -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" /> -->
+
 	<!--  spring-upload -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
 	
 	<context:component-scan base-package="pack.controller" />

@@ -25,6 +25,7 @@
 <a href="goodsRandom?num=4">상품 임의 4개 테스트1</a><br>
 <a href="cartGoods?user_id=user_id 01">장바구니 페이지 테스트</a><br>
 <a href="insertCartGoods?cart_id=cart_id 13&goods_id=2&user_id=user_id 03&cart_goods_cont=2">장바구니 담기 테스트</a><br>
+<a href="admin">관리자</a>
 <!-- review test -->
 <a href="goodsDetail?goods_id=7">7</a><br>
 <a href="goodsDetail?goods_id=8">8</a><br>
