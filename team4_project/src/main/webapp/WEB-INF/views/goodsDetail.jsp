@@ -215,43 +215,6 @@
                 </p>
               </div>
             </div>
-            <div class="goods_desc">
-              <div class="context">
-                <div class="pic">
-                  <img src="resources/images/goods/${goods.goods_img}.jpg" alt="${goods.goods_name}">
-                </div>
-                <p class="words">
-                  <strong class="sub_tit">${goods.goods_shortDesc}</strong>
-                  ${goods.goods_detail } 
-                  <br>
-                  <br>    
-                  ${goods.goods_detail }  
-                  <br>
-                  <br>
-                  ${goods.goods_detail } 
-                  <br>
-
-                </p>
-              </div>
-              <div class="context">
-                <div class="pic">
-                  <img src="resources/images/goods/${goods.goods_img}.jpg" alt="${goods.goods_name}">
-                </div>
-                <p class="words">
-                  <strong class="sub_tit">푸글리제 모짜렐라 (Fresh Cheese / 125g)</strong>
-                  <b>✓ 원재료:</b>
-                  우유 (이탈리아산)
-                  <br>
-                  <b>✓ 보관 형태: </b>
-                  유청에 담겨 포장
-                  <br>
-                  <br>
-                  <br>
-                  이탈리아 피에몬테 지역의 신선한 원유로 제조한 후 치즈를 만들 때 얻을 수 있는 맑은 액체인 유청에 담겨 포장된 모짜렐라입니다. 맑고 담백한 맛의 끝에 약한 산미가 느껴지고, 결 반대로 잘랐을 때 매끈하기보다는 닭고기와 비슷한 질감이 느껴져요. 도화지 같은 맛과 너무 말랑하지 않은 질감으로 진한 맛의 요리와도 잘 어울리고, 샐러드에 넣어도 쉽게 부서지지 않아요. 
-                  <br>
-                </p>
-              </div>
-            </div>
             <div class="goods_tip">
               <h3>
                 <span>Kurly’s Tip</span>
@@ -267,7 +230,7 @@
           </div>
         </div>
       </div>
-      
+     
     <div id="review">
 	
 	</div>
