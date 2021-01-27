@@ -128,7 +128,7 @@
               <div class="list">
                 <span class="tit">배송구분</span>
                 <span class="desc">${goods.goods_delivery}</span>
-              </div>goods_state
+              </div>
               <div class="list">
                 <span class="tit">포장타입</span>
                 <div class="desc">
@@ -221,21 +221,14 @@
                   <img src="resources/images/goods/${goods.goods_img}.jpg" alt="${goods.goods_name}">
                 </div>
                 <p class="words">
-                  <strong class="sub_tit">우유의 꽃, 모짜렐라</strong>
-                  남부 이탈리아에서 처음 만들어진 모짜렐라는 우연한 실수로 탄생했다고 해요.
-                   다른 치즈를 만들기 위해 준비된 커드 덩어리에 실수로 뜨거운 물을 부었는데,
-                    건져낸 커드가 쭈욱 늘어나는 물성으로 바뀐 것이죠. 
+                  <strong class="sub_tit">${goods.goods_shortDesc}</strong>
+                  ${goods.goods_detail } 
                   <br>
                   <br>    
-                  손으로 원하는 크기만큼 잘라내서(mozzare) 만들던 방식 때문에 모짜렐라(mozzarella)라는
-                   이름을 갖게 되었어요. 과거 이탈리아에서는 물소 젖으로 만든 치즈에만 ‘모짜렐라’라는
-                    이름을 붙였지만 1942년 이후 물소 젖과 우유로 만든 두 가지 종류 모두
-                     ‘모짜렐라’로 불리게 되었습니다. 
+                  ${goods.goods_detail }  
                   <br>
                   <br>
-                  이탈리아인들은 모짜렐라 치즈를 ‘우유의 꽃’(일 피오레 디 라테 Il Fiore Di Latte)이라고
-                   부르기도 하며, 아침에 동네 치즈 가게에서 갓 만든 모짜렐라를 구입해 소금, 후추, 올리브 오일만
-                    뿌려 신선한 우유 향 자체를 즐기곤 하지요.
+                  ${goods.goods_detail } 
                   <br>
 
                 </p>
