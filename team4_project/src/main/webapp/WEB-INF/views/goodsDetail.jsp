@@ -94,11 +94,11 @@
     </nav>
      <main>
        <div class="section_view">
-         <img id="section_img" src="resources/images/cheese.png">
+         <img id="section_img" src="resources/images/goods/${goods.goods_img}.jpg">
          <div id="section_info">
           <div class="goods_name">
-            <strong class="name">[푸글리제]모짜렐라</strong><br>
-            <span class="short_desc">담백하고 결이 살아있는 생 모짜렐라</span>
+            <strong class="name">${goods.goods_name}</strong><br>
+            <span class="short_desc">${goods.goods_shortDesc}</span>
           </div>
           <div class="goods_dcinfo">
             회원할인가
@@ -106,43 +106,43 @@
           <div class="goods_price">
             <div class="dc">
               <span class="dc_price">
-                5,225
+                ${goods.goods_price}
                 <span class="won">원</span>
               </span>
-              <span class="dc_percent">5%</span>
+              <span class="dc_percent">${goods.goods_discountRate}%</span>
             </div>
             <div class="original_price">
-              5,500원
+              ${goods.goods_price}원
             </div>
             <div class="not_login">로그인 후, 회원할인가와 적립혜택이 적용 됩니다.</div>
           </div>
           <div class="goods_info">
               <div class="list fst">
                 <span class="tit">판매단위</span>
-                <span class="desc">1팩</span>
+                <span class="desc">${goods.goods_saleUnit}팩</span>
               </div>
               <div class="list">
                 <span class="tit">중량/용량</span>
-                <span class="desc">125g</span>
+                <span class="desc">${goods.goods_weight}g</span>
               </div>
               <div class="list">
                 <span class="tit">배송구분</span>
-                <span class="desc">샛별배송/택배배송</span>
+                <span class="desc">${goods.goods_delivery}</span>
               </div>
               <div class="list">
                 <span class="tit">포장타입</span>
                 <div class="desc">
-                  냉장/종이포장
+                  ${goods.goods_state}
                   <strong class="emph">택배배송은 에코포장이 스티로폼으로 대체됩니다.</strong>
                 </div>
               </div>
                 <div class="list">
                   <span class="tit">알레르기정보</span>
-                  <span class="desc">-우유함유</span>
+                  <span class="desc">${goods.goods_allergy}</span>
                 </div>
                 <div class="list">
                   <span class="tit">유통기한</span>
-                  <span class="desc">수령일 포함 최소 7일 남은 제품을 보내 드립니다.</span>
+                  <span class="desc">${goods.goods_shelfLife}</span>
                 </div>
                 <div class="list">
                   <span class="tit">구매수량</span>
@@ -203,59 +203,15 @@
           <div class="goods_wrap">
             <div class="goods_intro">
               <div class="goods_intro_pic">
-                <img src="resources/images/cheese2.png" alt="cheese">
+                <img src="resources/images/goods/${goods.goods_img}.jpg" alt="${goods.goods_name}">
               </div>
               <div class="goods_intro_context">
                 <h3>
-                  <small>담백하고 결이 살아있는</small>
-                  [푸글리제] 모짜렐라
+                  <small>${goods.goods_shortDesc}</small>
+                  ${goods.goods_name}
                 </h3>
                 <p class="words">
-                  ‘모짜렐라’ 하면 잘게 썰려져 냉동된 토핑용 치즈가 먼저 떠오르실지도 모르겠어요. 가열하면 길게 늘어나는 성질을 최대한 높이기 위해 가공된 치즈 맛에 익숙하다면, 컬리가 신선하게 전해드리는 생 모짜렐라 치즈를 덩어리째로 만나보세요. 가열해 먹을 때와는 완전히 다른 매력을 느끼실 수 있답니다. 숙성기간이 없는 프레시 치즈인 만큼, 풍부한 우유의 풍미와 촉촉하고 신선한 맛을 자랑하지요. 
-                </p>
-              </div>
-            </div>
-            <div class="goods_desc">
-              <div class="context">
-                <div class="pic">
-                  <img src="resources/images/cheese3.png" alt="cheese">
-                </div>
-                <p class="words">
-                  <strong class="sub_tit">우유의 꽃, 모짜렐라</strong>
-                  남부 이탈리아에서 처음 만들어진 모짜렐라는 우연한 실수로 탄생했다고 해요.
-                   다른 치즈를 만들기 위해 준비된 커드 덩어리에 실수로 뜨거운 물을 부었는데,
-                    건져낸 커드가 쭈욱 늘어나는 물성으로 바뀐 것이죠. 
-                  <br>
-                  <br>    
-                  손으로 원하는 크기만큼 잘라내서(mozzare) 만들던 방식 때문에 모짜렐라(mozzarella)라는
-                   이름을 갖게 되었어요. 과거 이탈리아에서는 물소 젖으로 만든 치즈에만 ‘모짜렐라’라는
-                    이름을 붙였지만 1942년 이후 물소 젖과 우유로 만든 두 가지 종류 모두
-                     ‘모짜렐라’로 불리게 되었습니다. 
-                  <br>
-                  <br>
-                  이탈리아인들은 모짜렐라 치즈를 ‘우유의 꽃’(일 피오레 디 라테 Il Fiore Di Latte)이라고
-                   부르기도 하며, 아침에 동네 치즈 가게에서 갓 만든 모짜렐라를 구입해 소금, 후추, 올리브 오일만
-                    뿌려 신선한 우유 향 자체를 즐기곤 하지요.
-                  <br>
-
-                </p>
-              </div>
-              <div class="context">
-                <div class="pic">
-                  <img src="resources/images/cheese4.png" alt="cheese">
-                </div>
-                <p class="words">
-                  <strong class="sub_tit">푸글리제 모짜렐라 (Fresh Cheese / 125g)</strong>
-                  <b>✓ 원재료:</b>
-                  우유 (이탈리아산)
-                  <br>
-                  <b>✓ 보관 형태: </b>
-                  유청에 담겨 포장
-                  <br>
-                  <br>
-                  <br>
-                  이탈리아 피에몬테 지역의 신선한 원유로 제조한 후 치즈를 만들 때 얻을 수 있는 맑은 액체인 유청에 담겨 포장된 모짜렐라입니다. 맑고 담백한 맛의 끝에 약한 산미가 느껴지고, 결 반대로 잘랐을 때 매끈하기보다는 닭고기와 비슷한 질감이 느껴져요. 도화지 같은 맛과 너무 말랑하지 않은 질감으로 진한 맛의 요리와도 잘 어울리고, 샐러드에 넣어도 쉽게 부서지지 않아요. 
-                  <br>
+                  ${goods.goods_detail } 
                 </p>
               </div>
             </div>
@@ -274,7 +230,7 @@
           </div>
         </div>
       </div>
-      
+     
     <div id="review">
 	
 	</div>

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>aa.bb</groupId>
 	<artifactId>cc</artifactId>
-	<name>team4_project</name>
+	<name>team4_project1</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
