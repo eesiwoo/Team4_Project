@@ -105,37 +105,37 @@
 				<h2>이 상품 어때요?</h2>
 				<section class="regular slider">
 					<div>
-						<a id="index_a1" href="#"><img id="index_image1"  /></a>
+						<a id="index_a1" href="#"><img id="index_image1"  src="http://placehold.it/250x320?text=1"/></a>
 						<div id="index_goods_name1">상품명</div> 
 						<del id="index_goods_Bprice1">원래가격 : </del><br />
 						<div id="index_goods_Pprice1">가격</div>
 					</div>
 					<div>
-						<a id="index_a2" href="#"><img id="index_image2"  /></a>
+						<a id="index_a2" href="#"><img id="index_image2"  src="http://placehold.it/250x320?text=1"/></a>
 						<div id="index_goods_name2">상품명</div> 
 						<del id="index_goods_Bprice2">원래가격 : </del><br />
 						<div id="index_goods_Pprice2">가격</div>
 					</div>
 					<div>
-						<a id="index_a3" href="#"><img id="index_image3"  /></a>
+						<a id="index_a3" href="#"><img id="index_image3"  src="http://placehold.it/250x320?text=1"/></a>
 						<div id="index_goods_name3">상품명</div> 
 						<del id="index_goods_Bprice3">원래가격 : </del><br />
 						<div id="index_goods_Pprice3">가격</div>
 					</div>
 					<div>
-						<a id="index_a4" href="#"><img id="index_image4"  /></a>
+						<a id="index_a4" href="#"><img id="index_image4"  src="http://placehold.it/250x320?text=1"/></a>
 						<div id="index_goods_name4">상품명</div> 
 						<del id="index_goods_Bprice4">원래가격 : </del><br />
 						<div id="index_goods_Pprice4">가격</div>
 					</div>
 					<div>
-						<a id="index_a5" href="#"><img id="index_image5"  /></a>
+						<a id="index_a5" href="#"><img id="index_image5"  src="http://placehold.it/250x320?text=1"/></a>
 						<div id="index_goods_name5">상품명</div> 
 						<del id="index_goods_Bprice5">원래가격 : </del><br />
 						<div id="index_goods_Pprice5">가격</div>
 					</div>
 					<div>
-						<a id="index_a6" href="#"><img id="index_image6"  /></a>
+						<a id="index_a6" href="#"><img id="index_image6"  src="http://placehold.it/250x320?text=1"/></a>
 						<div id="index_goods_name6">상품명</div> 
 						<del id="index_goods_Bprice6">원래가격 : </del><br />
 						<div id="index_goods_Pprice6">가격</div>
