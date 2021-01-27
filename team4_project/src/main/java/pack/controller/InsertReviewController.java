@@ -28,16 +28,14 @@ public class InsertReviewController {
 	
 	//리뷰 작성
 	@RequestMapping(value = "insertReview", method = RequestMethod.POST)
-	public String insertReview(@RequestParam("goods_id") String goods_id, ReviewDto dto) throws Exception{
-
-		int id = Integer.parseInt(goods_id);
+	public String insertReview(ReviewDto dto) throws Exception{
 		
-		dto.setGoods_id(id);
+		int goods_id = dto.getGoods_id();
+		
 		dto.setUser_id("user_id 01");
-		dto.setReview_asc(inter.currentReview_asc(id)+1);
+		dto.setReview_asc(inter.currentReview_asc(goods_id)+1);
 		//dto.setReview_id(inter.currentReview_id()+1);
-		//dto.setReview_date();
-		
+
 		boolean b = inter.insertReview(dto);
 			if(b)
 				return "redirect:/goodsDetail?goods_id=" + goods_id ;
