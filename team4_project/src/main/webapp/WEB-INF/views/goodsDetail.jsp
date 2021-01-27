@@ -424,7 +424,11 @@
 					     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
 					str += "</tr>"
 				});
-				
+					/* 리뷰 추가 */
+					str += "<tr>";
+					str += "<td><a href='insertReview?goods_id="+goods_id+"'> 리뷰 쓰기 </a></td>";
+					str += "</tr>";
+					
 					/* 페이징 */
 					str += "<tr>";
 					str += "<td>";

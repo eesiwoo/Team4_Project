@@ -1,5 +1,7 @@
 package pack.model;
 
+import java.util.Calendar;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,8 +24,12 @@ public class ReviewDto {
 		return review_date;
 	}
 	
-	public void setReview_date(String review_date) {
-		this.review_date = review_date;
+	public void setReview_date() {
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) +1;
+		int day = cal.get(Calendar.DATE);
+		this.review_date = year + "-" + month + "-" + day;
 	}
 	
 	public int getReview_id() {
