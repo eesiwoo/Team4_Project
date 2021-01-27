@@ -28,6 +28,8 @@
 <!-- review test -->
 <a href="goodsDetail?goods_id=7">7</a><br>
 <a href="goodsDetail?goods_id=8">8</a><br>
+<a href="goodsDetail?goods_id=3">3</a><br>
+<a href="goodsDetail?goods_id=4">4</a><br>
 <!--   
 	index에서 구현해야할 기본 내용  
 	- jquery 이미지 슬라이드   

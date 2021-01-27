@@ -33,7 +33,7 @@ public class InsertReviewController {
 		int id = Integer.parseInt(goods_id);
 		
 		dto.setGoods_id(id);
-		dto.setUser_id("siwoo");
+		dto.setUser_id("user_id 01");
 		dto.setReview_asc(inter.currentReview_asc(id)+1);
 		//dto.setReview_id(inter.currentReview_id()+1);
 		//dto.setReview_date();

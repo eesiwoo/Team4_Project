@@ -4,12 +4,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
- <!-- 리뷰 조회 -->
+ <!-- 리뷰 조회 (최신순) -->
  <select id="selectReview" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
-  	where goods_id = #{goods_id} 
-  	order by review_asc
+  	where goods_id = #{goods_id} or goods_id = 0
+  	order by review_asc desc
  </select>
+ 
+  <!-- 리뷰 조회 (추천순) -->
+ <select id="selectReviewOrderbyLikes" parameterType="ReviewDto" resultType="ReviewDto">
+  	select * from review
+  	where goods_id = #{goods_id} or goods_id = 0
+  	order by Likes_count desc
+ </select>
+ 
+ <!-- 좋아요 갯수 업데이트 -->
+ <update id="updateLikes" parameterType="ReviewDto">
+ 	update review
+ 	set likes_count = #{likes_count}
+ 	where review_id = #{review_id}
+ </update>
  
   <!-- 좋아요 갯수 조회 --> 
  <select id="countLikes" parameterType="LikesDto" resultType="LikesDto">

@@ -74,5 +74,10 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	public ArrayList<LikesDto> countLikes(int review_id) {
 		return (ArrayList)getSqlSession().selectList("selectReview", review_id);
 	}
+	
+	@Override
+	public void updateLikes(ReviewDto dto) {
+		getSqlSession().update("updateLikes");
+	}
 
 }

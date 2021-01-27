@@ -78,16 +78,21 @@ public class ReviewController {
 		
 		for(ReviewDto r:afterPageList) {
 			ArrayList<LikesDto> likesList = inter.countLikes(r.getReview_id());
-			data = new HashMap<String, String>();
 			
+			//좋아요 수 수정 필요
+			r.setLikes_count(likesList.size());
+			inter.updateLikes(r);
+			System.out.println(r.getReview_id() + " : " + likesList);
+			
+			data = new HashMap<String, String>();
 			data.put("review_id", Integer.toString(r.getReview_id()));
 			data.put("review_asc", Integer.toString(r.getReview_asc()));
 			data.put("review_title", r.getReview_title());
 			data.put("review_content", r.getReview_content());
 			data.put("user_id", r.getUser_id());
 			data.put("review_date", r.getReview_date());
-			data.put("likes_count",Integer.toString(likesList.size()));
-			data.put("review_viewCount",Integer.toString(r.getReview_asc()));
+			data.put("likes_count",Integer.toString(r.getLikes_count()));
+			data.put("review_viewCount",Integer.toString(r.getReview_viewCount()));
 			dataList.add(data);
 		}
 		Map<String, Object> datas = new HashMap<String, Object>();

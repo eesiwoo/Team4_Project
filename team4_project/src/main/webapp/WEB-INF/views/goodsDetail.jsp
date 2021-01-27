@@ -411,7 +411,11 @@
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
 					str += "<tr class='view_content' id='" + rd.review_id + "_review'>";
-					str += "<td>" + rd.review_asc + "</td>";
+					if(rd.review_asc == 9999999){
+						str += "<td>공  지</td>"
+					}else{
+						str += "<td>" + rd.review_asc + "</td>";	
+					}
 					str += "<td>" + rd.review_title + "</td>";
 					str += "<td>" + rd.user_id + "</td>";
 					str += "<td>" + rd.review_date + "</td>";
