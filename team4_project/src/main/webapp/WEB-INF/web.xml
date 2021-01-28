@@ -24,11 +24,13 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		
-		<multipart-config>
-			<max-file-size>20971520</max-file-size> <!--1MB * 20 -->
-			<max-request-size>41943040</max-request-size><!-- 40MB -->
-			<file-size-threshold>20971520</file-size-threshold> <!-- 20MB -->
-		</multipart-config>
+		<!-- fileupload multipart-config maxSize set -->
+	<multipart-config>
+        <max-file-size>209715200</max-file-size> <!-- 20MB limit -->
+        <max-request-size>209715200</max-request-size>
+        <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
+    <!-- fileupload multipart-config -->
 		
 	</servlet>
 		

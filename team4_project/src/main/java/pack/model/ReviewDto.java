@@ -10,7 +10,15 @@ public class ReviewDto {
 	private String user_id, review_title, review_content;
 	private float review_star;
 	private boolean review_isPrivate;
-	private String review_date;
+	private String review_date, review_img;
+	
+	public void setReview_img(String review_img) {
+		this.review_img = review_img;
+	}
+	
+	public String getReview_img() {
+		return review_img;
+	}
 	
 	public int getLikes_count() {
 		return likes_count;

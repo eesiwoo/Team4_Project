@@ -395,8 +395,15 @@
 					str += "</tr>";
 					/* 리뷰 내용 */
 					str += "<tr>";
-					str += "<td><div class='review_content' id='"
-					     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
+					if(rd.review_img != null){
+						str += "<td><div class='review_content' id='"
+						     + rd.review_id +"_review_content'><br/>" + "<img src='" + rd.review_img +"'><br/>"
+						     + rd.review_content + "</div></td>";
+					}else{
+						str += "<td><div class='review_content' id='"
+						     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
+					}
+					
 					str += "</tr>"
 				});
 					/* 리뷰 추가 */

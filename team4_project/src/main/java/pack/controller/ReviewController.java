@@ -92,7 +92,7 @@ public class ReviewController {
 		return datas;
 	}
 
-	
+	//리스트 입력
 	public List<Map<String, String>> setReview(List<ReviewDto> afterPageList){
 		List<Map<String, String>> dataList = new ArrayList<Map<String,String>>();
 		Map<String, String> data = null;
@@ -114,6 +114,7 @@ public class ReviewController {
 			data.put("review_date", r.getReview_date());
 			data.put("likes_count",Integer.toString(r.getLikes_count()));
 			data.put("review_viewCount",Integer.toString(r.getReview_viewCount()));
+			data.put("review_img", r.getReview_img());
 			dataList.add(data);
 		}
 		

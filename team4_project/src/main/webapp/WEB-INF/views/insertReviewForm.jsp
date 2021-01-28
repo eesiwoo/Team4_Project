@@ -35,7 +35,7 @@
 </head>
 <body>
 
-	<form action="insertReview" method="post" id="insertForm">
+	<form action="insertReview" method="post" id="insertForm" enctype="multipart/form-data">
 	<input type="hidden" name="goods_id" value=${goods_id }>
 	
 	<table border="1" style="width: 80%">
@@ -57,6 +57,10 @@
 	  <tr>
 	  	<td>제목</td>
 	  	<td><input type="text" name="review_title"></td>
+	  </tr>
+	  <tr>
+	  	<td>파일 첨부(최대 20MB)</td>
+	  	<td><input type="file" name="review_file"></td>
 	  </tr>
 	  <tr>
 	  	<td>내용</td>
