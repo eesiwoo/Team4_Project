@@ -46,14 +46,16 @@
 		<header>
 			<div class="list_menu">
 				<div class="menu menu_join">
-					<a class="link_menu" aria-label="Go to registeration page">
-						회원가입 </a>
+					<a href="signup" class="link_menu" aria-label="Go to registeration page">회원가입</a>
 				</div>
 				<div class="menu">
 					<a class="link_menu center" aria-label="Go to login page">로그인</a>
 				</div>
 				<div class="menu">
 					<a class="link_menu" aria-label="Go to service center ">고객센터</a>
+				</div>
+				<div class="menu">
+					<a href="admin" class="link_menu" aria-label="Go to service center " >관리자</a>
 				</div>
 			</div>
 			<div class="bottom">

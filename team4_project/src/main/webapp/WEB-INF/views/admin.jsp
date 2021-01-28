@@ -48,7 +48,6 @@ jQuery.browser = {};
 			showMonthAfterYear: true,
 			currentText: '오늘 날짜',
 			closeText: '닫기',
-			yearSuffix: '년'
 		})
 		
 	$(function(){
@@ -57,10 +56,6 @@ jQuery.browser = {};
 	});
 		
 		$("#submitBtn").click(function(){
-			/* var fileValue = $("#fileImg").val().split("\\");
-			var fileName = fileValue[fileValue.length-1];
-			$("#goods_img").val(fileName); */
-			
 			form.submit();
 		})
 	})
