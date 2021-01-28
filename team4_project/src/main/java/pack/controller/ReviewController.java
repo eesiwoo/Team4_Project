@@ -66,15 +66,36 @@ public class ReviewController {
 	@RequestMapping(value = "reviewList", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> reviewList(@RequestParam("goods_id")int goods_id,
-										  @RequestParam("page")int page) {
-		List<Map<String, String>> dataList = new ArrayList<Map<String,String>>();
+										  @RequestParam("page")int page,
+										  @RequestParam("howAsc")String howAsc) {
+		//어떤 순서로 조회할지 확인
+		List<ReviewDto> reviewList = null;
+		if( howAsc.equals("recently") )
+			reviewList = inter.selectReview(goods_id);
+		else if( howAsc.equals("likes") )
+			reviewList = inter.selectReviewOrderbyLikes(goods_id);
+		else if ( howAsc.equals("myReview") )
+			reviewList = inter.selectReviewOrderbyUserId(goods_id);
+			
 		
-		Map<String, String> data = null;
-		List<ReviewDto> reviewList = inter.selectReview(goods_id);
 		List<ReviewDto> afterPageList = setPage(reviewList, page);
 		
 		totalReview = reviewList.size();
+		List<Map<String, String>> dataList = setReview(afterPageList);
 		
+		Map<String, Object> datas = new HashMap<String, Object>();
+		
+		datas.put("datas", dataList);
+		datas.put("page", page);
+		datas.put("totalPage", totalPage());
+
+		return datas;
+	}
+
+	
+	public List<Map<String, String>> setReview(List<ReviewDto> afterPageList){
+		List<Map<String, String>> dataList = new ArrayList<Map<String,String>>();
+		Map<String, String> data = null;
 		
 		for(ReviewDto r:afterPageList) {
 			ArrayList<LikesDto> likesList = inter.countLikes(r.getReview_id());
@@ -82,7 +103,7 @@ public class ReviewController {
 			//좋아요 수 수정 필요
 			r.setLikes_count(likesList.size());
 			inter.updateLikes(r);
-			System.out.println(r.getReview_id() + " : " + likesList);
+			//System.out.println(r.getReview_id() + " : " + likesList);
 			
 			data = new HashMap<String, String>();
 			data.put("review_id", Integer.toString(r.getReview_id()));
@@ -95,14 +116,8 @@ public class ReviewController {
 			data.put("review_viewCount",Integer.toString(r.getReview_viewCount()));
 			dataList.add(data);
 		}
-		Map<String, Object> datas = new HashMap<String, Object>();
 		
-		datas.put("datas", dataList);
-		datas.put("page", page);
-		datas.put("totalPage", totalPage());
-
-		return datas;
+		return dataList;
 	}
-
 	
 }

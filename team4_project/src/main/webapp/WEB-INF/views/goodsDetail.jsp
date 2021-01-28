@@ -231,10 +231,15 @@
         </div>
       </div>
      
-    <div id="review">
-	
-	</div>
-      
+    <div>
+    	<select id="howAsc">
+    		<option value="recently">최신 순으로 조회하기</option>
+    		<option value="likes">추천 순으로 조회하기</option>
+    		<option value="myReview">내가 쓴 글만 보기</option>
+    	</select>
+	    <div id="review">
+		</div>
+    </div>  
       
     </main>
       <footer>
@@ -317,7 +322,7 @@
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
-		callReview(pageId);
+		callReview(pageId, "recently");
 	 });  
   
  	 
@@ -343,11 +348,20 @@
   /* 페이지 변경 */
   $(document).on('click', '.pagebtn', function(){
 	  var pageId = this.id;
-	  callReview(pageId);
-  });		 
+	  var howAsc = $("#howAsc").val();
+	  callReview(pageId, howAsc);
+  });		
+  
+  /* 리뷰 정렬하기 */
+  $(document).on('change', '#howAsc', function(){
+	  var pageId = 1;
+	  var howAsc = $("#howAsc").val();
+	  callReview(pageId, howAsc);
+  });		
+  
 
   /* 리뷰목록 불러오기 */
-  function callReview(pageId) {
+  function callReview(pageId, howAsc) {
 	 $("#review").empty(); 
 	 var goods_id = getParameterByName('goods_id');
 	 
@@ -355,7 +369,8 @@
 		   type : "get",
 		   url : "reviewList",
 		   data : {"goods_id" : goods_id,
-			       "page" : pageId},
+			       "page" : pageId,
+			       "howAsc" : howAsc},
 		   dataType : "json",
 		   success : function(review) {
 				var str = "<table>";
