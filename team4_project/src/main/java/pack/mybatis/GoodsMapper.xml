@@ -18,6 +18,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   select * from goods order by rand() limit #{num} 
  </select>
  
+ 
+ <!-- 상품 입력하기 -->
+  <insert id="insertGoods" parameterType="g_bean">
+ 	 insert into goods(category_id, goods_price, goods_discountRate, goods_saleUnit, goods_weight, 
+ 	 goods_name, goods_detail, goods_delivery, goods_img, goods_reg, goods_state, goods_shortDesc, 
+ 	 goods_shelfLife, goods_allergy, goods_info, goods_saleBegin, goods_saleEnd, goods_regDate
+ 	 ) 
+ 	 values(#{category_id}, #{goods_price}, #{goods_discountRate}, #{goods_saleUnit}, #{goods_weight}, 
+ 	 #{goods_name}, #{goods_detail}, #{goods_delivery}, #{goods_img}, #{goods_reg}, 
+ 	 #{goods_state}, #{goods_shortDesc}, #{goods_shelfLife}, #{goods_allergy}, #{goods_info}, 
+ 	 #{goods_saleBegin}, #{goods_saleEnd}, #{goods_regDate})
+  </insert>
+ 
+ 
  <!-- 장바구니 데이터 가져오기 --> 
  <select id="selectCartListAll" parameterType="string" resultType="g_dto">
   select cart.goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
@@ -26,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    from cart inner join goods on cart.goods_id = goods.goods_id
    where user_id = #{user_id}
  </select>
+ 
  
  <!-- 장바구니 데이터 입력하기 -->
  <insert id="insertCartGoods" parameterType="c_bean">
@@ -38,5 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="selectCategoryAll" resultType="cg_dto">
  	 select category_id, category_name from category
  </select>
+ 
+  
   
 </mapper>

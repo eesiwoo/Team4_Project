@@ -40,10 +40,13 @@ public class InsertGoodsController {
 	}
 	
 	@RequestMapping(value = "insertGoods", method=RequestMethod.POST)
-	public ModelAndView insertGoods(HttpServletRequest request, GoodsBean bean, @RequestParam("fileImg") MultipartFile file, BindingResult result) {
+	public ModelAndView insertGoods(HttpServletRequest request, GoodsBean bean, 
+			@RequestParam("fileImg") MultipartFile file, BindingResult result) {
 		
-	    InputStream inputStream = null;
+		
+		InputStream inputStream = null;
 		OutputStream outputStream = null;
+		
 		// 파일 유효성 검사
 		fileValidator.validate(file, result);
 		System.out.println("파일 유효성 검사 완료");
@@ -52,6 +55,8 @@ public class InsertGoodsController {
 		}
 		
 		String fileName = file.getOriginalFilename();
+		bean.setGoods_img(fileName);
+		System.out.println("goods_img : " + bean.getGoods_img());
 		/* 상대경로
 		String path = request.getSession().getServletContext().getRealPath("resources/images/goods") + "/" + fileName; */
 		
@@ -73,6 +78,11 @@ public class InsertGoodsController {
 				outputStream.write(bytes, 0, read);
 			}
 			System.out.println("파일 성공적으로 저장 성공");
+			bean.setGoods_regDate();
+			System.out.println("goods_regDate : " + bean.getGoods_regDate());
+			Boolean re = goodsDaoInter.insertGoods(bean);
+			if (re) System.out.println("상품 추가 성공");
+			else System.out.println("상품 추가 실패");
 			
 		} catch(Exception e) {
 			e.printStackTrace();

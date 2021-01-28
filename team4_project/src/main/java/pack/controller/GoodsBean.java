@@ -1,16 +1,18 @@
 package pack.controller;
 
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class GoodsBean {
 	
 	
-	private int goods_id, category_id, goods_price, goods_discountRate, goods_saleUnit, goods_weight;
+	private int category_id, goods_price, goods_discountRate, goods_saleUnit, goods_weight;
 	private String goods_name, goods_detail, goods_delivery, goods_img, goods_reg, goods_state;
 	private String goods_shortDesc, goods_shelfLife, goods_allergy, goods_info;
-	private Timestamp goods_saleBegin, goods_saleEnd, goods_regDate;
+	private String goods_saleBegin, goods_saleEnd, goods_regDate;
 	
-	
+
 	public int getGoods_saleUnit() {
 		return goods_saleUnit;
 	}
@@ -54,12 +56,6 @@ public class GoodsBean {
 		this.goods_discountRate = goods_discountRate;
 	}
 	
-	public int getGoods_id() {
-		return goods_id;
-	}
-	public void setGoods_id(int goods_id) {
-		this.goods_id = goods_id;
-	}
 	public int getCategory_id() {
 		return category_id;
 	}
@@ -108,22 +104,24 @@ public class GoodsBean {
 	public void setGoods_state(String goods_state) {
 		this.goods_state = goods_state;
 	}
-	public Timestamp getGoods_saleBegin() {
+	public String getGoods_saleBegin() {
 		return goods_saleBegin;
 	}
-	public void setGoods_saleBegin(Timestamp goods_saleBegin) {
+	public void setGoods_saleBegin(String goods_saleBegin) {
 		this.goods_saleBegin = goods_saleBegin;
 	}
-	public Timestamp getGoods_saleEnd() {
+	public String getGoods_saleEnd() {
 		return goods_saleEnd;
 	}
-	public void setGoods_saleEnd(Timestamp goods_saleEnd) {
+	public void setGoods_saleEnd(String goods_saleEnd) {
 		this.goods_saleEnd = goods_saleEnd;
 	}
-	public Timestamp getGoods_regDate() {
+	public String getGoods_regDate() {
 		return goods_regDate;
 	}
-	public void setGoods_regDate(Timestamp goods_regDate) {
-		this.goods_regDate = goods_regDate;
+	public void setGoods_regDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		this.goods_regDate = sdf.format(new Date(Calendar.getInstance().getTimeInMillis()));
 	}
+	
 }

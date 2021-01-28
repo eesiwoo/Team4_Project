@@ -8,6 +8,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"  />
+<script>
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+</script>
+
 </head>
 <body>
 <!--    
@@ -21,42 +35,36 @@
 -->
 <script type="text/javascript">
 	$(document).ready(function(){
-			
-		$("#insertBtn").click(function(){
-			var fileValue = $("#fileImg").val().split("\\");
+		
+		$.datepicker.setDefaults({
+			dateFormat: 'yy-mm-dd',
+			changeMonth : true, changeYear : true,
+			nextText: '다음 달', prevText: '이전 달',
+			dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+			dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+			monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			showButtonPanel: true,
+			showMonthAfterYear: true,
+			currentText: '오늘 날짜',
+			closeText: '닫기',
+			yearSuffix: '년'
+		})
+		
+	$(function(){
+		$("#goods_saleBegin").datepicker({});
+		$("#goods_saleEnd").datepicker({}); 
+	});
+		
+		$("#submitBtn").click(function(){
+			/* var fileValue = $("#fileImg").val().split("\\");
 			var fileName = fileValue[fileValue.length-1];
-			$("#goods_img").val(fileName);
+			$("#goods_img").val(fileName); */
+			
 			form.submit();
 		})
 	})
 	
-	
-	
-
-// 버튼을 누르면 
-
-/* var imgFile = $('#goods_img').val();
-var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-var maxSize = 10 * 1024 * 1024;
-var fileSize;
-
-if($('#goods_img').val() == "") {
-	alert("첨부파일은 필수!");
-    $("#goods_img").focus();
-    return;
-}
-
-if(imgFile != "" && imageFile != null) {
-	fileSize = document.getElementById("goods_img").files[0].size;
-    
-    if(!imgFile.match(fileForm)) {
-    	alert("이미지 파일만 업로드 가능");
-        return;
-    } else if(fileSize = maxSize) {
-    	alert("파일 사이즈는 5MB까지 가능");
-        return;
-    }
-} */
 </script>
 
 
@@ -72,8 +80,8 @@ if(imgFile != "" && imageFile != null) {
 	짧은설명 : <input type="text" name="goods_shortDesc"/><br><br>
 	상세정보 : <textarea rows="10" cols="200" name="goods_detail"></textarea><br><br> 
 	원가 : <input type="number" name="goods_price"/><br><br>
-	v판매시작일 : <input type="text" name="goods_saleBegin"/><br><br>
-	v판매종료일 : <input type="text" name="goods_saleEnd"/><br><br>
+	판매시작일 : <input type="text" id="goods_saleBegin" name="goods_saleBegin"/><br><br>
+	판매종료일 : <input type="text" id="goods_saleEnd" name="goods_saleEnd"/><br><br>
 	배송방법 : <input type="text" name="goods_delivery"/><br><br> 
 	업로드할 이미지 선택 : <input type="file" id="fileImg" name="fileImg" size="200"><br><br>
 					  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -92,7 +100,7 @@ if(imgFile != "" && imageFile != null) {
 	유통기한 : <input type="text" name="goods_shelfLife"/><br><br>
 	알레르기 정보 : <input type="text" name="goods_allergy"/><br><br>
 	안내사항 : <input type="text" name="goods_info"/><br><br> 
-	<input type="button" value="등록" id="insertBtn">
+	<input type="button" value="등록" id="submitBtn">
 	<c:if test="${Msg != null }">
 		<b style="color:blue;">${Msg}</b>	
 	</c:if>

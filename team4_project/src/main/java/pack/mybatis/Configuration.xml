@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="pack.model.GoodsDto" alias="g_dto"/>
 	<typeAlias type="pack.model.CategoryDto" alias="cg_dto"/>
 	<typeAlias type="pack.controller.CartBean" alias="c_bean"/>
+	<typeAlias type="pack.controller.GoodsBean" alias="g_bean"/>
 	<typeAlias type="pack.model.ReviewDto" alias="ReviewDto"/>
 	<typeAlias type="pack.model.LikesDto" alias="LikesDto"/>
 </typeAliases>

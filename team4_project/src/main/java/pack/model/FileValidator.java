@@ -25,6 +25,18 @@ public class FileValidator implements Validator{
 		}
 		
 		// 추가로 짤 계획 
+		/*
+		 * var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+		var maxSize = 10 * 1024 * 1024;
+		if(!imgFile.match(fileForm)) {
+    	alert("이미지 파일만 업로드 가능");
+        return;
+    } else if(fileSize = maxSize) {
+    	alert("파일 사이즈는 5MB까지 가능");
+        return;
+    }
+		 * 
+		 */
 		
 	}
 	

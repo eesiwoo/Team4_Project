@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pack.controller.CartBean;
+import pack.controller.GoodsBean;
 
 @Repository
 public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
@@ -50,6 +51,13 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 	@Override
 	public List<CategoryDto> selectCategory() {
 		return getSqlSession().selectList("selectCategoryAll");
+	}
+
+	@Override
+	public Boolean insertGoods(GoodsBean bean) {
+		int re = getSqlSession().insert("insertGoods", bean);
+		if (re == 1) return true; 
+		else return false;
 	}
 	
 	
