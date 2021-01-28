@@ -58,10 +58,13 @@ if(imgFile != "" && imageFile != null) {
     }
 } */
 </script>
+
+
+
 <h1> ** admin 페이지 **</h1> <br>
 <form action="insertGoods" method="post" name="form" enctype="multipart/form-data">
 	상품명 : <input type="text" name="goods_name"/><br><br>
-	(btn 짤때 확인) 카테고리 : <select id="category_id" name="category_id">
+	카테고리 : <select id="category_id" name="category_id">
 				<c:forEach var="i" items="${categoryList}">
 					<option value="${i.category_id}">${i.category_name}</option>
 				</c:forEach>
@@ -71,9 +74,12 @@ if(imgFile != "" && imageFile != null) {
 	원가 : <input type="number" name="goods_price"/><br><br>
 	v판매시작일 : <input type="text" name="goods_saleBegin"/><br><br>
 	v판매종료일 : <input type="text" name="goods_saleEnd"/><br><br>
-	배송방법 : <input type="text" name="goods_delivery"/><br><br>
-	업로드할 이미지 선택 : <input type="file" id="fileImg" size="200"><br><br>
+	배송방법 : <input type="text" name="goods_delivery"/><br><br> 
+	업로드할 이미지 선택 : <input type="file" id="fileImg" name="fileImg" size="200"><br><br>
+					  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+					  <form:errors path="file" cssStyle="color:red"/><p/>
 					  <input type="hidden" id="goods_img" name="goods_img">
+					  
 	등록자 : <input type="text" name="goods_reg"/><br><br>
 	포장타입 : <select name="goods_state">
 				<option>냉장</option>
@@ -85,8 +91,11 @@ if(imgFile != "" && imageFile != null) {
 	중량 : <input type="number" name="goods_weight"/><br><br>
 	유통기한 : <input type="text" name="goods_shelfLife"/><br><br>
 	알레르기 정보 : <input type="text" name="goods_allergy"/><br><br>
-	안내사항 : <input type="text" name="goods_info"/><br><br>
+	안내사항 : <input type="text" name="goods_info"/><br><br> 
 	<input type="button" value="등록" id="insertBtn">
+	<c:if test="${Msg != null }">
+		<b style="color:blue;">${Msg}</b>	
+	</c:if>
 </form>
 
 </body>

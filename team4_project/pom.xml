@@ -174,7 +174,21 @@
 		    <artifactId>jaxb-runtime</artifactId>
 		    <version>2.3.0-b170127.1453</version>
 		</dependency>
-		      
+		
+		<!-- aop -->
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		
+		
 		      <!-- json -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -189,6 +203,18 @@
  		      <version>1.4</version>
 		</dependency>
 		
+		<dependency>
+		  <groupId>commons-io</groupId>
+		  <artifactId>commons-io</artifactId>
+		  <version>1.4</version>
+		</dependency>
+		
+		<!-- file upload: multipart/form-data -->
+		<dependency>
+  			<groupId>com.servlets</groupId>
+  			<artifactId>cos</artifactId>
+  			<version>09May2002</version>
+		</dependency>
 		
 		<dependency>
 		   <groupId>org.apache.httpcomponents</groupId>
