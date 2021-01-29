@@ -11,5 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	value(#{user_id}, #{user_name}, #{user_pwd}, #{user_bDate}, 
 	#{user_gen}, #{user_tel}, #{user_addr}, #{user_joinDate},  #{user_email})
 </insert>
+
+<!-- 로그인 하기 -->
+<select id="loginUser" parameterType="string" resultType="u_dto">
+	select user_pwd from user where user_id = #{user_id}
+</select>
   
 </mapper>
