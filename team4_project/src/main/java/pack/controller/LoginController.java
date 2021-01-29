@@ -9,21 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
 	@RequestMapping(value="login", method=RequestMethod.GET)
-	public ModelAndView loginGet() {
-		/*
-		 * 로그인 화면으로 이동
-		 */
-		
-		ModelAndView mav = new ModelAndView("login");
-		return mav;
+	public String loginGet() {
+		return "login";
 	}
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	public ModelAndView loginPOST() {
 		
-		/*
-		 * db에서 로그인 정보 가져와서 확인하기 
-		 */
 		
 		
 		return null;

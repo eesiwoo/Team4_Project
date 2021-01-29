@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn").click(function(){
+			form.submit;
+		})
+	});
+</script>
 </head>
 <body>
 <!--   
@@ -16,5 +24,12 @@
 	- naver, kakao 등 계정 연동 api 활용
 	 
  -->
+<form action="login" name="form" method="post" >
+아이디 : <input type="text" name="user_id" placeholder="아이디를 입력하세요"><br><br> 
+패스워드 : <input type="password" name="user_pwd" placeholder="비밀번호를 입력하세요"><br><br>
+<input type="button" id="btn" value="로그인하기"> 
+</form>
+ 
+ 
 </body>
 </html>

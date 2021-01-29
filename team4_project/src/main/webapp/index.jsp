@@ -49,7 +49,7 @@
 					<a href="signup" class="link_menu" aria-label="Go to registeration page">회원가입</a>
 				</div>
 				<div class="menu">
-					<a class="link_menu center" aria-label="Go to login page">로그인</a>
+					<a href="login" class="link_menu center" aria-label="Go to login page">로그인</a>
 				</div>
 				<div class="menu">
 					<a class="link_menu" aria-label="Go to service center ">고객센터</a>
