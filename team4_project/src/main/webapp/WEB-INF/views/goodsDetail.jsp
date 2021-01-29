@@ -237,9 +237,62 @@
     		<option value="likes">추천 순으로 조회하기</option>
     		<option value="myReview">내가 쓴 글만 보기</option>
     	</select>
-	    <div id="review">
+		<div id="review" class="board">
+			<div class="board_tit">
+				<h2>PRODUCT REVIEW</h2>
+				<div class="sort-wrap clearfix">
+					<ul>
+						<li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
+							이동될 수 있습니다.</li>
+						<li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</li>
+					</ul>
+					<select name="" class="sort">
+						<option value="1">최근등록순</option>
+						<option value="2">좋아요많은순</option>
+						<option value="3">조회많은순</option>
+					</select>
+				</div>
+			</div>
+			<div class="board_table">
+				<div class="tr_line" id="tr_first">
+					<table>
+						<tr>
+							<td class="tb_no">번호</td>
+							<td class="tb_tit">제목</td>
+							<td class="tb_name">작성자</td>
+							<td class="tb_date">작성일</td>
+							<td class="tb_help">도움</td>
+							<td class="tb_count">조회</td>
+						</tr>
+					</table>
+				</div>
+				<div class="tr_line">
+					<table>
+						<tr>
+							<td class="tb_no">공지</td>
+							<td class="tb_tit">금주 Best 후기 안내</td>
+							<td class="tb_name">MarketKurly</td>
+							<td class="tb_date">2021-01-28</td>
+							<td class="tb_help">0</td>
+							<td class="tb_count">12345</td>
+						</tr>
+					</table>
+				</div>
+				<div class="tr_line">
+					<table>
+						<tr>
+							<td class="tb_no">123</td>
+							<td class="tb_tit">안녕하세요</td>
+							<td class="tb_name">Market</td>
+							<td class="tb_date">2021-01-28</td>
+							<td class="tb_help">0</td>
+							<td class="tb_count">123412125</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
-    </div>  
+	</div>  
       
     </main>
       <footer>
