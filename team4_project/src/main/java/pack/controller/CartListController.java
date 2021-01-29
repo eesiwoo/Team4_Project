@@ -2,8 +2,11 @@ package pack.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +26,17 @@ public class CartListController {
 	private GoodsDaoInter goodsDaoInter;
 	
 	@RequestMapping(value = "cartGoods", method=RequestMethod.GET)
-	public ModelAndView showCartGoods(@RequestParam("user_id") String user_id) {
+	public ModelAndView showCartGoods(HttpServletRequest request, HttpServletResponse response) {
 		//로그인 후, 세션 검사 로직 필요. 
 		//DB에서 장바구니 데이터를 가져오기
+		System.out.println("showCartGoods 시작");
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("user_id");
+		System.out.println("user_id");
+		if (user_id == null) {
+			return new ModelAndView("login");
+		}
+		
 		ArrayList<GoodsDto> cartList = new ArrayList<GoodsDto>();
 		cartList = (ArrayList<GoodsDto>)goodsDaoInter.getCartGoodsList(user_id);
 		

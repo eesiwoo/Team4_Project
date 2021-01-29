@@ -49,8 +49,17 @@
 					<a href="signup" class="link_menu" aria-label="Go to registeration page">회원가입</a>
 				</div>
 				<div class="menu">
-					<a class="link_menu center" aria-label="Go to login page">로그인</a>
+					<a href="login" class="link_menu center" aria-label="Go to login page">로그인</a>
 				</div>
+				<%
+				if(session.getAttribute("user_id") != null)
+					out.print("<div class='menu'><a href='logout' class='link_menu center' aria-label='Go to login page'>로그아웃</a></div>");
+				%>
+				<%-- <c:if test="${ session.getAttribute('user_id') != null}">
+				<div class="menu">
+					<a href="logout" class="link_menu center" aria-label="Go to login page">로그아웃</a>
+				</div>
+				</c:if> --%>
 				<div class="menu">
 					<a class="link_menu" aria-label="Go to service center ">고객센터</a>
 				</div>
@@ -87,7 +96,7 @@
 					<img src="resources/images/gps.png" alt="package GPS" />
 				</div>
 				<div class="cart">
-					<a href="#" class="cart" aria-label="Go to cart"> <img
+					<a href="cartGoods" class="cart" aria-label="Go to cart"> <img
 						src="resources/images/cart.png" alt="”장바구니”" /></a>
 				</div>
 			</div>
