@@ -7,8 +7,11 @@
 <head>
 	<meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="resources/css/styles.css" />
-    <link rel="stylesheet" href="resources/css/dropdown.css"/>
+    <link href="resources/css/styles.css" rel="stylesheet" />
+    <link href="resources/css/styles_board.css" rel="stylesheet" />
+    <link href="resources/css/dropdown.css" rel="stylesheet"/>
+    
+    
 	<title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 	<link rel="shortcut icon" href="resources/images/kurly_mark.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
@@ -22,6 +25,8 @@
 	</style>
 	
 </head>
+
+
 <body>
 <%-- <% ArrayList<GoodsDto> recentGoods = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); %><br> --%>
 <%-- <%=recentGoods.get(1).getGoods_id() %>
@@ -231,13 +236,12 @@
         </div>
       </div>
      
-    <div>
     	<select id="howAsc">
     		<option value="recently">최신 순으로 조회하기</option>
     		<option value="likes">추천 순으로 조회하기</option>
     		<option value="myReview">내가 쓴 글만 보기</option>
     	</select>
-		<div id="review" class="board">
+		<div class="board">
 			<div class="board_tit">
 				<h2>PRODUCT REVIEW</h2>
 				<div class="sort-wrap clearfix">
@@ -253,46 +257,9 @@
 					</select>
 				</div>
 			</div>
-			<div class="board_table">
-				<div class="tr_line" id="tr_first">
-					<table>
-						<tr>
-							<td class="tb_no">번호</td>
-							<td class="tb_tit">제목</td>
-							<td class="tb_name">작성자</td>
-							<td class="tb_date">작성일</td>
-							<td class="tb_help">도움</td>
-							<td class="tb_count">조회</td>
-						</tr>
-					</table>
-				</div>
-				<div class="tr_line">
-					<table>
-						<tr>
-							<td class="tb_no">공지</td>
-							<td class="tb_tit">금주 Best 후기 안내</td>
-							<td class="tb_name">MarketKurly</td>
-							<td class="tb_date">2021-01-28</td>
-							<td class="tb_help">0</td>
-							<td class="tb_count">12345</td>
-						</tr>
-					</table>
-				</div>
-				<div class="tr_line">
-					<table>
-						<tr>
-							<td class="tb_no">123</td>
-							<td class="tb_tit">안녕하세요</td>
-							<td class="tb_name">Market</td>
-							<td class="tb_date">2021-01-28</td>
-							<td class="tb_help">0</td>
-							<td class="tb_count">123412125</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>  
+			<div class="board_table" id="review">
+			
+		</div> 
       
     </main>
       <footer>
@@ -375,7 +342,7 @@
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
-		callReview(pageId, "recently");
+		 callReview(pageId, "recently"); 
 	 });  
   
  	 
@@ -417,7 +384,6 @@
   function callReview(pageId, howAsc) {
 	 $("#review").empty(); 
 	 var goods_id = getParameterByName('goods_id');
-	 
 	   $.ajax({
 		   type : "get",
 		   url : "reviewList",
@@ -425,26 +391,31 @@
 			       "page" : pageId,
 			       "howAsc" : howAsc},
 		   dataType : "json",
-		   success : function(review) {
-				var str = "<table>";
-				    str += "<tr style='background-color: silver;'>";
-					str += "<th>번호</th><th>제  목</th><th>작성자</th><th>작성일</th><th>좋아요</th><th>조회</th>";
-					str += "</tr>";
+		   success : function(review) {	
+			   	var str = "<div class='tr_line' id='tr_first'><table><tr>"; 
+					str += "<td class='tb_no'>번호</td>";
+					str += "<td class='tb_tit'>제목</td>";
+					str += "<td class='tb_name'>작성자</td>";
+					str += "<td class='tb_date'>작성일</td>";
+					str += "<td class='tb_help'>도움</td>";
+					str += "<td class='tb_count'>조회</td></tr></table></div>";
 					
 				let list = review.datas;
+				console.log(review)
+				console.log(list)
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
-					str += "<tr class='view_content' id='" + rd.review_id + "_review'>";
+					str += "<div class='tr_line'><table><tr id='" + rd.review_id + "_review'>"
 					if(rd.review_asc >= 9999990){
-						str += "<td>공  지</td>"
+						str += "<td class='tb_no'>공  지</td>"
 					}else{
-						str += "<td>" + rd.review_asc + "</td>";	
+						str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
 					}
-					str += "<td>" + rd.review_title + "</td>";
-					str += "<td>" + rd.user_id + "</td>";
-					str += "<td>" + rd.review_date + "</td>";
-					str += "<td>" + rd.likes_count + "</td>";
-					str += "<td>" + rd.review_viewCount + "</td>";
+					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
+					str += "<td class='tb_name'>" + rd.user_id + "</td>";
+					str += "<td class='tb_date'>" + rd.review_date + "</td>";
+					str += "<td class='tb_help'>" + rd.likes_count + "</td>";
+					str += "<td class='tb_count'>" + rd.review_viewCount + "</td>";
 					str += "</tr>";
 					/* 리뷰 내용 */
 					str += "<tr>";
@@ -457,14 +428,14 @@
 						     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
 					}
 					
-					str += "</tr>"
+					str += "</tr></table><div>"
 				});
-					/* 리뷰 추가 */
+					/*  리뷰 추가 
 					str += "<tr>";
 					str += "<td><a href='insertReview?goods_id="+goods_id+"'> 리뷰 쓰기 </a></td>";
 					str += "</tr>";
 					
-					/* 페이징 */
+					 페이징 
 					str += "<tr>";
 					str += "<td>";
 				let totalPage = review.totalPage;
@@ -479,9 +450,7 @@
 				}
 					str += "</td>";
 					str += "</tr>";
-				    str += "</table>";
-				    
-				    
+				    str += "</table>"; */
 				    
 				    $("#review").html(str);
 		},
