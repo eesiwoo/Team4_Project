@@ -258,43 +258,7 @@
 				</div>
 			</div>
 			<div class="board_table" id="review">
-			<div class="tr_line" id="tr_first">
-          <table>
-            <tr>
-              <td class="tb_no">번호</td>
-              <td class="tb_tit">제목</td>
-              <td class="tb_name">작성자</td>
-              <td class="tb_date">작성일</td>
-              <td class="tb_help">도움</td>
-              <td class="tb_count">조회</td>
-            </tr>
-          </table>
-        </div>
-        <div class="tr_line">
-          <table>
-            <tr>
-              <td class="tb_no">공지</td>
-              <td class="tb_tit">금주 Best 후기 안내</td>
-              <td class="tb_name">MarketKurly</td>
-              <td class="tb_date">2021-01-28</td>
-              <td class="tb_help">0</td>
-              <td class="tb_count">12345</td>
-            </tr>
-          </table>
-        </div>
-        <div class="tr_line">
-          <table>
-            <tr>
-              <td class="tb_no">123</td>
-              <td class="tb_tit">안녕하세요</td>
-              <td class="tb_name">Market</td>
-              <td class="tb_date">2021-01-28</td>
-              <td class="tb_help">0</td>
-              <td class="tb_count">123412125</td>
-            </tr>
-          </table>
-        </div>
-			</div>
+			
 		</div> 
       
     </main>
@@ -378,7 +342,7 @@
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
-		/* callReview(pageId, "recently"); */
+		 callReview(pageId, "recently"); 
 	 });  
   
  	 
@@ -435,20 +399,18 @@
 					str += "<td class='tb_date'>작성일</td>";
 					str += "<td class='tb_help'>도움</td>";
 					str += "<td class='tb_count'>조회</td></tr></table></div>";
-					console.log(str)
+					
 				let list = review.datas;
+				console.log(review)
+				console.log(list)
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
-					console.log("1")
 					str += "<div class='tr_line'><table><tr id='" + rd.review_id + "_review'>"
 					if(rd.review_asc >= 9999990){
 						str += "<td class='tb_no'>공  지</td>"
-							console.log("2")
 					}else{
-						console.log("3")
 						str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
 					}
-					console.log("4")
 					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
 					str += "<td class='tb_name'>" + rd.user_id + "</td>";
 					str += "<td class='tb_date'>" + rd.review_date + "</td>";
@@ -457,7 +419,6 @@
 					str += "</tr>";
 					/* 리뷰 내용 */
 					str += "<tr>";
-					console.log("5")
 					if(rd.review_img != null){
 						str += "<td><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>" + "<img src='" + rd.review_img +"'><br/>"
@@ -491,10 +452,7 @@
 					str += "</tr>";
 				    str += "</table>"; */
 				    
-				    console.log(str)
-				    console.log("str 입력완료")
 				    $("#review").html(str);
-				    console.log("html 삽입완료")
 		},
 		   error : function(){
 			   alert("오류발생");
