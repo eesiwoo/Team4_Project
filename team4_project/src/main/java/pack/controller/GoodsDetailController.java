@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.CookieGenerator;
 
 import pack.model.GoodsDaoInter;
 import pack.model.GoodsDto;
@@ -61,6 +62,13 @@ public class GoodsDetailController {
 		mav.addObject("goods", goods);
 		mav.setViewName("goodsDetail");
 		
+		
+		//쿠키생성
+		CookieGenerator cg = new CookieGenerator();
+
+		cg.setCookieName("view");
+		cg.setCookieMaxAge(60*60*24*365);
+		cg.addCookie(response, null);
 		return mav;
 	}
 	

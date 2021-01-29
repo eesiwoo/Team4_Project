@@ -1,5 +1,6 @@
 <%@page import="pack.model.GoodsDto"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="pack.controller.ReviewController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -342,6 +343,12 @@
 		}else {
 			document.getElementById(id).style.display = 'block';
 		};
+		$.ajax({
+			type : "get",
+			url : "view_count",
+			data : {"review_id" : this.id},
+			dataType : "json"
+		})
 		
 	  });
   
@@ -377,16 +384,34 @@
 				    str += "<tr style='background-color: silver;'>";
 					str += "<th>번호</th><th>제  목</th><th>작성자</th><th>작성일</th><th>좋아요</th><th>조회</th>";
 					str += "</tr>";
+				let notice = review.noticeList;
+				$(notice).each(function(i, nl){
+					str += "<tr class='view_content' id='" + nl.review_id + "_review'>";
+					str += "<td>공  지</td>"
+					str += "<td>" + nl.review_title + "</td>";
+					str += "<td>" + nl.user_id + "</td>";
+					str += "<td>" + nl.review_date + "</td>";
+					str += "<td>" + nl.likes_count + "</td>";
+					str += "<td>" + nl.review_viewCount + "</td>";
+					str += "</tr>";
+					str += "<tr>";
+					if(nl.review_img != null){
+						str += "<td><div class='review_content' id='"
+						     + nl.review_id +"_review_content'><br/>" + "<img src='" + nl.review_img +"'><br/>"
+						     + nl.review_content + "</div></td>";
+					}else{
+						str += "<td><div class='review_content' id='"
+						     + nl.review_id +"_review_content'>" + nl.review_content + "</div></td>";
+					
+					}
+					str += "</tr>";
+				});
 					
 				let list = review.datas;
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
 					str += "<tr class='view_content' id='" + rd.review_id + "_review'>";
-					if(rd.review_asc >= 9999990){
-						str += "<td>공  지</td>"
-					}else{
-						str += "<td>" + rd.review_asc + "</td>";	
-					}
+					str += "<td>" + rd.review_asc + "</td>";	
 					str += "<td>" + rd.review_title + "</td>";
 					str += "<td>" + rd.user_id + "</td>";
 					str += "<td>" + rd.review_date + "</td>";

@@ -37,8 +37,12 @@ public class InsertReviewController {
 		
 		//ID,글번호 셋팅
 		int goods_id = dto.getGoods_id();
+		String asc = inter.currentReview_asc(goods_id);
 		dto.setUser_id("user_id 01");
-		dto.setReview_asc(inter.currentReview_asc(goods_id)+1);
+		if(asc == null)
+			dto.setReview_asc(1);
+		else
+			dto.setReview_asc(Integer.parseInt(asc)+1);
 		
 		//파일 업로드
 		String orgName = file.getOriginalFilename();
@@ -52,7 +56,7 @@ public class InsertReviewController {
 		//결과 반환
 		boolean b = inter.insertReview(dto);
 			if(b)
-				return "redirect:/goodsDetail?goods_id=" + goods_id ;
+				return "redirect:/goods?goods_id=" + goods_id ;
 			else
 				return "error";
 	}

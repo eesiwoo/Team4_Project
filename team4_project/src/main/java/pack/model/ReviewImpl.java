@@ -28,6 +28,11 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	public ArrayList<ReviewDto> selectReviewOrderbyUserId(int goods_id) {
 		return (ArrayList)getSqlSession().selectList("selectReviewOrderbyUserId", goods_id);
 	}
+	
+	@Override
+	public ArrayList<ReviewDto> selectNotice() {
+		return (ArrayList)getSqlSession().selectList("selectNotice");
+	}
 
 
 	@Override
@@ -52,11 +57,6 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 		return false;
 	}
 
-	@Override
-	public boolean giveStar() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public int currentReview_id() {
@@ -64,7 +64,7 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	}
 
 	@Override
-	public int currentReview_asc(int goods_id) {
+	public String currentReview_asc(int goods_id) {
 		return getSqlSession().selectOne("MaxReview_asc", goods_id);
 	}
 
@@ -73,11 +73,11 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 	@Override
-	public void insertImage() {
-		// TODO Auto-generated method stub
-
+	public void viewCount(int review_id) {
+		 getSqlSession().update("viewCount", review_id);
+		
 	}
 	
 	@Override
