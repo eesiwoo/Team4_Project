@@ -65,14 +65,7 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 
 	@Override
 	public int currentReview_asc(int goods_id) {
-		
-		// null처리  
-		if (getSqlSession().selectOne("MaxReview_asc", goods_id) == null) {
-			return 0;
-		} else {
-			return getSqlSession().selectOne("MaxReview_asc", goods_id);
-		}
-		
+		return getSqlSession().selectOne("MaxReview_asc", goods_id);
 	}
 
 	@Override
