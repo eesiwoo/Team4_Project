@@ -32,6 +32,7 @@ public class CartListController {
 		System.out.println("showCartGoods 시작");
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id");
+		System.out.println("user_id");
 		if (user_id == null) {
 			return new ModelAndView("login");
 		}
