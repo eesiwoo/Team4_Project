@@ -7,11 +7,10 @@
 <head>
 	<meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%String ctx = request.getContextPath();%> 
-
-	<link href="${path}/resources/css/styles.css" rel="stylesheet">
-   <!--  <link href="resources/css/styles.css" rel="stylesheet" /> -->
+	<!-- <link href="resources/css/styles.css" rel="stylesheet"> -->
+    <link href="resources/css/styles.css" rel="stylesheet" />
     <link href="resources/css/dropdown.css" rel="stylesheet"/>
+    
     
 	<title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 	<link rel="shortcut icon" href="resources/images/kurly_mark.png" />
