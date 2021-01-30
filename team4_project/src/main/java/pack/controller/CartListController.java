@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import pack.model.GoodsDaoInter;
-import pack.model.GoodsDto;
+import pack.model.CartDaoInter;
+import pack.model.CartDto;
 
 @Controller
 public class CartListController {
 	
 	@Autowired
-	private GoodsDaoInter goodsDaoInter;
+	private CartDaoInter cartDaoInter;
 	
 	@Autowired 
 	CartBean cartBean;
@@ -37,8 +37,8 @@ public class CartListController {
 		String user_id = (String)session.getAttribute("user_id");
 	
 		
-		ArrayList<GoodsDto> cartList = new ArrayList<GoodsDto>();
-		cartList = (ArrayList<GoodsDto>)goodsDaoInter.getCartGoodsList(user_id);
+		ArrayList<CartDto> cartList = new ArrayList<CartDto>();
+		cartList = (ArrayList<CartDto>)cartDaoInter.getCartGoodsList(user_id);
 		
 		ModelAndView mav = new ModelAndView("cartList");
 		mav.addObject("cartList", cartList);
@@ -66,7 +66,7 @@ public class CartListController {
 		System.out.println("cart_goods_cont : " + cartBean.getCart_goods_cont());
 		Map<String, Object> isSuccess = new HashMap<String, Object>();
 		
-		if(goodsDaoInter.insertCartGoods(cartBean)) {
+		if(cartDaoInter.insertCartGoods(cartBean)) {
 			// 성공
 			System.out.println("장바구니 담기 성공");
 			isSuccess.put("msg", "장바구니 담기 성공");

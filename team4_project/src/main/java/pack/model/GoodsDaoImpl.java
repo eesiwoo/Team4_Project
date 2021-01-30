@@ -34,19 +34,6 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 		// 랜덤으로 2개 이상 상품 가져오기
 		return getSqlSession().selectList("selectRandGoods", num);
 	}
-
-
-	@Override
-	public List<GoodsDto> getCartGoodsList(String user_id) {
-		return getSqlSession().selectList("selectCartListAll", user_id);
-	}
-
-	@Override
-	public Boolean insertCartGoods(CartBean cartBean) {
-		int re = getSqlSession().insert("insertCartGoods", cartBean);
-		if (re == 1) return true; 
-		else return false;
-	}
 	
 	@Override
 	public List<CategoryDto> selectCategory() {
