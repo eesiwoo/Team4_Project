@@ -1,6 +1,7 @@
 package pack.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)
-	public String loginPOST(HttpServletRequest request, 
+	 public String loginPOST(HttpServletRequest request, HttpServletResponse response,
 									@RequestParam("user_id") String user_id, 
 									@RequestParam("user_pwd") String user_pwd ) {
 		

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginAop {
 	@Autowired
 	private LoginClass loginClass;
-	
+
 	@Around("execution(* showCartGoods*(..))")
 	public Object aopProcess(ProceedingJoinPoint joinPoint) throws Throwable{
 		System.out.println("aop 시작");
@@ -31,7 +31,9 @@ public class LoginAop {
 				response = (HttpServletResponse)obj;
 			}
 		}
-		
+		System.out.println(request);
+		System.out.println(response);
+		System.out.println("로그인체크");
 		if(loginClass.loginCheck(request, response)) {
 			return null;
 		}
