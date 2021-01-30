@@ -10,8 +10,6 @@
     <link href="resources/css/styles.css" rel="stylesheet" />
     <link href="resources/css/styles_board.css" rel="stylesheet" />
     <link href="resources/css/dropdown.css" rel="stylesheet"/>
-    
-    
 	<title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 	<link rel="shortcut icon" href="resources/images/kurly_mark.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
@@ -153,13 +151,10 @@
                   <span class="tit">구매수량</span>
                   <span class="desc">
                     <span class="count">
-                      <button type="button" class="btn">
-                        -
-                      </button>
-                      <input type="number" readonly="readonly" onfocus="this.blur()" class="inp">
-                      <button type="button" class="btn">
-                        +
-                      </button>
+                      <button type="button" id="btn_down" class="btn_down_on">-</button>
+                      <input type="number" name="goods_cont" readonly="readonly" 
+                      onfocus="this.blur()" class="inp" >
+                      <button type="button" id="btn_up" class="btn_down_up">+</button>                      
                     </span>
                   </span>
                 </div>
