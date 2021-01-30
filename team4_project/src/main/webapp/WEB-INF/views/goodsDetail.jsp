@@ -258,7 +258,7 @@
 				</div>
 			</div>
 			<div class="board_table" id="review">
-			
+			</div>
 		</div> 
       
     </main>
