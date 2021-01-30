@@ -32,9 +32,15 @@ public interface ReviewInter {
  	//좋아요 수 조회하기
  	public ArrayList<LikesDto> countLikes(int review_id);
  	
- 	//좋아요 수 업데이트하기
- 	public void updateLikes(ReviewDto dto);
- 	
  	//조회수 증가
  	public void viewCount(int review_id);
+ 	
+ 	//좋아요 데이터 조회
+ 	public String selectLikes(LikesDto dto);
+ 	
+ 	//좋아요 데이터 생성
+ 	public void insertLikes(LikesDto dto);
+ 	
+ 	//좋아요 데이터 삭제
+ 	public void deleteLikes(LikesDto dto);
 }

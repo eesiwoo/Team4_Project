@@ -226,12 +226,7 @@
           </div>
         </div>
       </div>
-     
-    	<select id="howAsc">
-    		<option value="recently">최신 순으로 조회하기</option>
-    		<option value="likes">추천 순으로 조회하기</option>
-    		<option value="myReview">내가 쓴 글만 보기</option>
-    	</select>
+
     	<div class="goods-view-information">
     	<ul class="goods-view-information-tab-group">
           <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
@@ -346,7 +341,7 @@
 	 });  
   
  	 
-  /* url에서 id 가져오기 */
+  /* url에서 goods_id 가져오기 */
   function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
       var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -370,6 +365,31 @@
 		})
 		
 	  });
+  
+  /* 좋아요 버튼 클릭 */
+  $(document).on('click', '.like_btn',function(){
+	  var review_id = this.id;
+	 $.ajax({
+		   type : "get",
+		   url : "clickLikes",
+		   data : {"review_id" : review_id},
+		   dataType : "json",
+		   success : function(data) {
+			   let result = data.result;
+			  if(result == "fail")
+				  alert("로그인 후 이용해 주세요.")
+			  else if(result == "like")
+				  alert("추천해 주셔서 감사합니다.")
+			  else
+				  alert("추천이 취소되었습니다.")
+		   },
+		   error : function(){
+			   alert("오류발생");
+			   
+		   }
+	 }); 
+	  
+  });
   
   /* 페이지 변경 */
   $(document).on('click', '.pagebtn', function(){
@@ -446,11 +466,14 @@
 					str += "<tr>";
 					if(rd.review_img != null){
 						str += "<td class='tb_content'><div class='review_content' id='"
-						     + rd.review_id +"_review_content'><br/>" + "<img src='" + rd.review_img +"'><br/>"
-						     + rd.review_content + "</div></td>";
+						     + rd.review_id +"_review_content'><br/>";
+						str += "<img src='" + rd.review_img +"'><br/>";
+						str += rd.review_content + "</div>";
+						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
 					}else{
 						str += "<td class='tb_content'><div class='review_content' id='"
-						     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
+						     + rd.review_id +"_review_content'>" + rd.review_content + "</div>";
+						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";     
 					}
 					
 					str += "</tr>"
