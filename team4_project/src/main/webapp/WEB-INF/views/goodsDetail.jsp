@@ -198,10 +198,10 @@
        </div>
       <div class="goods-view-information">
         <ul class="goods-view-information-tab-group">
-          <li class="goods-view-information-tab">상품설명</li>
+          <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
           <li class="goods-view-information-tab">상품이미지</li>
           <li class="goods-view-information-tab">상세정보</li>
-          <li class="goods-view-information-tab">고객후기</li>
+          <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
           <li class="goods-view-information-tab">상품문의</li>
         </ul>
         <div class="goods-view-information-content">
@@ -241,6 +241,15 @@
     		<option value="likes">추천 순으로 조회하기</option>
     		<option value="myReview">내가 쓴 글만 보기</option>
     	</select>
+    	<div class="goods-view-information">
+    	<ul class="goods-view-information-tab-group">
+          <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
+          <li class="goods-view-information-tab">상품이미지</li>
+          <li class="goods-view-information-tab">상세정보</li>
+          <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
+          <li class="goods-view-information-tab">상품문의</li>
+        </ul>
+        </div>
 		<div class="board">
 			<div class="board_tit">
 				<h2>PRODUCT REVIEW</h2>
