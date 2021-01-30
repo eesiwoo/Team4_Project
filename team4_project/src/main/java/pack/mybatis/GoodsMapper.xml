@@ -30,24 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 #{goods_state}, #{goods_shortDesc}, #{goods_shelfLife}, #{goods_allergy}, #{goods_info}, 
  	 #{goods_saleBegin}, #{goods_saleEnd}, #{goods_regDate})
   </insert>
- 
- 
- <!-- 장바구니 데이터 가져오기 --> 
- <select id="selectCartListAll" parameterType="string" resultType="g_dto">
-  select cart.goods_id, goods_name, category_id, goods_detail, goods_price, goods_saleBegin, goods_saleEnd,
-   goods_delivery, goods_img, goods_reg, goods_regDate, goods_state, goods_discountRate, goods_shortDesc, goods_saleUnit, 
-   goods_weight, goods_shelfLife, goods_allergy, goods_info
-   from cart inner join goods on cart.goods_id = goods.goods_id
-   where user_id = #{user_id}
- </select>
- 
- 
- <!-- 장바구니 데이터 입력하기 -->
- <insert id="insertCartGoods" parameterType="c_bean">
- 	insert into cart(cart_id, user_id, goods_id, cart_goods_cont) 
- 	value(#{cart_id}, #{user_id}, #{goods_id}, #{cart_goods_cont}) 
- </insert>
-  
+
   
   <!-- 카테고리 가져오기 -->
  <select id="selectCategoryAll" resultType="cg_dto">

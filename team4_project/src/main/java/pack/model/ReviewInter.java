@@ -7,7 +7,7 @@ public interface ReviewInter {
 	//굿즈 디테일에서 보이는 리뷰 창 (goods_id를 가져와 글 목록 조회)
 	public ArrayList<ReviewDto> selectReview(int goods_id);
 	public ArrayList<ReviewDto> selectReviewOrderbyLikes(int goods_id);
-	public ArrayList<ReviewDto> selectReviewOrderbyUserId(int goods_id);
+	public ArrayList<ReviewDto> selectReviewOrderbyUserId(ReviewDto dto);
 	public ArrayList<ReviewDto> selectNotice();
 	
 	//리뷰 등록하기 ( 구매한 사람만 등록해야함. order 테이블이랑 조인해서 구매여부 확인 후 리뷰 등록할 수 있게 하기 )

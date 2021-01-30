@@ -68,15 +68,22 @@ public class ReviewController {
 	@ResponseBody
 	public Map<String, Object> reviewList(@RequestParam("goods_id")int goods_id,
 										  @RequestParam("page")int page,
-										  @RequestParam("howAsc")String howAsc) {
-		//어떤 순서로 조회할지 확인
+										  @RequestParam("howAsc")String howAsc,
+										  HttpServletRequest request) {
+		
 		List<ReviewDto> reviewList = null;
+		ReviewDto dto = new ReviewDto();
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
+		dto.setUser_id(user_id);
+		dto.setGoods_id(goods_id);
+		//어떤 순서로 조회할지 확인
 		if( howAsc.equals("recently") )
 			reviewList = inter.selectReview(goods_id);
 		else if( howAsc.equals("likes") )
 			reviewList = inter.selectReviewOrderbyLikes(goods_id);
 		else if ( howAsc.equals("myReview") )
-			reviewList = inter.selectReviewOrderbyUserId(goods_id);
+			reviewList = inter.selectReviewOrderbyUserId(dto);
 			
 		List<ReviewDto> notice = inter.selectNotice();
 		List<ReviewDto> afterPageList = setPage(reviewList, page);
