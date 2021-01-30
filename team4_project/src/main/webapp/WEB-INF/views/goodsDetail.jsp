@@ -153,7 +153,7 @@
                     <span class="count">
                       <button type="button" id="btn_down" class="btn_down_on">-</button>
                       <input type="number" name="goods_cont" readonly="readonly" 
-                      onfocus="this.blur()" class="inp" >
+                      onfocus="this.blur()" class="inp" value=0>
                       <button type="button" id="btn_up" class="btn_down_up">+</button>                      
                     </span>
                   </span>
@@ -343,6 +343,16 @@
 <!-- review test -->	
 	
   <script type="text/javascript">
+    /* 구매 수량 로직 */
+  	$(document).on('click', '.btn_down_on',function(){
+  		let num = $(".inp").val();
+  		if (num > 0) $(".inp").val(--num);
+	  });
+    $(document).on('click', '.btn_down_up',function(){
+  		let num = $(".inp").val();
+  		if (num < 1000) $(".inp").val(++num);
+	  });
+  
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
