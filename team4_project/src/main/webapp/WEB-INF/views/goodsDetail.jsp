@@ -152,7 +152,7 @@
                   <span class="desc">
                     <span class="count">
                       <button type="button" id="btn_down" class="btn_down_on">-</button>
-                      <input type="number" name="goods_cont" readonly="readonly" 
+                      <input type="number" name="cart_goods_cont" readonly="readonly" 
                       onfocus="this.blur()" class="inp" value=0>
                       <button type="button" id="btn_up" class="btn_down_up">+</button>                      
                     </span>
@@ -183,7 +183,7 @@
                     </button>
                   </div>
                   <div class="btn_type1">
-                    <button type="button" class="txt_type">
+                    <button type="button"id="insertCartBtn" class="txt_type">
                       장바구니 담기
                     </button>
                   </div>
@@ -343,7 +343,40 @@
 <!-- review test -->	
 	
   <script type="text/javascript">
-    /* 구매 수량 로직 */
+  
+  	/* 장바구니 담기 */
+  	$(document).on('click', '#insertCartBtn', function(){
+  		let cart_goods_cont = $(".inp").val();
+  		let user_id = "<%=session.getAttribute("user_id")%>";
+  		if (cart_goods_cont < 1){
+  			alert("구매수량이 0개입니다.");
+  			return
+  		}
+  		
+  		if (user_id == "null"){
+  			alert("로그인이 필요합니다.");
+  			location.href = 'login';
+  			return
+  		}
+  		
+  		<% GoodsDto dto = (GoodsDto)request.getAttribute("goods"); %>
+  		//alert(goods_id)
+  		let goods_id = <%=dto.getGoods_id() %>;
+  		
+  		$.ajax({
+  			type: "post",
+  			url:"insertCartGoods",
+  			dataType:"json",
+  			data:{"goods_id":goods_id, 
+  				"cart_goods_cont": cart_goods_cont},
+  			success:function(isSuccess){
+  				alert(isSuccess.msg.toString())
+  				
+  			}
+  		})
+  	});
+  
+  	/* 구매 수량 변동 */
   	$(document).on('click', '.btn_down_on',function(){
   		let num = $(".inp").val();
   		if (num > 0) $(".inp").val(--num);
@@ -415,8 +448,6 @@
 					str += "<td class='tb_count'>조회</td></tr></table></div>";
 					
 				let list = review.datas;
-				console.log(review)
-				console.log(list)
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
 					str += "<div class='tr_line'><table><tr id='" + rd.review_id + "_review'>"

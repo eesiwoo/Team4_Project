@@ -1,5 +1,8 @@
 package pack.controller;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CartBean {
 	private String cart_id, user_id;
 	private int goods_id, cart_goods_cont;
