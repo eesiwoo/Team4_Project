@@ -1,17 +1,21 @@
 package pack.controller;
-
+ 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.CookieGenerator;
 
 import pack.model.LikesDto;
 import pack.model.ReviewDto;
@@ -56,12 +60,6 @@ public class ReviewController {
 		return totalPage;
 	}
 	
-	//goodsDetail 페이지로 이동
-	@RequestMapping(value = "goodsDetail", method=RequestMethod.GET)
-	public String goToReviewDetail() {
-		return "goodsDetail";
-	}
-	
 	//GoodsDtail에서 리뷰 리스트 불러오기
 	@RequestMapping(value = "reviewList", method=RequestMethod.GET)
 	@ResponseBody
@@ -77,18 +75,18 @@ public class ReviewController {
 		else if ( howAsc.equals("myReview") )
 			reviewList = inter.selectReviewOrderbyUserId(goods_id);
 			
-		
+		List<ReviewDto> notice = inter.selectNotice();
 		List<ReviewDto> afterPageList = setPage(reviewList, page);
-		
 		totalReview = reviewList.size();
 		List<Map<String, String>> dataList = setReview(afterPageList);
+		List<Map<String, String>> noticeList = setReview(notice);
 		
 		Map<String, Object> datas = new HashMap<String, Object>();
-		System.out.println("dataList : "+ dataList);
+		
 		datas.put("datas", dataList);
 		datas.put("page", page);
 		datas.put("totalPage", totalPage());
-
+		datas.put("noticeList", noticeList);
 		return datas;
 	}
 
@@ -115,10 +113,31 @@ public class ReviewController {
 			data.put("likes_count",Integer.toString(r.getLikes_count()));
 			data.put("review_viewCount",Integer.toString(r.getReview_viewCount()));
 			data.put("review_img", r.getReview_img());
+			
 			dataList.add(data);
 		}
 		
 		return dataList;
 	}
 	
+	
+	//조회수 증가
+	@RequestMapping("view_count")
+	public void test01(@RequestParam("review_id")String id,
+			           @CookieValue(name="view")String cookie,
+			           HttpServletResponse response) {
+		int x = id.indexOf("_");
+		int review_id = Integer.parseInt(id.substring(0, x));
+		
+		if (!(cookie.contains(String.valueOf(review_id)))) {
+			cookie += review_id + "/";
+			inter.viewCount(review_id);
+		}
+		
+		CookieGenerator cg = new CookieGenerator();
+		cg.setCookieName("view");
+		cg.setCookieMaxAge(60*60*24*365);
+		cg.addCookie(response, cookie);
+
+	}
 }

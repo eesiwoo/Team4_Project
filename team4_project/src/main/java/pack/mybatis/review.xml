@@ -3,33 +3,48 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
+ 
+ <!-- 공지글 조회 -->
+ <select id="selectNotice" parameterType="ReviewDto" resultType="ReviewDto">
+  	select * from review
+  	where goods_id = 0
+  	order by review_asc desc
+ </select>
+
 
  <!-- 리뷰 조회 (최신순) -->
  <select id="selectReview" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
-  	where goods_id = #{goods_id} or goods_id = 0
+  	where goods_id = #{goods_id}
   	order by review_asc desc
  </select>
  
   <!-- 리뷰 조회 (추천순) -->
  <select id="selectReviewOrderbyLikes" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
-  	where goods_id = #{goods_id} or goods_id = 0
+  	where goods_id = #{goods_id}
   	order by Likes_count desc
  </select>
  
    <!-- 리뷰 조회 (내가 쓴 글 보기) -->
  <select id="selectReviewOrderbyUserId" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
-  	where (goods_id = #{goods_id} or goods_id = 0) 
-  	and (user_id = #{user_id} or user_id like CONCAT('%admin%'))
+  	where goods_id = #{goods_id} and user_id = #{user_id}
   	order by review_asc desc
  </select>
+ 
+ <!-- 조회수 업데이트 -->
+ <update id="viewCount" parameterType="integer">
+ 	update review
+ 	set review_viewCount = review_viewCount + 1
+ 	where review_id = #{review_id}
+ </update>
  
  
  <!-- 좋아요 갯수 업데이트 -->
  <update id="updateLikes" parameterType="ReviewDto">
- 	update review set likes_count = #{likes_count}
+ 	update review
+ 	set likes_count = #{likes_count}
  	where review_id = #{review_id}
  </update>
  
@@ -46,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  
   <!-- MaxReview_asc 조회 -->
- <select id="MaxReview_asc" resultType="integer">
+ <select id="MaxReview_asc" resultType="String">
   	select max(review_asc)
   	from review
   	where goods_id = #{goods_id}

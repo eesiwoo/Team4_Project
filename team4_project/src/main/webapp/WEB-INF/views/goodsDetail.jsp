@@ -16,11 +16,7 @@
 	<script type="text/javascript">
 		
 	</script>
-	<style type="text/css"> /* 글 눌렀을 때 글 나오게 하기 위함*/
-	.review_content {
-		display : none;
-	}
-	</style>
+ 
 	
 </head>
 
@@ -254,16 +250,16 @@
 							이동될 수 있습니다.</li>
 						<li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</li>
 					</ul>
-					<select name="" class="sort">
-						<option value="1">최근등록순</option>
-						<option value="2">좋아요많은순</option>
-						<option value="3">조회많은순</option>
+					<select id="howAsc" class="sort">
+						<option value="recently">최근등록순</option>
+						<option value="likes">좋아요많은순</option>
+						<option value="myReview">내가 쓴 글</option>
 					</select>
 				</div>
 			</div>
 			<div class="board_table" id="review">
 			</div>
-		</div> 
+		</div>   
       
     </main>
       <footer>
@@ -343,20 +339,10 @@
 <!-- review test -->	
 	
   <script type="text/javascript">
-    /* 구매 수량 로직 */
-  	$(document).on('click', '.btn_down_on',function(){
-  		let num = $(".inp").val();
-  		if (num > 0) $(".inp").val(--num);
-	  });
-    $(document).on('click', '.btn_down_up',function(){
-  		let num = $(".inp").val();
-  		if (num < 1000) $(".inp").val(++num);
-	  });
-  
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
-		 callReview(pageId, "recently"); 
+		callReview(pageId, "recently");
 	 });  
   
  	 
@@ -376,6 +362,12 @@
 		}else {
 			document.getElementById(id).style.display = 'block';
 		};
+		$.ajax({
+			type : "get",
+			url : "view_count",
+			data : {"review_id" : this.id},
+			dataType : "json"
+		})
 		
 	  });
   
@@ -398,6 +390,7 @@
   function callReview(pageId, howAsc) {
 	 $("#review").empty(); 
 	 var goods_id = getParameterByName('goods_id');
+	 
 	   $.ajax({
 		   type : "get",
 		   url : "reviewList",
@@ -405,26 +398,44 @@
 			       "page" : pageId,
 			       "howAsc" : howAsc},
 		   dataType : "json",
-		   success : function(review) {	
-			   	var str = "<div class='tr_line' id='tr_first'><table><tr>"; 
+		   success : function(review) {
+				var str = "<table>";
+				    str += "<tr class='view_content' id='tr_first'>";
 					str += "<td class='tb_no'>번호</td>";
 					str += "<td class='tb_tit'>제목</td>";
 					str += "<td class='tb_name'>작성자</td>";
 					str += "<td class='tb_date'>작성일</td>";
-					str += "<td class='tb_help'>도움</td>";
-					str += "<td class='tb_count'>조회</td></tr></table></div>";
+					str += "<td class='tb_help'>좋아요</td>";
+					str += "<td class='tb_count'>조회</td>";
+					str += "</tr>";
+				let notice = review.noticeList;
+				$(notice).each(function(i, nl){
+					str += "<tr class='view_content' id='" + nl.review_id + "_review'>";
+					str += "<td class='tb_no'>공  지</td>"
+					str += "<td class='tb_tit'>" + nl.review_title + "</td>";
+					str += "<td class='tb_name'>" + nl.user_id + "</td>";
+					str += "<td class='tb_date'>" + nl.review_date + "</td>";
+					str += "<td class='tb_help'>" + nl.likes_count + "</td>";
+					str += "<td class='tb_count'>" + nl.review_viewCount + "</td>";
+					str += "</tr>";
+					str += "<tr>";
+					if(nl.review_img != null){
+						str += "<td class='tb_content'><div class='review_content' id='"
+						     + nl.review_id +"_review_content'><br/>" + "<img src='" + nl.review_img +"'><br/>"
+						     + nl.review_content + "</div></td>";
+					}else{
+						str += "<td class='tb_content'><div class='review_content' id='"
+						     + nl.review_id +"_review_content'>" + nl.review_content + "</div></td>";
+					
+					}
+					str += "</tr>";
+				});
 					
 				let list = review.datas;
-				console.log(review)
-				console.log(list)
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
-					str += "<div class='tr_line'><table><tr id='" + rd.review_id + "_review'>"
-					if(rd.review_asc >= 9999990){
-						str += "<td class='tb_no'>공  지</td>"
-					}else{
-						str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
-					}
+					str += "<tr class='view_content' id='" + rd.review_id + "_review'>";
+					str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
 					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
 					str += "<td class='tb_name'>" + rd.user_id + "</td>";
 					str += "<td class='tb_date'>" + rd.review_date + "</td>";
@@ -434,22 +445,22 @@
 					/* 리뷰 내용 */
 					str += "<tr>";
 					if(rd.review_img != null){
-						str += "<td><div class='review_content' id='"
+						str += "<td class='tb_content'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>" + "<img src='" + rd.review_img +"'><br/>"
 						     + rd.review_content + "</div></td>";
 					}else{
-						str += "<td><div class='review_content' id='"
+						str += "<td class='tb_content'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
 					}
 					
-					str += "</tr></table><div>"
+					str += "</tr>"
 				});
-					/*  리뷰 추가 
+					/* 리뷰 추가 */
 					str += "<tr>";
 					str += "<td><a href='insertReview?goods_id="+goods_id+"'> 리뷰 쓰기 </a></td>";
 					str += "</tr>";
 					
-					 페이징 
+					/* 페이징 */
 					str += "<tr>";
 					str += "<td>";
 				let totalPage = review.totalPage;
@@ -464,7 +475,9 @@
 				}
 					str += "</td>";
 					str += "</tr>";
-				    str += "</table>"; */
+				    str += "</table>";
+				    
+				    
 				    
 				    $("#review").html(str);
 		},

@@ -1,9 +1,10 @@
 package pack.controller;
-
+ 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.CookieGenerator;
 
 import pack.model.GoodsDaoInter;
 import pack.model.GoodsDto;
@@ -60,6 +62,26 @@ public class GoodsDetailController {
 		// 클릭된 상품 내보내기  
 		mav.addObject("goods", goods);
 		mav.setViewName("goodsDetail");
+		
+		//쿠키생성
+		CookieGenerator cg = new CookieGenerator();
+		Cookie[] cookies = request.getCookies(); 
+		
+		//쿠키가 있다면 아무것도 안하고 없으면 만든다.
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if(!cookie.getName().equals("view")) {
+					cg.setCookieName("view");
+					cg.setCookieMaxAge(60*60*24*365);
+					cg.addCookie(response, null);
+				}
+			}
+		}
+		else {
+			cg.setCookieName("view");
+			cg.setCookieMaxAge(60*60*24*365);
+			cg.addCookie(response, null);
+		}
 		
 		return mav;
 	}
