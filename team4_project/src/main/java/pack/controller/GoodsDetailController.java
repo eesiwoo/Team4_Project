@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -65,10 +66,25 @@ public class GoodsDetailController {
 		
 		//쿠키생성
 		CookieGenerator cg = new CookieGenerator();
-
-		cg.setCookieName("view");
-		cg.setCookieMaxAge(60*60*24*365);
-		cg.addCookie(response, null);
+		Cookie[] cookies = request.getCookies(); 
+		
+		//쿠키가 있다면 아무것도 안하고 없으면 만든다.
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if(!cookie.getName().equals("view")) {
+					cg.setCookieName("view");
+					cg.setCookieMaxAge(60*60*24*365);
+					cg.addCookie(response, null);
+				}
+			}
+		}
+		else {
+			cg.setCookieName("view");
+			cg.setCookieMaxAge(60*60*24*365);
+			cg.addCookie(response, null);
+		}
+		
+		
 		return mav;
 	}
 	
