@@ -6,10 +6,19 @@ import java.util.Date;
 
 public class UserDto {
 
-	private String user_id, user_name, user_pwd, user_tel; 
+	private String user_id, user_name, user_pwd, user_tel, user_code; 
 	private String user_addr, user_email, user_bDate, user_joinDate;
 	// user_gen = 1은 남자, 0은 여자. 
 	private int user_gen;
+	
+	
+	public void setUser_code(String user_code) {
+		this.user_code = user_code;
+	}
+	
+	public String getUser_code() {
+		return user_code;
+	}
 	
 	public String getUser_id() {
 		return user_id;

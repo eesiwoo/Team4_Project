@@ -33,6 +33,7 @@ public class LoginController {
 		if (dto != null) {
 			if (user_pwd.equals(dto.getUser_pwd())) {
 				session.setAttribute("user_id", user_id);
+				session.setAttribute("user_code", dto.getUser_code());
 				//mav.setViewName("redirect:/index.jsp");
 				System.out.println("session에 저장.");
 				
