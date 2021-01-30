@@ -25,6 +25,7 @@
 <a href="goodsRandom?num=4">상품 임의 4개 테스트1</a><br>
 <a href="cartGoods?user_id=user_id 01">장바구니 페이지 테스트</a><br>
 <a href="insertCartGoods?cart_id=cart_id 13&goods_id=2&user_id=user_id 03&cart_goods_cont=2">장바구니 담기 테스트</a><br>
+<a href="admin">관리자</a>
 
 <!--   
 	index에서 구현해야할 기본 내용  
@@ -41,14 +42,25 @@
 		<header>
 			<div class="list_menu">
 				<div class="menu menu_join">
-					<a class="link_menu" aria-label="Go to registeration page">
-						회원가입 </a>
+					<a href="signup" class="link_menu" aria-label="Go to registeration page">회원가입</a>
 				</div>
 				<div class="menu">
-					<a class="link_menu center" aria-label="Go to login page">로그인</a>
+					<a href="login" class="link_menu center" aria-label="Go to login page">로그인</a>
 				</div>
+				<%
+				if(session.getAttribute("user_id") != null)
+					out.print("<div class='menu'><a href='logout' class='link_menu center' aria-label='Go to login page'>로그아웃</a></div>");
+				%>
+				<%-- <c:if test="${ session.getAttribute('user_id') != null}">
+				<div class="menu">
+					<a href="logout" class="link_menu center" aria-label="Go to login page">로그아웃</a>
+				</div>
+				</c:if> --%>
 				<div class="menu">
 					<a class="link_menu" aria-label="Go to service center ">고객센터</a>
+				</div>
+				<div class="menu">
+					<a href="admin" class="link_menu" aria-label="Go to service center " >관리자</a>
 				</div>
 			</div>
 			<div class="bottom">
@@ -80,7 +92,7 @@
 					<img src="resources/images/gps.png" alt="package GPS" />
 				</div>
 				<div class="cart">
-					<a href="#" class="cart" aria-label="Go to cart"> <img
+					<a href="cartGoods" class="cart" aria-label="Go to cart"> <img
 						src="resources/images/cart.png" alt="”장바구니”" /></a>
 				</div>
 			</div>

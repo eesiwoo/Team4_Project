@@ -16,7 +16,7 @@ import pack.model.ReviewInter;
 
 @Controller
 public class InsertReviewController {
-	private static final String FILE_PATH = "C:\\Users\\acorn\\git\\Team4_Project\\team4_project\\src\\main\\webapp\\resources\\review_img";
+	private static final String FILE_PATH = "/Users/jk/git/team4_project/src/main/webapp/resources/images/review_img";
 	
 	@Autowired
 	private ReviewInter inter;

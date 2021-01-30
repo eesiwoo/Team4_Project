@@ -82,7 +82,7 @@ public class ReviewController {
 		List<Map<String, String>> noticeList = setReview(notice);
 		
 		Map<String, Object> datas = new HashMap<String, Object>();
-		
+		System.out.println("dataList : "+ dataList);
 		datas.put("datas", dataList);
 		datas.put("page", page);
 		datas.put("totalPage", totalPage());

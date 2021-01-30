@@ -8,8 +8,9 @@
 <head>
 	<meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="resources/css/styles.css" />
-    <link rel="stylesheet" href="resources/css/dropdown.css"/>
+    <link href="resources/css/styles.css" rel="stylesheet" />
+    <link href="resources/css/styles_board.css" rel="stylesheet" />
+    <link href="resources/css/dropdown.css" rel="stylesheet"/>
 	<title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 	<link rel="shortcut icon" href="resources/images/kurly_mark.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
@@ -23,6 +24,8 @@
 	</style>
 	
 </head>
+
+
 <body>
 <%-- <% ArrayList<GoodsDto> recentGoods = (ArrayList<GoodsDto>)session.getAttribute("recentGoodsList"); %><br> --%>
 <%-- <%=recentGoods.get(1).getGoods_id() %>
@@ -149,13 +152,10 @@
                   <span class="tit">구매수량</span>
                   <span class="desc">
                     <span class="count">
-                      <button type="button" class="btn">
-                        -
-                      </button>
-                      <input type="number" readonly="readonly" onfocus="this.blur()" class="inp">
-                      <button type="button" class="btn">
-                        +
-                      </button>
+                      <button type="button" id="btn_down" class="btn_down_on">-</button>
+                      <input type="number" name="goods_cont" readonly="readonly" 
+                      onfocus="this.blur()" class="inp" value=0>
+                      <button type="button" id="btn_up" class="btn_down_up">+</button>                      
                     </span>
                   </span>
                 </div>
@@ -194,10 +194,10 @@
        </div>
       <div class="goods-view-information">
         <ul class="goods-view-information-tab-group">
-          <li class="goods-view-information-tab">상품설명</li>
+          <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
           <li class="goods-view-information-tab">상품이미지</li>
           <li class="goods-view-information-tab">상세정보</li>
-          <li class="goods-view-information-tab">고객후기</li>
+          <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
           <li class="goods-view-information-tab">상품문의</li>
         </ul>
         <div class="goods-view-information-content">
@@ -232,15 +232,39 @@
         </div>
       </div>
      
-    <div>
     	<select id="howAsc">
     		<option value="recently">최신 순으로 조회하기</option>
     		<option value="likes">추천 순으로 조회하기</option>
     		<option value="myReview">내가 쓴 글만 보기</option>
     	</select>
-	    <div id="review">
-		</div>
-    </div>  
+    	<div class="goods-view-information">
+    	<ul class="goods-view-information-tab-group">
+          <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
+          <li class="goods-view-information-tab">상품이미지</li>
+          <li class="goods-view-information-tab">상세정보</li>
+          <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
+          <li class="goods-view-information-tab">상품문의</li>
+        </ul>
+        </div>
+		<div class="board">
+			<div class="board_tit">
+				<h2>PRODUCT REVIEW</h2>
+				<div class="sort-wrap clearfix">
+					<ul>
+						<li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
+							이동될 수 있습니다.</li>
+						<li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</li>
+					</ul>
+					<select name="" class="sort">
+						<option value="1">최근등록순</option>
+						<option value="2">좋아요많은순</option>
+						<option value="3">조회많은순</option>
+					</select>
+				</div>
+			</div>
+			<div class="board_table" id="review">
+			</div>
+		</div> 
       
     </main>
       <footer>
@@ -320,10 +344,20 @@
 <!-- review test -->	
 	
   <script type="text/javascript">
+    /* 구매 수량 로직 */
+  	$(document).on('click', '.btn_down_on',function(){
+  		let num = $(".inp").val();
+  		if (num > 0) $(".inp").val(--num);
+	  });
+    $(document).on('click', '.btn_down_up',function(){
+  		let num = $(".inp").val();
+  		if (num < 1000) $(".inp").val(++num);
+	  });
+  
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
-		callReview(pageId, "recently");
+		 callReview(pageId, "recently"); 
 	 });  
   
  	 
@@ -371,7 +405,6 @@
   function callReview(pageId, howAsc) {
 	 $("#review").empty(); 
 	 var goods_id = getParameterByName('goods_id');
-	 
 	   $.ajax({
 		   type : "get",
 		   url : "reviewList",
@@ -379,11 +412,14 @@
 			       "page" : pageId,
 			       "howAsc" : howAsc},
 		   dataType : "json",
-		   success : function(review) {
-				var str = "<table>";
-				    str += "<tr style='background-color: silver;'>";
-					str += "<th>번호</th><th>제  목</th><th>작성자</th><th>작성일</th><th>좋아요</th><th>조회</th>";
-					str += "</tr>";
+		   success : function(review) {	
+			   	var str = "<div class='tr_line' id='tr_first'><table><tr>"; 
+					str += "<td class='tb_no'>번호</td>";
+					str += "<td class='tb_tit'>제목</td>";
+					str += "<td class='tb_name'>작성자</td>";
+					str += "<td class='tb_date'>작성일</td>";
+					str += "<td class='tb_help'>도움</td>";
+					str += "<td class='tb_count'>조회</td></tr></table></div>";
 				let notice = review.noticeList;
 				$(notice).each(function(i, nl){
 					str += "<tr class='view_content' id='" + nl.review_id + "_review'>";
@@ -408,15 +444,17 @@
 				});
 					
 				let list = review.datas;
+				console.log(review)
+				console.log(list)
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
-					str += "<tr class='view_content' id='" + rd.review_id + "_review'>";
+					str += "<div class='tr_line'><table><tr id='" + rd.review_id + "_review'>"
 					str += "<td>" + rd.review_asc + "</td>";	
-					str += "<td>" + rd.review_title + "</td>";
-					str += "<td>" + rd.user_id + "</td>";
-					str += "<td>" + rd.review_date + "</td>";
-					str += "<td>" + rd.likes_count + "</td>";
-					str += "<td>" + rd.review_viewCount + "</td>";
+					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
+					str += "<td class='tb_name'>" + rd.user_id + "</td>";
+					str += "<td class='tb_date'>" + rd.review_date + "</td>";
+					str += "<td class='tb_help'>" + rd.likes_count + "</td>";
+					str += "<td class='tb_count'>" + rd.review_viewCount + "</td>";
 					str += "</tr>";
 					/* 리뷰 내용 */
 					str += "<tr>";
@@ -429,14 +467,14 @@
 						     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
 					}
 					
-					str += "</tr>"
+					str += "</tr></table><div>"
 				});
-					/* 리뷰 추가 */
+					/*  리뷰 추가 
 					str += "<tr>";
 					str += "<td><a href='insertReview?goods_id="+goods_id+"'> 리뷰 쓰기 </a></td>";
 					str += "</tr>";
 					
-					/* 페이징 */
+					 페이징 
 					str += "<tr>";
 					str += "<td>";
 				let totalPage = review.totalPage;
@@ -451,9 +489,7 @@
 				}
 					str += "</td>";
 					str += "</tr>";
-				    str += "</table>";
-				    
-				    
+				    str += "</table>"; */
 				    
 				    $("#review").html(str);
 		},

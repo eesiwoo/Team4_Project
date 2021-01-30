@@ -43,8 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- 좋아요 갯수 업데이트 -->
  <update id="updateLikes" parameterType="ReviewDto">
- 	update review
- 	set likes_count = #{likes_count}
+ 	update review set likes_count = #{likes_count}
  	where review_id = #{review_id}
  </update>
  

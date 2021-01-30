@@ -3,6 +3,7 @@ package pack.model;
 import java.util.List;
 
 import pack.controller.CartBean;
+import pack.controller.GoodsBean;
 
 public interface GoodsDaoInter {
 
@@ -18,6 +19,12 @@ public interface GoodsDaoInter {
 	// cartList에 보여질 상품 리스트 가져오기   
 	public List<GoodsDto> getCartGoodsList(String user_id);
 	
+	// goods에 상품 추가하기   
+	public Boolean insertGoods(GoodsBean bean);
+	
 	// cartList에 상품 추가하기   
 	public Boolean insertCartGoods(CartBean cartBean);
+	
+	// category 가져오기   
+	public List<CategoryDto> selectCategory();
 }

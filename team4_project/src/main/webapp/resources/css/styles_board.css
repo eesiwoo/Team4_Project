@@ -1,0 +1,67 @@
+body {
+  width: auto;
+  box-sizing: border-box;
+}
+.board {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1010px;
+}
+.board .board_tit h2 {
+  font-size: 13px;
+  font-weight: 700;
+  padding-bottom: 5px;
+}
+.board .board_tit .sort-wrap ul {
+  list-style-type: square;
+  overflow: hidden;
+  padding: 0;
+  font-size: 12px;
+  color: #666;
+  line-height: 18px;
+  letter-spacing: -0.3px;
+}
+.board .board_tit .sort-wrap .sort {
+  float: right;
+  margin-bottom: 10px;
+}
+.board .board_table {
+  border-bottom: 2px solid #522772;
+  border-top: 2px solid #522772;
+}
+.board .board_table #tr_first {
+  border-top: none;
+}
+.board .board_table .tr_line {
+  border-top: 1px solid #bfbfbf;
+}
+.board .board_table .tr_line table {
+  width: 100%;
+  text-align: center;
+}
+.board .board_table .tr_line table tr td {
+  padding: 22px 3px;
+}
+.board .board_table .tr_line table tr .tb_no {
+  width: 69px;
+}
+.board .board_table .tr_line table tr .tb_tit {
+  width: 588px;
+}
+.board .board_table .tr_line table tr .tb_name {
+  width: 76.5px;
+}
+.board .board_table .tr_line table tr .tb_date {
+  width: 99px;
+}
+.board .board_table .tr_line table tr .tb_help {
+  width: 39px;
+}
+.board .board_table .tr_line table tr .tb_count {
+  width: 79.5px;
+}
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}

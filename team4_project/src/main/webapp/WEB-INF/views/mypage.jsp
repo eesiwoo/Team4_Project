@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+** 마이페이지 ** 
 <!--   
 	mypage에서 구현해야할 기본 내용  
 	- 구매한 상품 보여주기(상품 이미지, 가격, 구매한 날짜)
