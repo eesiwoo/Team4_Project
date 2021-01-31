@@ -27,6 +27,7 @@
 <a href="cartGoods?user_id=user_id 01">장바구니 페이지 테스트</a><br>
 <a href="insertCartGoods?cart_id=cart_id 13&goods_id=2&user_id=user_id 03&cart_goods_cont=2">장바구니 담기 테스트</a><br>
 <a href="admin">관리자</a>
+<a href="right">사이드</a>
 
 <!--   
 	index에서 구현해야할 기본 내용  
