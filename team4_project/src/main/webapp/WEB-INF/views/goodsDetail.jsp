@@ -105,9 +105,10 @@
           <div class="goods_price">
             <div class="dc">
               <span class="dc_price">
-                ${goods.goods_price}
-                <span class="won">원</span>
+            	<c:out value="${goods.goods_price * (100 - goods.goods_discountRate)/100}"/>  
               </span>
+              <span class="won">원</span>
+              
               <span class="dc_percent">${goods.goods_discountRate}%</span>
             </div>
             <div class="original_price">
@@ -158,7 +159,7 @@
                   <div class="price">
                     <strong class="tit">총 상품 금액: </strong>
                     <span class="sum">
-                      <span class="num">5,500</span>
+                      <span class="num">${goods.goods_price}</span>
                       <span class="won">원</span>
                     </span>
                   </div>
@@ -367,15 +368,23 @@
   			}
   		})
   	});
-  
+  	 
+  	function calPrice(num){
+  		let dc_price = $(".dc_price").text();
+  		$(".num").text(num * dc_price); 
+  	}
+  	
   	/* 구매 수량 변동 */
   	$(document).on('click', '.btn_down_on',function(){
   		let num = $(".inp").val();
   		if (num > 0) $(".inp").val(--num);
+  		calPrice(num); 		
+  		
 	  });
     $(document).on('click', '.btn_down_up',function(){
   		let num = $(".inp").val();
   		if (num < 1000) $(".inp").val(++num);
+  		calPrice(num);
 	  });
 
 
