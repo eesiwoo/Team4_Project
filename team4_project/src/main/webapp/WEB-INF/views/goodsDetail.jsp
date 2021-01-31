@@ -335,9 +335,6 @@
 	
 
   <script type="text/javascript">
-  
-
-  <script type="text/javascript">  
 
   	/* 장바구니 담기 */
   	$(document).on('click', '#insertCartBtn', function(){
