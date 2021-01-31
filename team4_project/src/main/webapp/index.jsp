@@ -15,6 +15,7 @@
 <link href="resources/css/footer.css" rel="stylesheet" />
 <link href="resources/css/multipleImageSlider.css" rel="stylesheet" />
 <link href="resources/css/earlyBirdContainer.css" rel="stylesheet" />
+<link href="resources/css/test.css" rel="stylesheet" />
 <link href="resources/css/dropdown.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/kurlyTop.png" />
 </head>
