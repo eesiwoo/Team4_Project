@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- 장바구니 데이터 입력하기 -->
  <insert id="insertCartGoods" parameterType="c_bean">
- 	insert into cart(cart_id, user_id, goods_id, cart_goods_cont) 
- 	value(#{cart_id}, #{user_id}, #{goods_id}, #{cart_goods_cont}) 
+ 	insert into cart(user_id, goods_id, cart_goods_cont) 
+ 	value(#{user_id}, #{goods_id}, #{cart_goods_cont}) 
  </insert>
  
 </mapper>

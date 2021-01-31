@@ -51,16 +51,12 @@ public class CartListController {
 	public Map<String, Object> insertCartGoods(HttpServletRequest request,
 			@RequestParam("goods_id") int goods_id, @RequestParam("cart_goods_cont") int cart_goods_cont) {
 //		System.out.println("cartbean.getCart_id() : "+ cartBean.getCart_id());
-		/* 
-		 * cart_id =user_id +'_'+ goods_id;  
-		 */
+
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id"); 
 		cartBean.setCart_goods_cont(cart_goods_cont);
 		cartBean.setUser_id(user_id);
 		cartBean.setGoods_id(goods_id);
-		cartBean.setCart_id(cartBean.getUser_id()+"_"+cartBean.getGoods_id());
-		System.out.println("Cart_id : " + cartBean.getCart_id());
 		System.out.println("user_id : " + cartBean.getUser_id());
 		System.out.println("goods_id : " + cartBean.getGoods_id());
 		System.out.println("cart_goods_cont : " + cartBean.getCart_goods_cont());
