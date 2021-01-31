@@ -6,15 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="resources/css/sideBar.css" rel="stylesheet" />
-<script type="text/javascript"
-	src="resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript"
 	src="resources/js/jquery-contained-sticky-scroll.js"></script>
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		jQuery('#sidebar').containedStickyScroll();
-	});
-</script>
+
 <style type="text/css">
 .grid_4 {
 	width: 300px;
@@ -29,6 +24,7 @@
 </style>
 </head>
 <body>
+
 
 <div class="sideBarContainer" id="sidebar">
 		<div class="sideBarImg">
@@ -53,10 +49,11 @@
 			<button class="sideDownBtn"></button>
 		</div>
 	</div>
-	
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('#sidebar').containedStickyScroll();
+	});
+</script>
 <!--  
 	right는 productList or productDetail에 include 할 것  
 	right에서 구현해야 할 기본내용 
