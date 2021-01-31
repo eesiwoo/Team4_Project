@@ -76,7 +76,7 @@
 				</div>
 			</div>
 			<ul class="list">
-				<li><a href="#" aria-label="New products">신상품</a></li>
+				<li><a href="goodsList" aria-label="New products">신상품</a></li>
 				<li><a href="#" aria-label="Best products">베스트</a></li>
 				<li><a href="#" aria-label="Wise Consumption">알뜰쇼핑</a></li>
 				<li id="last"><a href="#" aria-label="Benefits of the week">금주의
