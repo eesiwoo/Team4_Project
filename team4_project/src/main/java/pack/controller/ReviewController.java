@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -65,15 +68,22 @@ public class ReviewController {
 	@ResponseBody
 	public Map<String, Object> reviewList(@RequestParam("goods_id")int goods_id,
 										  @RequestParam("page")int page,
-										  @RequestParam("howAsc")String howAsc) {
-		//어떤 순서로 조회할지 확인
+										  @RequestParam("howAsc")String howAsc,
+										  HttpServletRequest request) {
+		
 		List<ReviewDto> reviewList = null;
+		ReviewDto dto = new ReviewDto();
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
+		dto.setUser_id(user_id);
+		dto.setGoods_id(goods_id);
+		//어떤 순서로 조회할지 확인
 		if( howAsc.equals("recently") )
 			reviewList = inter.selectReview(goods_id);
 		else if( howAsc.equals("likes") )
 			reviewList = inter.selectReviewOrderbyLikes(goods_id);
 		else if ( howAsc.equals("myReview") )
-			reviewList = inter.selectReviewOrderbyUserId(goods_id);
+			reviewList = inter.selectReviewOrderbyUserId(dto);
 			
 		List<ReviewDto> notice = inter.selectNotice();
 		List<ReviewDto> afterPageList = setPage(reviewList, page);
@@ -97,11 +107,7 @@ public class ReviewController {
 		
 		for(ReviewDto r:afterPageList) {
 			ArrayList<LikesDto> likesList = inter.countLikes(r.getReview_id());
-			
-			//좋아요 수 수정 필요
 			r.setLikes_count(likesList.size());
-			inter.updateLikes(r);
-			//System.out.println(r.getReview_id() + " : " + likesList);
 			
 			data = new HashMap<String, String>();
 			data.put("review_id", Integer.toString(r.getReview_id()));
@@ -139,5 +145,41 @@ public class ReviewController {
 		cg.setCookieMaxAge(60*60*24*365);
 		cg.addCookie(response, cookie);
 
+	}
+
+
+	//좋아요 버튼
+	@RequestMapping("clickLikes")
+	@ResponseBody
+	public Map<String, Object> likesButton(HttpServletRequest request,
+						    @RequestParam("review_id")String id) {	
+		
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
+		int x = id.indexOf("_");
+		int review_id = Integer.parseInt(id.substring(0, x));
+		
+		LikesDto dto  = new LikesDto();
+		dto.setReview_id(review_id);
+		dto.setUser_id(user_id);
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		String result = "";
+		if(user_id == null) {
+			result = "fail";
+			data.put("result", result);
+			return data; //로그인 후 추천해주세요
+		} else {
+			String already = inter.selectLikes(dto);
+			if(already == null) {
+				inter.insertLikes(dto);
+				result = "like";
+				} else {
+				inter.deleteLikes(dto);
+				result = "unlike";	
+			}
+		}
+		data.put("result", result);
+		return data;  //좋아요 처리 완료
 	}
 }

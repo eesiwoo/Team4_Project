@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 public class LikesDto {
 	private int likes_id, review_id;
 	private String user_id;
-	private int likes_isLike;
 	
 	
 	public int getLikes_id() {
@@ -26,12 +25,6 @@ public class LikesDto {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
-	}
-	public int isLikes_isLike() {
-		return likes_isLike;
-	}
-	public void setLikes_isLike(int likes_isLike) {
-		this.likes_isLike = likes_isLike;
 	}
 	
 	

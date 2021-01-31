@@ -3,6 +3,7 @@ package pack.controller;
 import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,19 +27,26 @@ public class InsertReviewController {
 	public String insertReviewForm(@RequestParam("goods_id")String goods_id,
 								   HttpServletRequest request) {
 		request.setAttribute("goods_id", goods_id);
-
-		return "insertReviewForm";
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
+		
+		if(user_id == null)
+			return "redirect:/goods?goods_id=" + goods_id ;
+		else
+			return "insertReviewForm";
 	}
 	
 	//리뷰 작성
 	@RequestMapping(value = "insertReview", method = RequestMethod.POST)
-	public String insertReview(ReviewDto dto,
+	public String insertReview(ReviewDto dto, HttpServletRequest request,
 							   @RequestParam("review_file")MultipartFile file) throws Exception{
 		
 		//ID,글번호 셋팅
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
 		int goods_id = dto.getGoods_id();
 		String asc = inter.currentReview_asc(goods_id);
-		dto.setUser_id("user_id 01");
+		dto.setUser_id(user_id);
 		if(asc == null)
 			dto.setReview_asc(1);
 		else
