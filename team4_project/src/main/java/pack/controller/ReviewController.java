@@ -113,9 +113,6 @@ public class ReviewController {
 		Map<String, String> data = null;
 		
 		for(ReviewDto r:afterPageList) {
-			ArrayList<LikesDto> likesList = inter.countLikes(r.getReview_id());
-			r.setLikes_count(likesList.size());
-			
 			data = new HashMap<String, String>();
 			data.put("review_id", Integer.toString(r.getReview_id()));
 			data.put("review_asc", Integer.toString(r.getReview_asc()));
@@ -142,6 +139,7 @@ public class ReviewController {
 			           				  HttpServletResponse response,
 			           				  HttpServletRequest request) {
 		int x = id.indexOf("_");
+		System.out.println("id");
 		int review_id = Integer.parseInt(id.substring(0, x));
 		
 		if (!(cookie.contains(String.valueOf(review_id)))) {
@@ -167,7 +165,7 @@ public class ReviewController {
 		return data;
 
 	}
-	// 좋아요처리
+	
 
 
 	//좋아요 버튼
@@ -187,7 +185,6 @@ public class ReviewController {
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		String result = "";
-		int size = 0 ;
 		if(user_id == null) {
 			result = "fail";
 			data.put("result", result);
@@ -196,12 +193,12 @@ public class ReviewController {
 			String already = inter.selectLikes(dto);
 			if(already == null) {
 				inter.insertLikes(dto);
-				size = inter.countLikes(review_id).size();
-				
+				inter.likesUpdate(review_id);
 				result = "like";
+				
 				} else {
 				inter.deleteLikes(dto);
-				size = inter.countLikes(review_id).size();
+				inter.unLikesUpdate(review_id);
 				result = "unlike";	
 			}
 		}

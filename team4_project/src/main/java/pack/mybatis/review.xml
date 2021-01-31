@@ -80,4 +80,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		delete from likes
  		where user_id = #{user_id} and review_id = #{review_id}
  	</delete>
+ 	
+ 	 <!-- 종아요 수 업데이트 -->
+ <update id="likesUpdate" parameterType="integer">
+ 	update review
+ 	set likes_count = likes_count + 1
+ 	where review_id = #{review_id}
+ </update>
+ 
+ 	 <!-- 종아요 수 업데이트 -->
+ <update id="unLikesUpdate" parameterType="integer">
+ 	update review
+ 	set likes_count = likes_count - 1;
+ 	where review_id = #{review_id}
+ </update>
 </mapper>
