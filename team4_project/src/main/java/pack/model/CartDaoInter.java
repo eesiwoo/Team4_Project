@@ -11,5 +11,7 @@ public interface CartDaoInter {
 		
 	// cartList에 상품 추가하기   
 	public Boolean insertCartGoods(CartBean cartBean);
-		
+	
+	// cartList에 상품 삭제하기   
+	public Boolean deleteCartGoods(CartBean cartBean);
 }

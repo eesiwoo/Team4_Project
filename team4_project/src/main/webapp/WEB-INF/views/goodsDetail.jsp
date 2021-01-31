@@ -85,7 +85,7 @@
           <img src="resources/images/location.png" alt="”package" GPS” />
         </div>
         <div class="cart">
-          <a href="#" class="cart" aria-label="Go to cart">
+          <a href="cartGoods" class="cart" aria-label="Go to cart">
             <img src="resources/images/cart.png" alt="”장바구니”"
           /></a>
         </div>

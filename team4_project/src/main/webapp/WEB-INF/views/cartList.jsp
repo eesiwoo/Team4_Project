@@ -9,47 +9,72 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-function calc() {
+function del(){
+	if (confirm("정말 삭제하시겠습니까?") == true){
+	let a = $(this).parent()
+	let user_id = "<%=session.getAttribute("user_id")%>"
 	
-	let mychklist = $("input[name=goods_check]:checkbox")
-	let countArr = $(".inp")
-	let priceArr = $(".goods_price")
+		let goods_id = $(this).attr('value');
 
-	let totalPrice = 0; //전체 금액의 합계를 저장할 변수
-	let price = 0;
-	//화면에 출력된 전체 상품목록에서 체크된 상품의 가격과 수량을 곱해서 금액 구하고 totalPrice에 누적
-	$("input[name=goods_check]:checkbox").each(function(idx, mychklist){
-		let num = $(".inp")[idx].value;
-		let rate = $(".goods_discountRate")[idx].value;
-		let goods_price = $(".goods_price")[idx].value; 
-		
-		if (mychklist.checked){
-			price = goods_price * num * (100 - rate) / 100
-			totalPrice += price
-		} 
-	});
+		$.ajax({
+			type : "get",
+			url : "deleteCartGoods",
+			dataType : "json",
+			data : {
+				"goods_id" : goods_id,
+				"user_id" : user_id
+			},
+			success : function(item) {
+				if (item.isSuccess) {
+					a.remove();
+				} else {
+					alert("해당 상품을 삭제할 수 없습니다")
+				}
+			}
+		})
+		} else {
+			return false;
+		}
+	}
+
 	
-	$(".totalprice").text(totalPrice);
+	function calc() {
+
+		let mychklist = $("input[name=goods_check]:checkbox")
+		let countArr = $(".inp")
+		let priceArr = $(".goods_price")
+
+		let totalPrice = 0; //전체 금액의 합계를 저장할 변수
+		let price = 0;
+		//화면에 출력된 전체 상품목록에서 체크된 상품의 가격과 수량을 곱해서 금액 구하고 totalPrice에 누적
+		$("input[name=goods_check]:checkbox").each(function(idx, mychklist) {
+			let num = $(".inp")[idx].value;
+			let rate = $(".goods_discountRate")[idx].value;
+			let goods_price = $(".goods_price")[idx].value;
+
+			if (mychklist.checked) {
+				price = goods_price * num * (100 - rate) / 100
+				totalPrice += price
+			}
+		});
+
+		$(".totalprice").text(totalPrice);
+
+	}
 	
-}
-	$(document).on("click", "#checkAll", function(){
-		if ($("input[name=goods_checkAll]:checkbox").prop("checked")){
-			$("input[name=goods_check]:checkbox").prop("checked", true);	
-		} else{
+	$(document).on("click", "#checkAll", function() {
+		if ($("input[name=goods_checkAll]:checkbox").prop("checked")) {
+			$("input[name=goods_check]:checkbox").prop("checked", true);
+		} else {
 			$("input[name=goods_check]:checkbox").prop("checked", false);
 		}
 		calc();
 	});
 
 	// 체크시 금액 변동 
-	$(document).on("click", ".goods_check", function(){
-		calc();
-	})
+	$(document).on("click", ".goods_check", calc);
 
-	$(document).on('click', '.btn_clear', function() {
-		// db에 다녀오는거 구현
-		$(this).parent().remove();
-	});
+	$(document).on('click', '.btn_clear', del);
 
 	$(document).on('click', '.btn_down', function() {
 		let num = $(this).next().val();
@@ -76,7 +101,6 @@ function calc() {
 			$(this).parent().next().text(afterPrice);
 		}
 		calc();
-
 	});
 </script>
 </head>
@@ -86,7 +110,7 @@ function calc() {
 	<form action="cartList" name="myform" method="post">
 		<div class="inner_check">
 			<label><input type="checkbox" name="goods_checkAll" id="checkAll" ><span>전체선택</span></label>
-			<a href="#none" class="btn_delete">선택삭제</a>
+			<!-- <a href="#none" class="btn_delete">선택삭제</a> -->
 		</div>
 		<hr />
 		<div class="boxList">
@@ -103,12 +127,11 @@ function calc() {
 							value="${c_dto.cart_goods_cont}">
 							<button type="button" id="${goods}_up" class="btn_up">+</button>
 						</span>
-						<%-- <c:set var="goods_price_rate" value="<c:out value='${goods.goods_price * (100 - goods.goods_discountRate)/100}'/>"/> --%>
 						<span class="goods_price_calc">
 						${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span>
 						<input type="hidden" name="goods_price" class="goods_price" value="${c_dto.goods_price}">
 						<input type="hidden" name="goods_discountRate" class="goods_discountRate" value="${c_dto.goods_discountRate}">
-						<button type="button" id="${goods}_clear" class="btn_clear">x</button>
+						<button type="button" id="${goods}_clear" class="btn_clear" value="${c_dto.goods_id}">x</button>
 					</div>
 			</c:forEach>
 		</div>

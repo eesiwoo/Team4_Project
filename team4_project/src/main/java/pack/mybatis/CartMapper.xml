@@ -17,4 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	value(#{user_id}, #{goods_id}, #{cart_goods_cont}) 
  </insert>
  
+ <!-- 장바구니 데이터 삭제하기 -->
+ <delete id="deleteCartGoods" parameterType="c_bean">
+ 	delete from cart 
+ 	where user_id = #{user_id} and goods_id = ${goods_id}
+ </delete>
+ 
 </mapper>

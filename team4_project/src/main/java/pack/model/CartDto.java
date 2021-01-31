@@ -4,6 +4,7 @@ public class CartDto {
 
 	private int goods_id, cart_goods_cont, goods_discountRate, goods_price;
 	private String goods_name, goods_state, goods_img;
+	
 	public int getGoods_price() {
 		return goods_price;
 	}

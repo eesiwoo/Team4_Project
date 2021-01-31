@@ -45,18 +45,13 @@
 				<div class="menu menu_join">
 					<a href="signup" class="link_menu" aria-label="Go to registeration page">회원가입</a>
 				</div>
-				<div class="menu">
-					<a href="login" class="link_menu center" aria-label="Go to login page">로그인</a>
-				</div>
 				<%
-				if(session.getAttribute("user_id") != null)
+				if(session.getAttribute("user_id") != null){
 					out.print("<div class='menu'><a href='logout' class='link_menu center' aria-label='Go to login page'>로그아웃</a></div>");
+				} else {
+					out.print("<div class='menu'><a href='login' class='link_menu center' aria-label='Go to login page'>로그인</a></div>");
+				}
 				%>
-				<%-- <c:if test="${ session.getAttribute('user_id') != null}">
-				<div class="menu">
-					<a href="logout" class="link_menu center" aria-label="Go to login page">로그아웃</a>
-				</div>
-				</c:if> --%>
 				<div class="menu">
 					<a class="link_menu" aria-label="Go to service center ">고객센터</a>
 				</div>
