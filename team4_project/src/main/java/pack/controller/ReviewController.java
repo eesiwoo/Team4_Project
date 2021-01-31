@@ -74,12 +74,17 @@ public class ReviewController {
 		
 		//어떤 순서로 조회할지 확인
 		List<ReviewDto> reviewList = null;
+		ReviewDto dto = new ReviewDto();
+		String user_id = (String) session.getAttribute("user_id");
+		dto.setUser_id(user_id);
+		dto.setGoods_id(goods_id);
+		//어떤 순서로 조회할지 확인
 		if( howAsc.equals("recently") )
 			reviewList = inter.selectReview(goods_id);
 		else if( howAsc.equals("likes") )
 			reviewList = inter.selectReviewOrderbyLikes(goods_id);
 		else if ( howAsc.equals("myReview") )
-			reviewList = inter.selectReviewOrderbyUserId(goods_id);
+			reviewList = inter.selectReviewOrderbyUserId(dto);
 			
 		List<ReviewDto> notice = inter.selectNotice();
 		List<ReviewDto> afterPageList = setPage(reviewList, page);

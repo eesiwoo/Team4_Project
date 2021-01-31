@@ -1,14 +1,12 @@
 package pack.controller;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CartBean {
-	private String cart_id, user_id;
+	private String user_id;
 	private int goods_id, cart_goods_cont;
-	public String getCart_id() {
-		return cart_id;
-	}
-	public void setCart_id(String cart_id) {
-		this.cart_id = cart_id;
-	}
+
 	public String getUser_id() {
 		return user_id;
 	}

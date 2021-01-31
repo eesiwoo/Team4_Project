@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class LoginClass {
 	public boolean loginCheck(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session = request.getSession();
-		
+		System.out.println(session.getAttribute("user_id"));
 		if(session.getAttribute("user_id") == null) {
 			response.sendRedirect("login");
 			return true;

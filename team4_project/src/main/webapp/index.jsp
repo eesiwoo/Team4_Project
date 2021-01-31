@@ -15,6 +15,7 @@
 <link href="resources/css/footer.css" rel="stylesheet" />
 <link href="resources/css/multipleImageSlider.css" rel="stylesheet" />
 <link href="resources/css/earlyBirdContainer.css" rel="stylesheet" />
+<link href="resources/css/test.css" rel="stylesheet" />
 <link href="resources/css/dropdown.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/kurlyTop.png" />
 </head>
@@ -44,18 +45,13 @@
 				<div class="menu menu_join">
 					<a href="signup" class="link_menu" aria-label="Go to registeration page">회원가입</a>
 				</div>
-				<div class="menu">
-					<a href="login" class="link_menu center" aria-label="Go to login page">로그인</a>
-				</div>
 				<%
-				if(session.getAttribute("user_id") != null)
+				if(session.getAttribute("user_id") != null){
 					out.print("<div class='menu'><a href='logout' class='link_menu center' aria-label='Go to login page'>로그아웃</a></div>");
+				} else {
+					out.print("<div class='menu'><a href='login' class='link_menu center' aria-label='Go to login page'>로그인</a></div>");
+				}
 				%>
-				<%-- <c:if test="${ session.getAttribute('user_id') != null}">
-				<div class="menu">
-					<a href="logout" class="link_menu center" aria-label="Go to login page">로그아웃</a>
-				</div>
-				</c:if> --%>
 				<div class="menu">
 					<a class="link_menu" aria-label="Go to service center ">고객센터</a>
 				</div>
@@ -76,7 +72,7 @@
 				</div>
 			</div>
 			<ul class="list">
-				<li><a href="#" aria-label="New products">신상품</a></li>
+				<li><a href="goodsList" aria-label="New products">신상품</a></li>
 				<li><a href="#" aria-label="Best products">베스트</a></li>
 				<li><a href="#" aria-label="Wise Consumption">알뜰쇼핑</a></li>
 				<li id="last"><a href="#" aria-label="Benefits of the week">금주의

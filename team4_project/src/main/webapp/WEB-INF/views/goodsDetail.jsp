@@ -85,7 +85,7 @@
           <img src="resources/images/location.png" alt="”package" GPS” />
         </div>
         <div class="cart">
-          <a href="#" class="cart" aria-label="Go to cart">
+          <a href="cartGoods" class="cart" aria-label="Go to cart">
             <img src="resources/images/cart.png" alt="”장바구니”"
           /></a>
         </div>
@@ -105,9 +105,10 @@
           <div class="goods_price">
             <div class="dc">
               <span class="dc_price">
-                ${goods.goods_price}
-                <span class="won">원</span>
+            	<c:out value="${goods.goods_price * (100 - goods.goods_discountRate)/100}"/>  
               </span>
+              <span class="won">원</span>
+              
               <span class="dc_percent">${goods.goods_discountRate}%</span>
             </div>
             <div class="original_price">
@@ -148,7 +149,7 @@
                   <span class="desc">
                     <span class="count">
                       <button type="button" id="btn_down" class="btn_down_on">-</button>
-                      <input type="number" name="goods_cont" readonly="readonly" 
+                      <input type="number" name="cart_goods_cont" readonly="readonly" 
                       onfocus="this.blur()" class="inp" value=0>
                       <button type="button" id="btn_up" class="btn_down_up">+</button>                      
                     </span>
@@ -158,7 +159,7 @@
                   <div class="price">
                     <strong class="tit">총 상품 금액: </strong>
                     <span class="sum">
-                      <span class="num">5,500</span>
+                      <span class="num">${goods.goods_price}</span>
                       <span class="won">원</span>
                     </span>
                   </div>
@@ -179,7 +180,7 @@
                     </button>
                   </div>
                   <div class="btn_type1">
-                    <button type="button" class="txt_type">
+                    <button type="button"id="insertCartBtn" class="txt_type">
                       장바구니 담기
                     </button>
                   </div>
@@ -328,12 +329,65 @@
 			</div>
         </div>
       </footer>
-
+ 
 
 
 <!-- review test -->	
 	
+
   <script type="text/javascript">
+
+  	/* 장바구니 담기 */
+  	$(document).on('click', '#insertCartBtn', function(){
+  		let cart_goods_cont = $(".inp").val();
+  		let user_id = "<%=session.getAttribute("user_id")%>";
+  		if (cart_goods_cont < 1){
+  			alert("구매수량이 0개입니다.");
+  			return
+  		}
+  		
+  		if (user_id == "null"){
+  			alert("로그인이 필요합니다.");
+  			location.href = 'login';
+  			return
+  		}
+  		
+  		<% GoodsDto dto = (GoodsDto)request.getAttribute("goods"); %>
+  		//alert(goods_id)
+  		let goods_id = <%=dto.getGoods_id() %>;
+  		
+  		$.ajax({
+  			type: "post",
+  			url:"insertCartGoods",
+  			dataType:"json",
+  			data:{"goods_id":goods_id, 
+  				"cart_goods_cont": cart_goods_cont},
+  			success:function(isSuccess){
+  				alert(isSuccess.msg.toString())
+  				
+  			}
+  		})
+  	});
+  	 
+  	function calPrice(num){
+  		let dc_price = $(".dc_price").text();
+  		$(".num").text(num * dc_price); 
+  	}
+  	
+  	/* 구매 수량 변동 */
+  	$(document).on('click', '.btn_down_on',function(){
+  		let num = $(".inp").val();
+  		if (num > 0) $(".inp").val(--num);
+  		calPrice(num); 		
+  		
+	  });
+    $(document).on('click', '.btn_down_up',function(){
+  		let num = $(".inp").val();
+  		if (num < 1000) $(".inp").val(++num);
+  		calPrice(num);
+	  });
+
+
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
