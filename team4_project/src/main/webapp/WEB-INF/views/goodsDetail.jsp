@@ -339,8 +339,6 @@
 <!-- review test -->	
 	
   <script type="text/javascript">
-<<<<<<< HEAD
-=======
   
   	/* 장바구니 담기 */
   	$(document).on('click', '#insertCartBtn', function(){
@@ -383,8 +381,7 @@
   		let num = $(".inp").val();
   		if (num < 1000) $(".inp").val(++num);
 	  });
-  
->>>>>>> 상품페이지-장바구니-및-결제-기능
+
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
