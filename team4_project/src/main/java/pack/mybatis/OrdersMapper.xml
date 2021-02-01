@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orders">
+ 
+ <!-- 주문테이블 입력하기 -->
+ <insert id="insertOrders" parameterType="o_bean">
+ 	insert into orders(orders_id, user_id, orders_price, orders_name, 
+ 	orders_tel, orders_addr, orders_comment, orders_state, orders_date) 
+ 	value(#{orders_id}, #{user_id}, #{orders_price}, #{orders_name}, #{orders_tel}, 
+ 	#{orders_addr}, #{orders_comment}, #{orders_state}, #{orders_date}) 
+ </insert>
+ 
+</mapper>
