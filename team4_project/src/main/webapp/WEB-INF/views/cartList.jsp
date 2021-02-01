@@ -44,7 +44,9 @@ function del(){
 		let countArr = $(".inp")
 		let priceArr = $(".goods_price")
 
-		let totalPrice = 0; //전체 금액의 합계를 저장할 변수
+		let totalPrice = 0; 
+		let discountprice = 0
+		let totalDisPrice = 0
 		let price = 0;
 		//화면에 출력된 전체 상품목록에서 체크된 상품의 가격과 수량을 곱해서 금액 구하고 totalPrice에 누적
 		$("input[name=goods_check]:checkbox").each(function(idx, mychklist) {
@@ -53,12 +55,15 @@ function del(){
 			let goods_price = $(".goods_price")[idx].value;
 
 			if (mychklist.checked) {
-				price = goods_price * num * (100 - rate) / 100
-				totalPrice += price
+				discountprice -= goods_price * num * (rate) / 100
+				totalPrice += goods_price * num;
+				totalDisPrice += goods_price * num * (100 - rate) / 100;
 			}
 		});
 
-		$(".totalprice").text(totalPrice);
+		$(".totalPrice").text(totalPrice);
+		$(".discountprice").text(discountprice);
+		$(".totalDisPrice").text(totalDisPrice);
 
 	}
 	
@@ -86,6 +91,14 @@ function del(){
 		}
 		calc();
 	});
+	
+	$(document).on('click', '#btn_order', function(){
+		if(confirm("정말 주문하시겠습니까?")){
+			myform.submit();
+		} else {
+			return false;
+		}
+	})
 
 	$(document).on('click', '.btn_up', function() {
 		let num = $(this).prev().val();
@@ -107,7 +120,7 @@ function del(){
 <body>
 
 <h1>** 장바구니 **</h1>
-	<form action="cartList" name="myform" method="post">
+	<form action="orders" name="myform" method="post">
 		<div class="inner_check">
 			<label><input type="checkbox" name="goods_checkAll" id="checkAll" ><span>전체선택</span></label>
 			<!-- <a href="#none" class="btn_delete">선택삭제</a> -->
@@ -135,7 +148,23 @@ function del(){
 					</div>
 			</c:forEach>
 		</div>
-		<span>결제 예정 금액 : </span><span class="totalprice"></span><span>원</span>
+		<div class="bill">
+		<div>
+		<span>상품금액 : </span>
+		<span class="totalPrice"></span><span>원</span>
+		</div>
+		<div>
+		<span>상품할인금액 : </span>
+		<span class="discountprice"></span><span>원</span>
+		</div>
+		<div>
+		<span>결제 예정 금액 : </span>
+		<span class="totalDisPrice"></span><span>원</span>
+		</div>
+		<input type="button" id="btn_order" value="구매하기">
+		</div>
+		
+		
 	</form>
 
 	<!--   
