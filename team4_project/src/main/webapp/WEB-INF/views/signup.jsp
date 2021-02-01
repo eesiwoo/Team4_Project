@@ -11,6 +11,17 @@
 <link rel="stylesheet" href="resources/css/signup.css">
 <link rel="stylesheet" href="resources/css/dropdown.css">
 <link rel="stylesheet" href="resources/css/top.css">
+<script>
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+</script>
  <header>
       <div class="list_menu">
         <div class="menu menu_join">
