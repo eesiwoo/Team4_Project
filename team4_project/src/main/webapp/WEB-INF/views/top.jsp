@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<div class="bottom">
-				<img src="resources/images/kurly.jpg" alt="logo" />
+				<a href="#"><img src="resources/images/kurly.jpg" alt="logo" /></a>
 			</div>
 		</header>
 		<nav>
