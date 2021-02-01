@@ -123,7 +123,7 @@ jQuery.browser = {};
                 type="password"
                 name="user_pwd"
                 maxlength="15"
-                placeholder="비밀번호를 입력하세요(15자리 이상)"
+                placeholder="비밀번호를 입력하세요(15자리 이하)"
               />
             </td>
           </tr>
