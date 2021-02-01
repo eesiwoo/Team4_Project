@@ -7,6 +7,62 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<h1>** 장바구니 **</h1>
+	<form action="preOrders" name="myform" method="post">
+		<div class="inner_check">
+			<label><input type="checkbox" name="goods_checkAll" id="checkAll" ><span>전체선택</span></label>
+			<!-- <a href="#none" class="btn_delete">선택삭제</a> -->
+		</div>
+		<hr />
+		<div class="boxList">
+			<c:forEach var="c_dto" items="${cartList}">
+				<c:set var="goods" value="${c_dto.goods_id}"/>
+					<div class="box">
+						<input type="checkbox" class="goods_check" id="${goods}" name="goods_check" /> <img
+							width="100" width="100" src="resources/images/goods/${c_dto.goods_img}.jpg">
+						<input type="hidden" name="goods_id" value="${goods}"/>
+						<span class="goods_name">${c_dto.goods_name}</span>
+						<span class="count">
+							<button type="button" id="${goods}_down" class="btn_down">-</button>
+							<input type="number" name="cart_cont"
+							 readonly="readonly" onfocus="this.blur()" class="inp"
+							value="${c_dto.cart_goods_cont}">
+							<button type="button" id="${goods}_up" class="btn_up">+</button>
+							
+						</span>
+						 
+						<span class="goods_price_calc">
+						${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span>
+						<input type="hidden" name="goods_price" class="goods_price" value="${c_dto.goods_price}">
+						<input type="hidden" name="goods_discountRate" class="goods_discountRate" value="${c_dto.goods_discountRate}">
+						<button type="button" id="${goods}_clear" class="btn_clear" value="${c_dto.goods_id}">x</button>
+					</div>
+			</c:forEach>
+		</div>
+		<div class="bill">
+		<div>
+		<span>상품금액 : </span>
+		<span class="totalPrice"></span><span>원</span>
+		</div>
+		<div>
+		<span>상품할인금액 : </span>
+		<span class="discountprice"></span><span>원</span>
+		</div>
+		<div>
+		<span>결제 예정 금액 : </span>
+		<span class="totalDisPrice"></span><span>원</span>
+		</div>
+		<input type="submit" id="btn_order" value="구매하기">
+		</div>
+		
+		
+	</form>
+
+
 <script type="text/javascript">
 
 function del(){
@@ -83,7 +139,7 @@ function del(){
 
 	$(document).on('click', '.btn_down', function() {
 		let num = $(this).next().val();
-		if (num > 0) {
+		if (num > 1) {
 			$(this).next().val(--num);
 			let afterPrice = $(this).parent().next().text();
 			afterPrice *= num / (num + 1);
@@ -92,13 +148,24 @@ function del(){
 		calc();
 	});
 	
-	$(document).on('click', '#btn_order', function(){
+	$("form").submit(function(event){
+
+		event.preventDefault();
+		
+		var param = $(this).serializeArray();
+		console.log(param)
+	})
+	
+	
+	/* $(document).on('click', '#btn_order', function(){
 		if(confirm("정말 주문하시겠습니까?")){
-			myform.submit();
+			 myform.submit(); 
+			
+			
 		} else {
 			return false;
 		}
-	})
+	}) */
 
 	$(document).on('click', '.btn_up', function() {
 		let num = $(this).prev().val();
@@ -116,57 +183,6 @@ function del(){
 		calc();
 	});
 </script>
-</head>
-<body>
-
-<h1>** 장바구니 **</h1>
-	<form action="orders" name="myform" method="post">
-		<div class="inner_check">
-			<label><input type="checkbox" name="goods_checkAll" id="checkAll" ><span>전체선택</span></label>
-			<!-- <a href="#none" class="btn_delete">선택삭제</a> -->
-		</div>
-		<hr />
-		<div class="boxList">
-			<c:forEach var="c_dto" items="${cartList}">
-				<c:set var="goods" value="${c_dto.goods_id}"/>
-					<div class="box">
-						<input type="checkbox" class="goods_check" id="${goods}" name="goods_check" /> <img
-							width="100" width="100" src="resources/images/goods/${c_dto.goods_img}.jpg">
-						<span class="goods_name">${c_dto.goods_name}</span>
-						<span class="count">
-							<button type="button" id="${goods}_down" class="btn_down">-</button>
-							<input type="number" name="cart_cont"
-							 readonly="readonly" onfocus="this.blur()" class="inp"
-							value="${c_dto.cart_goods_cont}">
-							<button type="button" id="${goods}_up" class="btn_up">+</button>
-						</span>
-						<span class="goods_price_calc">
-						${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span>
-						<input type="hidden" name="goods_price" class="goods_price" value="${c_dto.goods_price}">
-						<input type="hidden" name="goods_discountRate" class="goods_discountRate" value="${c_dto.goods_discountRate}">
-						<button type="button" id="${goods}_clear" class="btn_clear" value="${c_dto.goods_id}">x</button>
-					</div>
-			</c:forEach>
-		</div>
-		<div class="bill">
-		<div>
-		<span>상품금액 : </span>
-		<span class="totalPrice"></span><span>원</span>
-		</div>
-		<div>
-		<span>상품할인금액 : </span>
-		<span class="discountprice"></span><span>원</span>
-		</div>
-		<div>
-		<span>결제 예정 금액 : </span>
-		<span class="totalDisPrice"></span><span>원</span>
-		</div>
-		<input type="button" id="btn_order" value="구매하기">
-		</div>
-		
-		
-	</form>
-
 	<!--   
 	cartList에서 구현해야할 기본 내용  
 	- 장바구니에 담은 객체 보여주기.(db 에서 가져와야함)  
@@ -177,10 +193,6 @@ function del(){
 	- 주소 검색 api연동 
 
  -->
-
-
-
-
 
 
 </body>

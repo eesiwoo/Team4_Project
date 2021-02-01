@@ -17,7 +17,7 @@ public class OrdersDaoImpl extends SqlSessionDaoSupport implements OrdersDaoInte
 	
 	@Override
 	public Boolean insertOrders(OrdersBean bean) {
-		int re = getSqlSession().insert("", bean);
+		int re = getSqlSession().insert("insertOrders", bean);
 		if (re == 1) return true;
 		else return false;
 	}
