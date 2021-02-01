@@ -7,17 +7,17 @@
 <title>Insert title here</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style type="text/css">
-.star_rating {font-size:0; letter-spacing:-4px;}
-.star_rating a {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#ccc;
-    text-decoration:none;
-}
-.star_rating a:first-child {margin-left:0;}
-.star_rating a.on {color:#777;}
+		.star_rating {font-size:0; letter-spacing:-4px;}
+		.star_rating a {
+		    font-size:22px;
+		    letter-spacing:0;
+		    display:inline-block;
+		    margin-left:5px;
+		    color:#ccc;
+		    text-decoration:none;
+		}
+		.star_rating a:first-child {margin-left:0;}
+		.star_rating a.on {color:#777;}
 	</style>
 	
 	<script type="text/javascript">
@@ -29,6 +29,14 @@
 		     $("#review_star").val(starRate);
 		     return false;
 		});
+		
+		$("#review_isPrivate").change(function(){
+	        if($("#review_isPrivate").is(":checked")){
+	        	$('#review_isPrivate').val("1");
+	        }else{
+	        	$('#review_isPrivate').val("0");
+	        }
+	    });
 	});
 	</script>
 	
@@ -52,7 +60,8 @@
 	  </tr>
 	  <tr>
 	  	<td>숨김여부</td>
-	  	<td><input type="text" name="review_isPrivate"></td>
+	  	<td>글 숨기기 <input type="checkbox" id="review_isPrivate" name="review_isPrivate" value="0"></td>
+	  	
 	  </tr>
 	  <tr>
 	  	<td>제목</td>

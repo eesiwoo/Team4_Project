@@ -539,15 +539,15 @@
 						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>";
 						str += "<img src='" + rd.review_img +"'><br/>";
-						str += rd.review_content + "</div>";
-						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
+						str += rd.review_content
+						str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
 					}else{
-						str += "<td class='tb_content'><div class='review_content' id='"
-						     + rd.review_id +"_review_content'>" + rd.review_content + "</div>";
-						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";     
+						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
+						     + rd.review_id +"_review_content'>" + rd.review_content;
+						str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";     
 					}
 					
-					str += "</tr>"
+					str += "</div>" + "</tr>";
 					
 				});
 					/* 리뷰 추가 */
