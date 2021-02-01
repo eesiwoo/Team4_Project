@@ -77,13 +77,5 @@
  
  
  
-
-<!-- <form action="login" name="form" method="post" >
-아이디 : <input type="text" name="user_id" placeholder="아이디를 입력하세요"><br><br> 
-패스워드 : <input type="password" name="user_pwd" placeholder="비밀번호를 입력하세요"><br><br>
-<input type="button" id="btn" value="로그인하기"> 
-</form> --> 
- 
- 
 </body>
 </html>
