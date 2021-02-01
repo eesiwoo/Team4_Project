@@ -38,7 +38,7 @@ body {
 .board .board_table #tr_first {
   border-top: none;
 }
-.board .board_table .tr_line {
+.board .board_table .view_content {
   border-top: 1px solid #bfbfbf;
 }
 .board .board_table .tr_line table {
@@ -52,7 +52,7 @@ body {
   width: 69px;
 }
 .board .board_table table .view_content .tb_tit {
-  width: 580px;
+  width: 500px;
 }
 .board .board_table table .view_content .tb_name {
   width: 76.5px;
@@ -73,4 +73,13 @@ body {
   content: '';
   display: block;
   clear: both;
+}
+/* .board .board_table table tr .tb_content {
+    width: 100px;
+} */
+table{
+	text-align: center;
+}
+.tr_line{
+	border-bottom: 1px solid  #bfbfbf;
 }

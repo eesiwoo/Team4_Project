@@ -524,7 +524,7 @@
 				let list = review.datas;
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
-					str += "<tr class='view_content' id='" + rd.review_id + "_review'>";
+					str += "<tr class='view_content' id='" + rd.review_id + "_review' >";
 					str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
 					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
 					str += "<td class='tb_name'>" + rd.user_id + "</td>";
@@ -536,7 +536,7 @@
 					str += "<tr>";
 					/* 이미지 여부 체크 */
 					if(rd.review_img != null){
-						str += "<td class='tb_content'><div class='review_content' id='"
+						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>";
 						str += "<img src='" + rd.review_img +"'><br/>";
 						str += rd.review_content + "</div>";
