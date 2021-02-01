@@ -101,5 +101,17 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 		 getSqlSession().insert("insertLikes", dto);
 		
 	}
+	
+	@Override
+	public void likesUpdate(int review_id) {
+		getSqlSession().update("likesUpdate", review_id);
+		
+	}
+	
+	@Override
+	public void unLikesUpdate(int review_id) {
+		getSqlSession().update("unLikesUpdate", review_id);
+		
+	}
 
 }
