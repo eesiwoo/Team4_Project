@@ -1,0 +1,78 @@
+
+.main {
+  width: 640px;
+  margin: auto;
+}
+.main .tit {
+  padding-top: 64px;
+  font-weight: 900;
+  font-size: 30px;
+  color: #333;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  margin: auto auto 20px;
+}
+.main form table {
+  width: 100%;
+  border-top: 2px solid #333;
+}
+.main form table tr {
+  margin: 5px 0;
+}
+.main form table #gender {
+  padding: 10px 0 10px 20px;
+}
+.main form table td,
+.main form table th {
+  font-size: 14px;
+  vertical-align: top;
+  text-align: left;
+}
+.main form table th {
+  width: 100px;
+  font-weight: 700;
+  color: #333;
+  line-height: 20px;
+  padding: 20px 0 0 20px;
+}
+.main form table td {
+  padding: 10px 0;
+  border-top: 0;
+}
+input[type='number'],
+input[type='password'],
+input[type='text'],
+select,
+textarea {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: #333;
+  line-height: 20px;
+  border-radius: 3px;
+  background: #fff;
+  outline: 0;
+  vertical-align: top;
+  width: 332px;
+}
+input[type='button'] {
+  width: 240px;
+  height: 56px;
+  font-size: 16px;
+  line-height: 54px;
+  border: 1px solid #5f0081;
+  background-color: #5f0080;
+  color: #fff;
+}
+#submit {
+  display: flex;
+  justify-content: center;
+}
+#submitBtn {
+  margin-top: 30px;
+}
+.ui-datepicker-calendar {
+  background-color: #fff;
+}
