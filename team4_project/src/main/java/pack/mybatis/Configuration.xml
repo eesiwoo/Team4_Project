@@ -20,6 +20,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   <mapper resource="pack/mybatis/GoodsMapper.xml"/>
   <mapper resource="pack/mybatis/UserMapper.xml"/>
   <mapper resource="pack/mybatis/CartMapper.xml"/>
-  <mapper resource="pack/mybatis/review.xml" />
+  <mapper resource="pack/mybatis/review.xml"/>
  </mappers>
 </configuration>
