@@ -1,10 +1,26 @@
 package pack.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class OrdersBean {
 	private String orders_id, user_id, orders_name, orders_tel, orders_addr; 
 	private String orders_comment, orders_state, orders_date;
-	private int orders_price;
+	private String orders_price, goodsPrice, discountprice, goods_id, goods_cont;
 	
+	public String getGoods_id() {
+		return goods_id;
+	}
+	public void setGoods_id(String goods_id) {
+		this.goods_id = goods_id;
+	}
+	public String getGoods_cont() {
+		return goods_cont;
+	}
+	public void setGoods_cont(String goods_cont) {
+		this.goods_cont = goods_cont;
+	}
 	public String getOrders_id() {
 		return orders_id;
 	}
@@ -50,16 +66,28 @@ public class OrdersBean {
 	public String getOrders_date() {
 		return orders_date;
 	}
-	public void setOrders_date(String orders_date) {
-		this.orders_date = orders_date;
+	public void setOrders_date() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		this.orders_date = sdf.format(new Date(Calendar.getInstance().getTimeInMillis()));
 	}
-	public int getOrders_price() {
+	public String getOrders_price() {
 		return orders_price;
 	}
-	public void setOrders_price(int orders_price) {
+	public void setOrders_price(String orders_price) {
 		this.orders_price = orders_price;
 	}
-	
+	public String getGoodsPrice() {
+		return goodsPrice;
+	}
+	public void setGoodsPrice(String goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	public String getDiscountprice() {
+		return discountprice;
+	}
+	public void setDiscountprice(String discountprice) {
+		this.discountprice = discountprice;
+	}
 	
 	
 }

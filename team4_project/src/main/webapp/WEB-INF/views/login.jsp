@@ -9,7 +9,8 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		var msg = "<%= request.getAttribute("msg") %>"
+		var msg = "<%=request.getAttribute("msg")%>"
+		console.log(msg)
 		if(msg != "null"){
 			alert(msg);
 		}

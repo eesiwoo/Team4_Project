@@ -12,4 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	#{orders_addr}, #{orders_comment}, #{orders_state}, #{orders_date}) 
  </insert>
  
+ <!-- 주문에 필요한 정보 가져오기 -->
+ <insert id="insertOrdersGoods" parameterType="og_bean">
+ 	insert into orders_goods 
+ 	value(#{orders_id}, #{goods_id}, #{goods_cont}) 
+ </insert>
+ 
 </mapper>

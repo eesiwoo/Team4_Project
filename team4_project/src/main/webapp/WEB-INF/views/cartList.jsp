@@ -20,41 +20,38 @@
 		<hr />
 		<div class="boxList">
 			<c:forEach var="c_dto" items="${cartList}">
-				<c:set var="goods" value="${c_dto.goods_id}"/>
-					<div class="box">
-						<input type="checkbox" class="goods_check" id="${goods}" name="goods_check" /> <img
-							width="100" width="100" src="resources/images/goods/${c_dto.goods_img}.jpg">
-						<input type="hidden" name="goods_id" value="${goods}"/>
-						<span class="goods_name">${c_dto.goods_name}</span>
+				<c:set var="goods" value="${c_dto.goods_id}" />
+				<div class="box">
+					<input type="checkbox" class="goods_check" id="${goods}" name="goods_check" value="${goods}"/> 
+					<img width="100" width="100" src="resources/images/goods/${c_dto.goods_img}.jpg"> 
+						<span class="goods_name">${c_dto.goods_name}</span> 
 						<span class="count">
-							<button type="button" id="${goods}_down" class="btn_down">-</button>
-							<input type="number" name="cart_cont"
-							 readonly="readonly" onfocus="this.blur()" class="inp"
-							value="${c_dto.cart_goods_cont}">
-							<button type="button" id="${goods}_up" class="btn_up">+</button>
-							
-						</span>
-						 
-						<span class="goods_price_calc">
-						${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span>
-						<input type="hidden" name="goods_price" class="goods_price" value="${c_dto.goods_price}">
-						<input type="hidden" name="goods_discountRate" class="goods_discountRate" value="${c_dto.goods_discountRate}">
-						<button type="button" id="${goods}_clear" class="btn_clear" value="${c_dto.goods_id}">x</button>
-					</div>
+						<button type="button" id="${goods}_down" class="btn_down">-</button>
+						<input type="number" name="goods_cont" id="${goods}_cont" readonly="readonly"
+						onfocus="this.blur()" class="inp" value="${c_dto.cart_goods_cont}">
+						<button type="button" id="${goods}_up" class="btn_up">+</button>
+					</span> <span class="goods_price_calc" id="${goods}_price"> ${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span>
+					<input type="hidden" name="goods_price" class="goods_price" value="${c_dto.goods_price}"> 
+					<input type="hidden" name="goods_discountRate" class="goods_discountRate" value="${c_dto.goods_discountRate}">
+					<button type="button" id="${goods}_clear" class="btn_clear" value="${c_dto.goods_id}">x</button>
+				</div>
 			</c:forEach>
 		</div>
 		<div class="bill">
 		<div>
 		<span>상품금액 : </span>
-		<span class="totalPrice"></span><span>원</span>
+		<span class="goodsPrice"></span><span>원</span>
+		<input type="hidden" name="goodsPrice" id="goodsPrice">
 		</div>
 		<div>
 		<span>상품할인금액 : </span>
 		<span class="discountprice"></span><span>원</span>
+		<input type="hidden" name="discountprice" id="discountprice">
 		</div>
 		<div>
 		<span>결제 예정 금액 : </span>
-		<span class="totalDisPrice"></span><span>원</span>
+		<span class="orders_price"></span><span>원</span>
+		<input type="hidden" name="orders_price" id="orders_price">
 		</div>
 		<input type="submit" id="btn_order" value="구매하기">
 		</div>
@@ -117,10 +114,27 @@ function del(){
 			}
 		});
 
-		$(".totalPrice").text(totalPrice);
+		$(".goodsPrice").text(totalPrice);
+		$("#goodsPrice").val(totalPrice);
 		$(".discountprice").text(discountprice);
-		$(".totalDisPrice").text(totalDisPrice);
+		$("#discountprice").val(discountprice);
+		$(".orders_price").text(totalDisPrice);
+		$("#orders_price").val(totalDisPrice);
 
+	}
+	
+	function updateCart(user_id, goods_id, num){
+		$.ajax({
+			type : "get",
+			url : "updateCartGoods",
+			dataType :"json",
+			data : {"goods_id":goods_id, "user_id":user_id, "cart_goods_cont":num},
+			success:function(item){
+				if (!item.isSuccess) {
+					alert("해당 상품의 구매갯수를 변경할 수 없습니다.")
+				} 
+			}
+		}) 
 	}
 	
 	$(document).on("click", "#checkAll", function() {
@@ -143,29 +157,27 @@ function del(){
 			$(this).next().val(--num);
 			let afterPrice = $(this).parent().next().text();
 			afterPrice *= num / (num + 1);
+			
+			// 변경된 숫자 및 금액 반영 
 			$(this).parent().next().text(afterPrice);
+			calc();
+			
+			// 변경된 수량 ajax를 통해 db로 전달
+			let user_id = "<%=session.getAttribute("user_id")%>";
+			let goods_id = $(this).attr("id").split("_down")[0];
+			updateCart(user_id, goods_id, num)
+			
 		}
-		calc();
+		
 	});
 	
-	$("form").submit(function(event){
-
-		event.preventDefault();
-		
-		var param = $(this).serializeArray();
-		console.log(param)
-	})
-	
-	
-	/* $(document).on('click', '#btn_order', function(){
-		if(confirm("정말 주문하시겠습니까?")){
-			 myform.submit(); 
-			
-			
+	$(document).on('click', '#btn_order', function(){
+		if(confirm("정말 주문하시겠습니까?")){		
+		myform.submit(); 
 		} else {
 			return false;
 		}
-	}) */
+	})
 
 	$(document).on('click', '.btn_up', function() {
 		let num = $(this).prev().val();
@@ -173,14 +185,19 @@ function del(){
 		if (num < 1000) {
 			$(this).prev().val(++num);
 			let afterPrice = $(this).parent().next().text();
-			if (num != 1) {
-				afterPrice *= num / (num - 1)
-			} else {
-				afterPrice = $(this).parent().next().attr("value");
-			}
-			$(this).parent().next().text(afterPrice);
+			afterPrice *= num / (num - 1)
+			
+			// 변경된 숫자 및 금액 반영
+			$(this).parent().next().text(afterPrice);		
+			calc();
+			
+			// 변경된 수량 ajax를 통해 db로 전달
+			let user_id = "<%=session.getAttribute("user_id")%>";
+			let goods_id = $(this).attr("id").split("_up")[0];
+			updateCart(user_id, goods_id, num)
+			
+			
 		}
-		calc();
 	});
 </script>
 	<!--   

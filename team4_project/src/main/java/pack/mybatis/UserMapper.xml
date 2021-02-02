@@ -16,5 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="loginUser" parameterType="string" resultType="u_dto">
 	select user_pwd from user where user_id = #{user_id}
 </select>
+
+<!-- 회원 정보 가져오기 -->
+<select id="selectUser" parameterType="string" resultType="u_dto">
+	select * from user where user_id = #{user_id}
+</select>
   
 </mapper>
