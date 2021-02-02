@@ -77,8 +77,7 @@
 			<h3 class="tit">ADMIN</h3>
 			<!-- <p class="sub"><span class="ico">*</span>필수입력사항</p> -->
 		</div>
-		<form action="insertGoods" method="post" name="form"
-			enctype="multipart/form-data">
+		<form action="insertGoods" method="post" name="form" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<th>상품명</th>
@@ -87,7 +86,7 @@
 				<tr>
 					<th>카테고리</th>
 					<td><select id="category_id" name="category_id">
-							<c:forEach var="i" items="">
+							<c:forEach var="i" items="${categoryList}">
 								<option value="${i.category_id}">${i.category_name}</option>
 							</c:forEach>
 					</select></td>
@@ -134,11 +133,11 @@
 				</tr>
 				<tr>
 					<th>업로드할 이미지</th>
-					<td><input type="file" id="fileImg" name="fileImg" size="200" />
+					<td><input type="file" id="fileImg" name="fileImg" size="200">
 						<%@ taglib prefix="form"
 							uri="http://www.springframework.org/tags/form"%>
 						<form:errors path="file" cssStyle="color:red" />
-						<p /> <input type="hidden" id="goods_img" name="goods_img" /></td>
+						<p /> <input type="hidden" id="goods_img" name="goods_img"></td>
 				</tr>
 				<tr>
 					<th>할인률</th>
