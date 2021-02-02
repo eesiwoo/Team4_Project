@@ -1,8 +1,10 @@
 package pack.controller;
  
 import java.io.File;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +27,18 @@ public class InsertReviewController {
 	//리뷰 작성 페이지로 이동
 	@RequestMapping(value = "insertReview", method = RequestMethod.GET)
 	public String insertReviewForm(@RequestParam("goods_id")String goods_id,
-								   HttpServletRequest request) {
+								   HttpServletRequest request,
+								   HttpServletResponse response) throws Exception {
 		request.setAttribute("goods_id", goods_id);
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
+		response.setContentType("text/html; charset=UTF-8");
+		if(user_id == null) {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인 후 이용해주세요');</script>");
 		
-		if(user_id == null)
 			return "redirect:/goods?goods_id=" + goods_id ;
+		}
 		else
 			return "insertReviewForm";
 	}
@@ -46,11 +53,7 @@ public class InsertReviewController {
 		String user_id = (String) session.getAttribute("user_id");
 		int goods_id = dto.getGoods_id();
 		String asc = inter.currentReview_asc(goods_id);
-<<<<<<< HEAD
-		dto.setUser_id("user_id 01");
-=======
 		dto.setUser_id(user_id);
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 		if(asc == null)
 			dto.setReview_asc(1);
 		else

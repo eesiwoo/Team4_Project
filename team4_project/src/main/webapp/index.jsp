@@ -24,7 +24,7 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 <a href="goodsList">상품 페이지 테스트</a><br>
 <a href="goods?goods_id=2">상품 클릭 테스트</a><br>
 <a href="goodsRandom?num=1">상품 임의 1개 테스트</a><br>

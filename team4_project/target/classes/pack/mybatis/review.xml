@@ -11,15 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	order by review_asc desc
  </select>
 
-
- <!-- 공지글 조회 -->
- <select id="selectNotice" parameterType="ReviewDto" resultType="ReviewDto">
-  	select * from review
-  	where goods_id = 0
-  	order by review_asc desc
- </select>
-
-
  <!-- 리뷰 조회 (최신순) -->
  <select id="selectReview" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
@@ -31,11 +22,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="selectReviewOrderbyLikes" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
   	where goods_id = #{goods_id}
-<<<<<<< HEAD
-  	order by Likes_count desc
-=======
-  	order by likes_count desc
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
  </select>
  
    <!-- 리뷰 조회 (내가 쓴 글 보기) -->
@@ -49,7 +35,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <update id="viewCount" parameterType="integer">
  	update review
  	set review_viewCount = review_viewCount + 1
-<<<<<<< HEAD
  	where review_id = #{review_id}
  </update>
  
@@ -57,8 +42,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 좋아요 갯수 업데이트 -->
  <update id="updateLikes" parameterType="ReviewDto">
  	update review set likes_count = #{likes_count}
-=======
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
  	where review_id = #{review_id}
  </update>
  
@@ -113,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	 <!-- 종아요 수 업데이트 -->
  <update id="unLikesUpdate" parameterType="integer">
  	update review
- 	set likes_count = likes_count - 1;
+ 	set likes_count = likes_count - 1
  	where review_id = #{review_id}
  </update>
 </mapper>

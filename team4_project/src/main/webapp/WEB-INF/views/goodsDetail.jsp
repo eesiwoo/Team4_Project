@@ -1,6 +1,5 @@
 <%@page import="pack.model.GoodsDto"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="pack.controller.ReviewController" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -406,21 +405,6 @@
   
   /* 리뷰 상세내용 표시 */
   $(document).on('click', '.view_content',function(){
-<<<<<<< HEAD
-		var id = this.id + "_content";
-		if(document.getElementById(id).style.display === 'block') {
-			document.getElementById(id).style.display = 'none';
-		}else {
-			document.getElementById(id).style.display = 'block';
-		};
-		$.ajax({
-			type : "get",
-			url : "view_count",
-			data : {"review_id" : this.id},
-			dataType : "json"
-		})
-		
-=======
 	  var id = this.id;
 		$.ajax({
 			type : "get",
@@ -442,7 +426,6 @@
 			     alert("내용표시 오류발생");  
 			}
 		});
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 	  });
 
   
@@ -509,31 +492,6 @@
 					str += "<td class='tb_tit'>제목</td>";
 					str += "<td class='tb_name'>작성자</td>";
 					str += "<td class='tb_date'>작성일</td>";
-<<<<<<< HEAD
-					str += "<td class='tb_help'>도움</td>";
-					str += "<td class='tb_count'>조회</td></tr></table></div>";
-				let notice = review.noticeList;
-				$(notice).each(function(i, nl){
-					str += "<tr class='view_content' id='" + nl.review_id + "_review'>";
-					str += "<td>공  지</td>"
-					str += "<td>" + nl.review_title + "</td>";
-					str += "<td>" + nl.user_id + "</td>";
-					str += "<td>" + nl.review_date + "</td>";
-					str += "<td>" + nl.likes_count + "</td>";
-					str += "<td>" + nl.review_viewCount + "</td>";
-					str += "</tr>";
-					str += "<tr>";
-					if(nl.review_img != null){
-						str += "<td><div class='review_content' id='"
-						     + nl.review_id +"_review_content'><br/>" + "<img src='" + nl.review_img +"'><br/>"
-						     + nl.review_content + "</div></td>";
-					}else{
-						str += "<td><div class='review_content' id='"
-						     + nl.review_id +"_review_content'>" + nl.review_content + "</div></td>";
-					
-					}
-					str += "</tr>";
-=======
 					str += "<td class='tb_help'>좋아요</td>";
 					str += "<td class='tb_count'>조회</td>";
 					str += "</tr>";
@@ -561,19 +519,13 @@
 					}
 					str += "</tr>";
 					
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 				});
 					
 				let list = review.datas;
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
-<<<<<<< HEAD
-					str += "<div class='tr_line'><table><tr id='" + rd.review_id + "_review'>"
-					str += "<td>" + rd.review_asc + "</td>";	
-=======
 					str += "<tr class='view_content' id='" + rd.review_id + "_review' >";
 					str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
 					str += "<td class='tb_name'>" + rd.user_id + "</td>";
 					str += "<td class='tb_date'>" + rd.review_date + "</td>";
@@ -587,15 +539,15 @@
 						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>";
 						str += "<img src='" + rd.review_img +"'><br/>";
-						str += rd.review_content + "</div>";
-						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
+						str += rd.review_content
+						str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
 					}else{
-						str += "<td class='tb_content'><div class='review_content' id='"
-						     + rd.review_id +"_review_content'>" + rd.review_content + "</div>";
-						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";     
+						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
+						     + rd.review_id +"_review_content'>" + rd.review_content;
+						str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";     
 					}
 					
-					str += "</tr>"
+					str += "</div>" + "</tr>";
 					
 				});
 					/* 리뷰 추가 */

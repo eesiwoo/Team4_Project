@@ -5,27 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
-import javax.servlet.http.HttpServletResponse;
-=======
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-import org.springframework.ui.Model;
-=======
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.CookieGenerator;
-
 import pack.model.LikesDto;
 import pack.model.ReviewDto;
 import pack.model.ReviewInter;
@@ -99,13 +90,12 @@ public class ReviewController {
 		totalReview = reviewList.size();
 		List<Map<String, String>> dataList = setReview(afterPageList);
 		List<Map<String, String>> noticeList = setReview(notice);
-<<<<<<< HEAD
-=======
+
 		int review_id = -1;
 		
 		if(session.getAttribute("review_id") != null)
 			review_id = (int) session.getAttribute("review_id");
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
+
 		
 		Map<String, Object> datas = new HashMap<String, Object>();
 		System.out.println(review_id);
@@ -114,10 +104,8 @@ public class ReviewController {
 		datas.put("page", page);
 		datas.put("totalPage", totalPage());
 		datas.put("noticeList", noticeList);
-<<<<<<< HEAD
-=======
 		datas.put("review_id",  review_id);
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
+
 		return datas;
 	}
 
@@ -137,7 +125,6 @@ public class ReviewController {
 			data.put("likes_count",Integer.toString(r.getLikes_count()));
 			data.put("review_viewCount",Integer.toString(r.getReview_viewCount()));
 			data.put("review_img", r.getReview_img());
-			
 			dataList.add(data);
 		}
 		
@@ -147,24 +134,6 @@ public class ReviewController {
 	
 	//조회수 증가
 	@RequestMapping("view_count")
-<<<<<<< HEAD
-	public void test01(@RequestParam("review_id")String id,
-			           @CookieValue(name="view")String cookie,
-			           HttpServletResponse response) {
-		int x = id.indexOf("_");
-		int review_id = Integer.parseInt(id.substring(0, x));
-		
-		if (!(cookie.contains(String.valueOf(review_id)))) {
-			cookie += review_id + "/";
-			inter.viewCount(review_id);
-		}
-		
-		CookieGenerator cg = new CookieGenerator();
-		cg.setCookieName("view");
-		cg.setCookieMaxAge(60*60*24*365);
-		cg.addCookie(response, cookie);
-
-=======
 	@ResponseBody
 	public Map<String, Object> test01(@RequestParam("review_id")String id,
 			           				  @CookieValue(name="view")String cookie,
@@ -195,10 +164,8 @@ public class ReviewController {
 		data.put("howAsc", howAsc);
 		
 		return data;
-
 	}
 	
-
 
 	//좋아요 버튼
 	@RequestMapping("clickLikes")
@@ -240,6 +207,5 @@ public class ReviewController {
 		data.put("page", page);
 		data.put("howAsc", howAsc);
 		return data;  //좋아요 처리 완료
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 	}
 }

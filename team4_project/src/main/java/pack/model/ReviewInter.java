@@ -7,11 +7,11 @@ public interface ReviewInter {
 	//굿즈 디테일에서 보이는 리뷰 창 (goods_id를 가져와 글 목록 조회)
 	public ArrayList<ReviewDto> selectReview(int goods_id);
 	public ArrayList<ReviewDto> selectReviewOrderbyLikes(int goods_id);
-<<<<<<< HEAD
+
 	public ArrayList<ReviewDto> selectReviewOrderbyUserId(int goods_id);
-=======
+
 	public ArrayList<ReviewDto> selectReviewOrderbyUserId(ReviewDto dto);
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
+
 	public ArrayList<ReviewDto> selectNotice();
 	
 	//리뷰 등록하기 ( 구매한 사람만 등록해야함. order 테이블이랑 조인해서 구매여부 확인 후 리뷰 등록할 수 있게 하기 )
@@ -36,15 +36,13 @@ public interface ReviewInter {
  	//좋아요 수 조회하기
  	public ArrayList<LikesDto> countLikes(int review_id);
  	
-<<<<<<< HEAD
+
  	//좋아요 수 업데이트하기
  	public void updateLikes(ReviewDto dto);
  	
  	//조회수 증가
  	public void viewCount(int review_id);
-=======
- 	//조회수 증가
- 	public void viewCount(int review_id);
+
  	
  	//좋아요 데이터 조회
  	public String selectLikes(LikesDto dto);
@@ -59,5 +57,5 @@ public interface ReviewInter {
  	public void likesUpdate(int review_id);
  	
  	public void unLikesUpdate(int review_id);
->>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
+
 }
