@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 ** 마이페이지 ** 
@@ -18,5 +19,34 @@
 	- 회원 정보 수정 
 	 
  -->
+ 
+ <div id="btn_user"><a href="updateUser"> 개인정보 수정 </a></div>
+ <div id="btn_orders"> 구매내역 </div><br>
+ 
+ 
+ <div id="userInfo"></div>
+ 
+ <script type="text/javascript">
+ 	
+ 	$(document).on("click", "#btn_user", function(){
+ 		let user_id = ${session.getAttribute("user_id")};		
+ 		$.ajax({
+ 			type:"get",
+ 			url:"getUserInfo",
+ 			dataType:"json",
+ 			data:{"user_id":user_id},
+ 			success:function(a){
+ 				let str = "<table><tr><th>회원명<th></tr>" 
+ 			}
+ 				
+ 		})
+ 	});
+ 	
+	$(document).on("click", "#btn_orders", function(){
+		alert(1)
+ 	});
+ </script>
+ 
+ 
 </body>
 </html>

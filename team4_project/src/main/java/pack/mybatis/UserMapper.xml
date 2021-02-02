@@ -21,5 +21,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="selectUser" parameterType="string" resultType="u_dto">
 	select * from user where user_id = #{user_id}
 </select>
+
+<!-- 회원 정보 수정하기 -->
+<update id="updateUser" parameterType="u_bean">
+	update user set user_pwd=#{user_pwd}, user_name=#{user_name}, 
+	user_email=#{user_email}, user_addr=#{user_addr}, user_tel=#{user_tel}, 
+	user_gen=#{user_gen}, user_bDate=#{user_bDate}
+	where user_id = #{user_id}
+</update>
   
 </mapper>
