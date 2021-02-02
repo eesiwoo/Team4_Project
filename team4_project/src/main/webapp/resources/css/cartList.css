@@ -1,0 +1,58 @@
+body {
+	width: auto;
+}
+
+.title {
+	width: 1050px;
+	margin: auto;
+}
+
+form {
+	width: 1050px;
+	margin: auto;
+}
+
+/* 장바구니 */
+.title {
+	overflow: hidden;
+	width: 1050px;
+	margin: 0 auto;
+	padding: 55px 0 46px;
+}
+
+.title h1 {
+	font-weight: 800;
+	font-family: noto sans;
+	font-size: 30px;
+	color: #333;
+	line-height: 50px;
+	text-align: center;
+	letter-spacing: -0.5px;
+}
+
+/*  */
+.boxList {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.box img {
+	width: 100px;
+	height: 100px;
+}
+
+.box *:not(img, #won) {
+	overflow: hidden;
+	max-height: 54px;
+	font-weight: 700;
+	margin: auto 0;
+}
+
+.box {
+	display: flex;
+	justify-content: space-around;
+	width: 1000px;
+	margin-bottom: 30px;
+}
