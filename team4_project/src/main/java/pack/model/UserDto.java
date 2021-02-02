@@ -1,9 +1,5 @@
 package pack.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class UserDto {
 
 	private String user_id, user_name, user_pwd, user_tel, user_code; 

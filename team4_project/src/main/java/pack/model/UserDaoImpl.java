@@ -21,4 +21,9 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDaoInter{
 		if (re == 1) return true;
 		else return false; 
 	}
+	
+	@Override
+	public UserDto selectUser(String user_id) {
+		return getSqlSession().selectOne("selectUser", user_id);
+	}
 }
