@@ -15,8 +15,8 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	}
 
 	@Override
-	public ArrayList<ReviewDto> selectReview(int goods_id) {
-		return (ArrayList)getSqlSession().selectList("selectReview", goods_id);
+	public ArrayList<ReviewDto> selectReview(ReviewDto dto) {
+		return (ArrayList)getSqlSession().selectList("selectReview", dto);
 	}
 	
 	@Override
@@ -30,8 +30,8 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	}
 	
 	@Override
-	public ArrayList<ReviewDto> selectNotice() {
-		return (ArrayList)getSqlSession().selectList("selectNotice");
+	public ArrayList<ReviewDto> selectNotice(String review_orQna) {
+		return (ArrayList)getSqlSession().selectList("selectNotice", review_orQna);
 	}
 
 	@Override

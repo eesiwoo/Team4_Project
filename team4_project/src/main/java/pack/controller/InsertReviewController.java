@@ -27,8 +27,11 @@ public class InsertReviewController {
 	//리뷰 작성 페이지로 이동
 	@RequestMapping(value = "insertReview", method = RequestMethod.GET)
 	public String insertReviewForm(@RequestParam("goods_id")String goods_id,
+								   @RequestParam("RorQ")String RorQ,
 								   HttpServletRequest request,
 								   HttpServletResponse response) throws Exception {
+		System.out.println(RorQ);
+		
 		request.setAttribute("goods_id", goods_id);
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
@@ -36,11 +39,13 @@ public class InsertReviewController {
 		if(user_id == null) {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 후 이용해주세요');</script>");
-		
 			return "redirect:/goods?goods_id=" + goods_id ;
+		} else {
+			if(RorQ.equals("review"))
+				return "insertReviewForm";
+			else
+				return "insertQnaForm";
 		}
-		else
-			return "insertReviewForm";
 	}
 	
 	//리뷰 작성

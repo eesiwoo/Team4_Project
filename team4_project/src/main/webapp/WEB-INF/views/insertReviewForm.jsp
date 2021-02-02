@@ -21,7 +21,7 @@
 	</style>
 	
 	<script type="text/javascript">
-	$( document ).ready(function() {
+	$( document ).ready(function() {	
 		$( ".star_rating a" ).click(function() {
 		     $(this).parent().children("a").removeClass("on");
 		     $(this).addClass("on").prevAll("a").addClass("on");
@@ -30,13 +30,6 @@
 		     return false;
 		});
 		
-		$("#review_isPrivate").change(function(){
-	        if($("#review_isPrivate").is(":checked")){
-	        	$('#review_isPrivate').val("1");
-	        }else{
-	        	$('#review_isPrivate').val("0");
-	        }
-	    });
 	});
 	</script>
 	
@@ -59,11 +52,6 @@
 		</td>
 	  </tr>
 	  <tr>
-	  	<td>숨김여부</td>
-	  	<td>글 숨기기 <input type="checkbox" id="review_isPrivate" name="review_isPrivate" value="0"></td>
-	  	
-	  </tr>
-	  <tr>
 	  	<td>제목</td>
 	  	<td><input type="text" name="review_title"></td>
 	  </tr>
@@ -79,6 +67,8 @@
 	  </tr>
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
+	  	<input type="hidden" name="review_orQna" value="review">
+	  	<input type="hidden" id="review_isPrivate" value="0">
 	  		<input type="submit" value="등록" id="btnIns">
 	  	
 	  	</td>

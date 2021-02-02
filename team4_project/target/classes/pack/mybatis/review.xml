@@ -5,29 +5,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="review">
  
  <!-- 공지글 조회 -->
- <select id="selectNotice" parameterType="ReviewDto" resultType="ReviewDto">
+ <select id="selectNotice" parameterType="string" resultType="ReviewDto">
   	select * from review
-  	where goods_id = 0
+  	where goods_id = 0 and review_orQna = #{review_orQna}
   	order by review_asc desc
  </select>
 
  <!-- 리뷰 조회 (최신순) -->
  <select id="selectReview" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
-  	where goods_id = #{goods_id}
+  	where goods_id = #{goods_id} and review_orQna = #{review_orQna}
   	order by review_asc desc
  </select>
  
   <!-- 리뷰 조회 (추천순) -->
  <select id="selectReviewOrderbyLikes" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
-  	where goods_id = #{goods_id}
+  	where goods_id = #{goods_id}  and review_orQna = #{review_orQna}
+  	order by likes_count desc
  </select>
  
    <!-- 리뷰 조회 (내가 쓴 글 보기) -->
  <select id="selectReviewOrderbyUserId" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
-  	where goods_id = #{goods_id} and user_id = #{user_id}
+  	where goods_id = #{goods_id} and user_id = #{user_id} and review_orQna = #{review_orQna}
   	order by review_asc desc
  </select>
  
@@ -48,16 +49,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 리뷰 추가 -->
  <insert id="insertReview" parameterType="ReviewDto">
  	insert into review (goods_id, user_id, review_title, review_content, review_viewCount,
- 	review_star, review_isPrivate, review_asc, review_answer, review_date, review_img, likes_count)
+ 	review_star, review_isPrivate, review_asc, review_answer, review_date, review_img, likes_count, review_orQna)
  	values(#{goods_id},#{user_id},#{review_title},#{review_content},0,
- 	#{review_star},#{review_isPrivate},#{review_asc},0,now(), #{review_img}, 0)
+ 	#{review_star},#{review_isPrivate},#{review_asc},0,now(), #{review_img}, 0, #{review_orQna})
  </insert>
  
   <!-- MaxReview_asc 조회 -->
  <select id="MaxReview_asc" resultType="String">
   	select max(review_asc)
   	from review
-  	where goods_id = #{goods_id}
+  	where goods_id = #{goods_id} and review_orQna = #{review_orQna}
  </select>
 
 

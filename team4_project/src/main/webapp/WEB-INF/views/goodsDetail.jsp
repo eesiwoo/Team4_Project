@@ -256,6 +256,22 @@
 			<div class="board_table" id="review">
 			</div>
 		</div>   
+		
+				<div class="board">
+			<div class="board_tit">
+				<h2>PRODUCT REVIEW</h2>
+				<div class="sort-wrap clearfix">
+					<ul>
+						<li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
+							이동될 수 있습니다.</li>
+						<li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="board_table" id="qna">
+			</div>
+		</div>   
+		
       
     </main>
       <footer>
@@ -391,7 +407,8 @@
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
-		callReview(pageId, "recently");
+		callReview(pageId, "recently" ,"review");
+		callReview(pageId, "recently" ,"qna");
 	 });  
   
  	 
@@ -406,6 +423,10 @@
   /* 리뷰 상세내용 표시 */
   $(document).on('click', '.view_content',function(){
 	  var id = this.id;
+	  var RorQ = $('#'+id).parent().parent().attr('name');
+	  alert(RorQ)
+	  /* 비밀글 체크 후 조회여부 결정 */
+	  if($('#'+id).attr("value") == "0"){
 		$.ajax({
 			type : "get",
 			url : "view_count",
@@ -417,7 +438,7 @@
 				if($('#'+content).css("display") == "none"){
 					let howAsc = data.howAsc;
 					 let pageId = data.page;
-					 callReview(pageId, howAsc);
+					 callReview(pageId, howAsc,RorQ);
 				}else{
 					$('#'+content).toggle();
 				 }
@@ -426,6 +447,9 @@
 			     alert("내용표시 오류발생");  
 			}
 		});
+	  }
+	  else
+		  alert("비밀글 입니다.");
 	  });
 
   
@@ -445,10 +469,10 @@
 				  alert("로그인 후 이용해 주세요.")
 			  else if(result == "like"){
 				  alert("추천해 주셔서 감사합니다.")
-				  callReview(pageId, howAsc);			  
+				  callReview(pageId, howAsc, "review");			  
 			  }else{
 				  alert("추천이 취소되었습니다.")
-				  callReview(pageId, howAsc);	  
+				  callReview(pageId, howAsc, "review");	  
 			  }
 		   },
 		   error : function(){
@@ -463,30 +487,33 @@
   $(document).on('click', '.pagebtn', function page(){
 	  var pageId = this.id;
 	  var howAsc = $("#howAsc").val();
-	  callReview(pageId, howAsc);
+	  var RorQ = $('.pagebtn').parent().attr('name');
+	  alert(RorQ)
+	  callReview(pageId, howAsc, RorQ);
   });		
   
   /* 리뷰 정렬하기 */
   $(document).on('change', '#howAsc', function asc(){
 	  var pageId = 1;
 	  var howAsc = $("#howAsc").val();
-	  callReview(pageId, howAsc);
+	  callReview(pageId, howAsc, "review");
   });		
   
 
   /* 리뷰목록 불러오기 */
-  function callReview(pageId, howAsc) {
+  function callReview(pageId, howAsc, RorQ) {
 	 var goods_id = getParameterByName('goods_id');
 	 
 	   $.ajax({
 		   type : "get",
-		   url : "reviewList",
+		   url : RorQ,
 		   data : {"goods_id" : goods_id,
 			       "page" : pageId,
-			       "howAsc" : howAsc},
+			       "howAsc" : howAsc,
+			       "RorQ" : RorQ},
 		   dataType : "json",
 		   success : function(review) {
-				var str = "<table>";
+				var str = "<table name='"+RorQ+"'>";
 				    str += "<tr class='view_content' id='tr_first'>";
 					str += "<td class='tb_no'>번호</td>";
 					str += "<td class='tb_tit'>제목</td>";
@@ -497,12 +524,12 @@
 					str += "</tr>";
 				let notice = review.noticeList;
 				$(notice).each(function(i, nl){
-					str += "<tr class='view_content' id='" + nl.review_id + "_review'>";
+					str += "<tr class='view_content' id='" + nl.review_id + "_review' value='"+nl.review_isPrivate+"'>";
 					str += "<td class='tb_no'>공  지</td>"
 					str += "<td class='tb_tit'>" + nl.review_title + "</td>";
 					str += "<td class='tb_name'>" + nl.user_id + "</td>";
 					str += "<td class='tb_date'>" + nl.review_date + "</td>";
-					str += "<td class='tb_help'>" + nl.likes_count + "</td>";
+					str += "<td class='tb_help'>0</td>";
 					str += "<td class='tb_count'>" + nl.review_viewCount + "</td>";
 					str += "</tr>";
 					str += "<tr>";
@@ -522,14 +549,15 @@
 				});
 					
 				let list = review.datas;
+				if(list != false){
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
-					str += "<tr class='view_content' id='" + rd.review_id + "_review' >";
+					str += "<tr class='view_content' id='" + rd.review_id + "_review' value='"+rd.review_isPrivate+"'>";
 					str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
 					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
 					str += "<td class='tb_name'>" + rd.user_id + "</td>";
 					str += "<td class='tb_date'>" + rd.review_date + "</td>";
-					str += "<td class='tb_help'>" + rd.likes_count + "</td>";
+					str += "<td class='tb_help'>"+rd.likes_count+"</td>";
 					str += "<td class='tb_count'>" + rd.review_viewCount + "</td>";
 					str += "</tr>";
 					/* 리뷰 내용 */
@@ -540,25 +568,31 @@
 						     + rd.review_id +"_review_content'><br/>";
 						str += "<img src='" + rd.review_img +"'><br/>";
 						str += rd.review_content
-						str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
+						if(RorQ == "review"){
+							str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
+						}
 					}else{
 						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'>" + rd.review_content;
-						str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";     
+						if(RorQ == "review"){
+							str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
+						}   
 					}
 					
 					str += "</div>" + "</tr>";
 					
 				});
+				} else {
+					str += "<tr><td>등록된 리뷰가 없습니다.</td></tr>"
+				}
 					/* 리뷰 추가 */
 					str += "<tr>";
-					str += "<td><a href='insertReview?goods_id="+goods_id+"'> 리뷰 쓰기 </a></td>";
+					str += "<td><a href='insertReview?goods_id="+goods_id+"&RorQ="+RorQ+"'> 리뷰 쓰기 </a></td>";
 					str += "</tr>";
 				    str += "</table>";
 				    
 					/* 페이징 */
-					str += "<tr>";
-					str += "<td>";
+					str += "<div name='"+RorQ+"'>";
 				let totalPage = review.totalPage;
 				let page = review.page;
 				for(var pageNum = 1; pageNum<=totalPage; pageNum++){
@@ -569,16 +603,15 @@
 					str += "<span class='pagebtn' id='" + pageNum + "'>" + pageNum + " </span>";
 					}
 				}
-					str += "</td>";
-					str += "</tr>";
+					str += "</div>";
 				    
-				    $("#review").html(str);
+				    $('#'+RorQ).html(str);
 				    $('.review_content').hide();
 				    var content =review.review_id + "_review_content";
 				    $('#'+content).toggle();
 		},
 		   error : function(){
-			   alert("오류발생");
+			   alert("오류발생 본문 불러오기");
 			   
 		   }
 	   });
