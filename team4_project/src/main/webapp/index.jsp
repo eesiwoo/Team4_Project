@@ -24,21 +24,6 @@
 
 </head>
 <body>
-	<a href="goodsList">상품 페이지 테스트</a>
-	<br>
-	<a href="goods?goods_id=2">상품 클릭 테스트</a>
-	<br>
-	<a href="goodsRandom?num=1">상품 임의 1개 테스트</a>
-	<br>
-	<a href="goodsRandom?num=4">상품 임의 4개 테스트1</a>
-	<br>
-	<a href="cartGoods?user_id=user_id 01">장바구니 페이지 테스트</a>
-	<br>
-	<a
-		href="insertCartGoods?cart_id=cart_id 13&goods_id=2&user_id=user_id 03&cart_goods_cont=2">장바구니
-		담기 테스트</a>
-	<br>
-	<a href="admin">관리자</a>
 	<a href="right">사이드</a>
 
 	<!--   
@@ -198,7 +183,7 @@
 
 			<div class="AlttlProducet">
 				<br /> <br />
-				<h2>알뜰 상품 ></h2>
+				<h2>알뜰 상품</h2>
 				<section class="regular slider">
 					<div>
 						<a id="index_a13" href="#"><img id="index_image13"
