@@ -1,5 +1,6 @@
 package pack.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class GoodsListController {
 	@RequestMapping(value = "goodsList", method=RequestMethod.GET)
 	public ModelAndView productList() {
 		List<GoodsDto> list = goodsDaoInter.getGoodsList();
-		
+		Collections.shuffle(list);
 		ModelAndView mav = new ModelAndView("goodsList");
 		mav.addObject("list", list);
 		

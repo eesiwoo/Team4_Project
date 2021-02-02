@@ -17,11 +17,7 @@
 	<script type="text/javascript">
 		
 	</script>
-	<style type="text/css"> /* 글 눌렀을 때 글 나오게 하기 위함*/
-	.review_content {
-		display : none;
-	}
-	</style>
+ 
 	
 </head>
 
@@ -90,7 +86,7 @@
           <img src="resources/images/location.png" alt="”package" GPS” />
         </div>
         <div class="cart">
-          <a href="#" class="cart" aria-label="Go to cart">
+          <a href="cartGoods" class="cart" aria-label="Go to cart">
             <img src="resources/images/cart.png" alt="”장바구니”"
           /></a>
         </div>
@@ -110,9 +106,10 @@
           <div class="goods_price">
             <div class="dc">
               <span class="dc_price">
-                ${goods.goods_price}
-                <span class="won">원</span>
+            	<c:out value="${goods.goods_price * (100 - goods.goods_discountRate)/100}"/>  
               </span>
+              <span class="won">원</span>
+              
               <span class="dc_percent">${goods.goods_discountRate}%</span>
             </div>
             <div class="original_price">
@@ -153,7 +150,7 @@
                   <span class="desc">
                     <span class="count">
                       <button type="button" id="btn_down" class="btn_down_on">-</button>
-                      <input type="number" name="goods_cont" readonly="readonly" 
+                      <input type="number" name="cart_goods_cont" readonly="readonly" 
                       onfocus="this.blur()" class="inp" value=0>
                       <button type="button" id="btn_up" class="btn_down_up">+</button>                      
                     </span>
@@ -163,7 +160,7 @@
                   <div class="price">
                     <strong class="tit">총 상품 금액: </strong>
                     <span class="sum">
-                      <span class="num">5,500</span>
+                      <span class="num">${goods.goods_price}</span>
                       <span class="won">원</span>
                     </span>
                   </div>
@@ -184,7 +181,7 @@
                     </button>
                   </div>
                   <div class="btn_type1">
-                    <button type="button" class="txt_type">
+                    <button type="button"id="insertCartBtn" class="txt_type">
                       장바구니 담기
                     </button>
                   </div>
@@ -231,12 +228,7 @@
           </div>
         </div>
       </div>
-     
-    	<select id="howAsc">
-    		<option value="recently">최신 순으로 조회하기</option>
-    		<option value="likes">추천 순으로 조회하기</option>
-    		<option value="myReview">내가 쓴 글만 보기</option>
-    	</select>
+
     	<div class="goods-view-information">
     	<ul class="goods-view-information-tab-group">
           <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
@@ -255,16 +247,16 @@
 							이동될 수 있습니다.</li>
 						<li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</li>
 					</ul>
-					<select name="" class="sort">
-						<option value="1">최근등록순</option>
-						<option value="2">좋아요많은순</option>
-						<option value="3">조회많은순</option>
+					<select id="howAsc" class="sort">
+						<option value="recently">최근등록순</option>
+						<option value="likes">좋아요많은순</option>
+						<option value="myReview">내가 쓴 글</option>
 					</select>
 				</div>
 			</div>
 			<div class="board_table" id="review">
 			</div>
-		</div> 
+		</div>   
       
     </main>
       <footer>
@@ -338,30 +330,73 @@
 			</div>
         </div>
       </footer>
-
+ 
 
 
 <!-- review test -->	
 	
+
   <script type="text/javascript">
-    /* 구매 수량 로직 */
+
+  	/* 장바구니 담기 */
+  	$(document).on('click', '#insertCartBtn', function(){
+  		let cart_goods_cont = $(".inp").val();
+  		let user_id = "<%=session.getAttribute("user_id")%>";
+  		if (cart_goods_cont < 1){
+  			alert("구매수량이 0개입니다.");
+  			return
+  		}
+  		
+  		if (user_id == "null"){
+  			alert("로그인이 필요합니다.");
+  			location.href = 'login';
+  			return
+  		}
+  		
+  		<% GoodsDto dto = (GoodsDto)request.getAttribute("goods"); %>
+  		//alert(goods_id)
+  		let goods_id = <%=dto.getGoods_id() %>;
+  		
+  		$.ajax({
+  			type: "post",
+  			url:"insertCartGoods",
+  			dataType:"json",
+  			data:{"goods_id":goods_id, 
+  				"cart_goods_cont": cart_goods_cont},
+  			success:function(isSuccess){
+  				alert(isSuccess.msg.toString())
+  				
+  			}
+  		})
+  	});
+  	 
+  	function calPrice(num){
+  		let dc_price = $(".dc_price").text();
+  		$(".num").text(num * dc_price); 
+  	}
+  	
+  	/* 구매 수량 변동 */
   	$(document).on('click', '.btn_down_on',function(){
   		let num = $(".inp").val();
   		if (num > 0) $(".inp").val(--num);
+  		calPrice(num); 		
+  		
 	  });
     $(document).on('click', '.btn_down_up',function(){
   		let num = $(".inp").val();
   		if (num < 1000) $(".inp").val(++num);
+  		calPrice(num);
 	  });
-  
+
+
   /* 페이지 로딩될 때 1 페이지 표시됨 */
   $(function(){
 		var pageId = 1;
-		 callReview(pageId, "recently"); 
+		callReview(pageId, "recently");
 	 });  
   
  	 
-  /* url에서 id 가져오기 */
+  /* url에서 goods_id 가져오기 */
   function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
       var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -371,6 +406,7 @@
   
   /* 리뷰 상세내용 표시 */
   $(document).on('click', '.view_content',function(){
+<<<<<<< HEAD
 		var id = this.id + "_content";
 		if(document.getElementById(id).style.display === 'block') {
 			document.getElementById(id).style.display = 'none';
@@ -384,17 +420,71 @@
 			dataType : "json"
 		})
 		
+=======
+	  var id = this.id;
+		$.ajax({
+			type : "get",
+			url : "view_count",
+			data : {"review_id" : id},
+			dataType : "json",
+			async: false,
+			success : function(data) {
+				var content = id+"_content";
+				if($('#'+content).css("display") == "none"){
+					let howAsc = data.howAsc;
+					 let pageId = data.page;
+					 callReview(pageId, howAsc);
+				}else{
+					$('#'+content).toggle();
+				 }
+			},
+			error : function(){
+			     alert("내용표시 오류발생");  
+			}
+		});
+>>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 	  });
+
+  
+  /* 좋아요 버튼 클릭 */
+  $(document).on('click', '.like_btn',function(){
+	  var review_id = this.id;
+	 $.ajax({
+		   type : "get",
+		   url : "clickLikes",
+		   data : {"review_id" : review_id},
+		   dataType : "json",
+		   success : function(data) {
+			   let result = data.result;
+			   let howAsc = data.howAsc;
+			   let pageId = data.page;
+			  if(result == "fail")
+				  alert("로그인 후 이용해 주세요.")
+			  else if(result == "like"){
+				  alert("추천해 주셔서 감사합니다.")
+				  callReview(pageId, howAsc);			  
+			  }else{
+				  alert("추천이 취소되었습니다.")
+				  callReview(pageId, howAsc);	  
+			  }
+		   },
+		   error : function(){
+			   alert("오류발생");  
+		   }
+	 }); 
+	  
+  });
+  
   
   /* 페이지 변경 */
-  $(document).on('click', '.pagebtn', function(){
+  $(document).on('click', '.pagebtn', function page(){
 	  var pageId = this.id;
 	  var howAsc = $("#howAsc").val();
 	  callReview(pageId, howAsc);
   });		
   
   /* 리뷰 정렬하기 */
-  $(document).on('change', '#howAsc', function(){
+  $(document).on('change', '#howAsc', function asc(){
 	  var pageId = 1;
 	  var howAsc = $("#howAsc").val();
 	  callReview(pageId, howAsc);
@@ -403,8 +493,8 @@
 
   /* 리뷰목록 불러오기 */
   function callReview(pageId, howAsc) {
-	 $("#review").empty(); 
 	 var goods_id = getParameterByName('goods_id');
+	 
 	   $.ajax({
 		   type : "get",
 		   url : "reviewList",
@@ -412,12 +502,14 @@
 			       "page" : pageId,
 			       "howAsc" : howAsc},
 		   dataType : "json",
-		   success : function(review) {	
-			   	var str = "<div class='tr_line' id='tr_first'><table><tr>"; 
+		   success : function(review) {
+				var str = "<table>";
+				    str += "<tr class='view_content' id='tr_first'>";
 					str += "<td class='tb_no'>번호</td>";
 					str += "<td class='tb_tit'>제목</td>";
 					str += "<td class='tb_name'>작성자</td>";
 					str += "<td class='tb_date'>작성일</td>";
+<<<<<<< HEAD
 					str += "<td class='tb_help'>도움</td>";
 					str += "<td class='tb_count'>조회</td></tr></table></div>";
 				let notice = review.noticeList;
@@ -441,15 +533,47 @@
 					
 					}
 					str += "</tr>";
+=======
+					str += "<td class='tb_help'>좋아요</td>";
+					str += "<td class='tb_count'>조회</td>";
+					str += "</tr>";
+				let notice = review.noticeList;
+				$(notice).each(function(i, nl){
+					str += "<tr class='view_content' id='" + nl.review_id + "_review'>";
+					str += "<td class='tb_no'>공  지</td>"
+					str += "<td class='tb_tit'>" + nl.review_title + "</td>";
+					str += "<td class='tb_name'>" + nl.user_id + "</td>";
+					str += "<td class='tb_date'>" + nl.review_date + "</td>";
+					str += "<td class='tb_help'>" + nl.likes_count + "</td>";
+					str += "<td class='tb_count'>" + nl.review_viewCount + "</td>";
+					str += "</tr>";
+					str += "<tr>";
+					if(nl.review_img != null){
+						str += "<td class='tb_content'><div class='review_content' id='"
+						     + nl.review_id +"_review_content'><br/>"
+						     + "<img src='" + nl.review_img +"'><br/>"
+						     + nl.review_content + "</div></td>";
+					}else{
+						str += "<td class='tb_content'><div class='review_content' id='"
+						     + nl.review_id +"_review_content'><br/>"
+						     + nl.review_content + "</div></td>";
+						
+					}
+					str += "</tr>";
+					
+>>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 				});
 					
 				let list = review.datas;
-				console.log(review)
-				console.log(list)
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
+<<<<<<< HEAD
 					str += "<div class='tr_line'><table><tr id='" + rd.review_id + "_review'>"
 					str += "<td>" + rd.review_asc + "</td>";	
+=======
+					str += "<tr class='view_content' id='" + rd.review_id + "_review' >";
+					str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
+>>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
 					str += "<td class='tb_name'>" + rd.user_id + "</td>";
 					str += "<td class='tb_date'>" + rd.review_date + "</td>";
@@ -458,23 +582,29 @@
 					str += "</tr>";
 					/* 리뷰 내용 */
 					str += "<tr>";
+					/* 이미지 여부 체크 */
 					if(rd.review_img != null){
-						str += "<td><div class='review_content' id='"
-						     + rd.review_id +"_review_content'><br/>" + "<img src='" + rd.review_img +"'><br/>"
-						     + rd.review_content + "</div></td>";
+						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
+						     + rd.review_id +"_review_content'><br/>";
+						str += "<img src='" + rd.review_img +"'><br/>";
+						str += rd.review_content + "</div>";
+						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
 					}else{
-						str += "<td><div class='review_content' id='"
-						     + rd.review_id +"_review_content'>" + rd.review_content + "</div></td>";
+						str += "<td class='tb_content'><div class='review_content' id='"
+						     + rd.review_id +"_review_content'>" + rd.review_content + "</div>";
+						str += "<button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";     
 					}
 					
-					str += "</tr></table><div>"
+					str += "</tr>"
+					
 				});
-					/*  리뷰 추가 
+					/* 리뷰 추가 */
 					str += "<tr>";
 					str += "<td><a href='insertReview?goods_id="+goods_id+"'> 리뷰 쓰기 </a></td>";
 					str += "</tr>";
-					
-					 페이징 
+				    str += "</table>";
+				    
+					/* 페이징 */
 					str += "<tr>";
 					str += "<td>";
 				let totalPage = review.totalPage;
@@ -489,9 +619,11 @@
 				}
 					str += "</td>";
 					str += "</tr>";
-				    str += "</table>"; */
 				    
 				    $("#review").html(str);
+				    $('.review_content').hide();
+				    var content =review.review_id + "_review_content";
+				    $('#'+content).toggle();
 		},
 		   error : function(){
 			   alert("오류발생");

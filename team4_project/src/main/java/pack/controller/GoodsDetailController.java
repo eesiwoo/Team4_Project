@@ -1,5 +1,5 @@
 package pack.controller;
-
+ 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +63,7 @@ public class GoodsDetailController {
 		mav.addObject("goods", goods);
 		mav.setViewName("goodsDetail");
 		
+<<<<<<< HEAD
 		
 		//쿠키생성
 		CookieGenerator cg = new CookieGenerator();
@@ -84,6 +85,28 @@ public class GoodsDetailController {
 			cg.addCookie(response, null);
 		}
 		
+=======
+		//쿠키생성
+		CookieGenerator cg = new CookieGenerator();
+		Cookie[] cookies = request.getCookies(); 
+		
+		//쿠키가 있다면 아무것도 안하고 없으면 만든다.
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if(!cookie.getName().equals("view")) {
+					cg.setCookieName("view");
+					cg.setCookieMaxAge(60*60*24*365);
+					cg.addCookie(response, null);
+				}
+				else { }
+			}
+		}
+		else {
+			cg.setCookieName("view");
+			cg.setCookieMaxAge(60*60*24*365);
+			cg.addCookie(response, null);
+		}
+>>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
 		
 		return mav;
 	}

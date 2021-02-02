@@ -3,6 +3,14 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
+ 
+ <!-- 공지글 조회 -->
+ <select id="selectNotice" parameterType="ReviewDto" resultType="ReviewDto">
+  	select * from review
+  	where goods_id = 0
+  	order by review_asc desc
+ </select>
+
 
  <!-- 공지글 조회 -->
  <select id="selectNotice" parameterType="ReviewDto" resultType="ReviewDto">
@@ -23,7 +31,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <select id="selectReviewOrderbyLikes" parameterType="ReviewDto" resultType="ReviewDto">
   	select * from review
   	where goods_id = #{goods_id}
+<<<<<<< HEAD
   	order by Likes_count desc
+=======
+  	order by likes_count desc
+>>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
  </select>
  
    <!-- 리뷰 조회 (내가 쓴 글 보기) -->
@@ -37,6 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <update id="viewCount" parameterType="integer">
  	update review
  	set review_viewCount = review_viewCount + 1
+<<<<<<< HEAD
  	where review_id = #{review_id}
  </update>
  
@@ -44,20 +57,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 좋아요 갯수 업데이트 -->
  <update id="updateLikes" parameterType="ReviewDto">
  	update review set likes_count = #{likes_count}
+=======
+>>>>>>> branch 'master' of https://github.com/eesiwoo/Team4_Project.git
  	where review_id = #{review_id}
  </update>
  
-  <!-- 좋아요 갯수 조회 --> 
- <select id="countLikes" parameterType="LikesDto" resultType="LikesDto">
-  	select * from likes
-  	where review_id = #{review_id} and likes_isLike = 1
- </select>
-
-  <!-- MaxReview_id 조회 -->
- <select id="MaxReview_id" resultType="integer">
-  	select max(review_id)
-  	from review
- </select>
+ <!-- 리뷰 추가 -->
+ <insert id="insertReview" parameterType="ReviewDto">
+ 	insert into review (goods_id, user_id, review_title, review_content, review_viewCount,
+ 	review_star, review_isPrivate, review_asc, review_answer, review_date, review_img, likes_count)
+ 	values(#{goods_id},#{user_id},#{review_title},#{review_content},0,
+ 	#{review_star},#{review_isPrivate},#{review_asc},0,now(), #{review_img}, 0)
+ </insert>
  
   <!-- MaxReview_asc 조회 -->
  <select id="MaxReview_asc" resultType="String">
@@ -66,11 +77,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	where goods_id = #{goods_id}
  </select>
 
- <!-- 리뷰 추가 -->
- <insert id="insertReview" parameterType="ReviewDto">
- 	insert into review (goods_id, user_id, review_title, review_content, review_viewCount,
- 	review_star, review_isPrivate, review_asc, review_answer, review_date, review_img)
- 	values(#{goods_id},#{user_id},#{review_title},#{review_content},0,
- 	#{review_star},#{review_isPrivate},#{review_asc},0,now(), #{review_img})
- </insert>
+
+ 
+ 	<!-- 좋아요 갯수 조회 --> 
+ 	<select id="countLikes" parameterType="integer" resultType="LikesDto">
+  		select * from likes
+  		where review_id = #{review_id}
+ 	</select>
+ 	
+ 	<!-- 좋아요 확인 -->
+ 	<select id="selectLikes" parameterType="LikesDto" resultType="string">
+ 		select user_id from likes
+ 		where user_id = #{user_id} and review_id = #{review_id}
+ 	</select>
+ 	
+ 	<!-- 좋아요 생성 -->
+ 	<insert id="insertLikes" parameterType="LikesDto">
+ 		insert into likes (user_id, review_id)
+ 		values(#{user_id}, #{review_id})
+ 	</insert>
+ 	
+ 	<!-- 좋아요 삭제 -->
+ 	<delete id="deleteLikes" parameterType="LikesDto">
+ 		delete from likes
+ 		where user_id = #{user_id} and review_id = #{review_id}
+ 	</delete>
+ 	
+ 	 <!-- 종아요 수 업데이트 -->
+ <update id="likesUpdate" parameterType="integer">
+ 	update review
+ 	set likes_count = likes_count + 1
+ 	where review_id = #{review_id}
+ </update>
+ 
+ 	 <!-- 종아요 수 업데이트 -->
+ <update id="unLikesUpdate" parameterType="integer">
+ 	update review
+ 	set likes_count = likes_count - 1;
+ 	where review_id = #{review_id}
+ </update>
 </mapper>

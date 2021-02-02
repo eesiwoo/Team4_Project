@@ -2,6 +2,12 @@ body {
   width: auto;
   box-sizing: border-box;
 }
+
+
+.review_content{
+	display: none;	
+}
+
 .board {
   margin-left: auto;
   margin-right: auto;
@@ -32,36 +38,48 @@ body {
 .board .board_table #tr_first {
   border-top: none;
 }
-.board .board_table .tr_line {
+.board .board_table .view_content {
   border-top: 1px solid #bfbfbf;
 }
 .board .board_table .tr_line table {
   width: 100%;
   text-align: center;
 }
-.board .board_table .tr_line table tr td {
+.board .board_table table .view_content td {
   padding: 22px 3px;
 }
-.board .board_table .tr_line table tr .tb_no {
+.board .board_table table .view_content .tb_no {
   width: 69px;
 }
-.board .board_table .tr_line table tr .tb_tit {
-  width: 588px;
+.board .board_table table .view_content .tb_tit {
+  width: 500px;
 }
-.board .board_table .tr_line table tr .tb_name {
+.board .board_table table .view_content .tb_name {
   width: 76.5px;
 }
-.board .board_table .tr_line table tr .tb_date {
+.board .board_table table .view_content .tb_date {
   width: 99px;
 }
-.board .board_table .tr_line table tr .tb_help {
-  width: 39px;
+.board .board_table table .view_content .tb_help {
+  width: 47px;
 }
-.board .board_table .tr_line table tr .tb_count {
+.board .board_table table .view_content .tb_count {
   width: 79.5px;
+}
+.board .board_table table tr .tb_content {
+  width: 951px;
 }
 .clearfix::after {
   content: '';
   display: block;
   clear: both;
+}
+/* .board .board_table table tr .tb_content {
+    width: 100px;
+} */
+table{
+	text-align: center;
+}
+.tr_line{
+	border-bottom: 1px solid  #bfbfbf;
 }

@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+ 
 @Repository
 public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	@Autowired
@@ -25,8 +25,13 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	}
 	
 	@Override
-	public ArrayList<ReviewDto> selectReviewOrderbyUserId(int goods_id) {
-		return (ArrayList)getSqlSession().selectList("selectReviewOrderbyUserId", goods_id);
+	public ArrayList<ReviewDto> selectReviewOrderbyUserId(ReviewDto dto) {
+		return (ArrayList)getSqlSession().selectList("selectReviewOrderbyUserId", dto);
+	}
+	
+	@Override
+	public ArrayList<ReviewDto> selectNotice() {
+		return (ArrayList)getSqlSession().selectList("selectNotice");
 	}
 	
 	@Override
@@ -82,12 +87,36 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	
 	@Override
 	public ArrayList<LikesDto> countLikes(int review_id) {
-		return (ArrayList)getSqlSession().selectList("selectReview", review_id);
+		return (ArrayList)getSqlSession().selectList("countLikes", review_id);
 	}
 	
 	@Override
-	public void updateLikes(ReviewDto dto) {
-		getSqlSession().update("updateLikes");
+	public String selectLikes(LikesDto dto) {
+		return  getSqlSession().selectOne("selectLikes", dto);
+	}
+	
+	@Override
+	public void deleteLikes(LikesDto dto) {
+		 getSqlSession().delete("deleteLikes", dto);
+		
+	}
+	
+	@Override
+	public void insertLikes(LikesDto dto) {
+		 getSqlSession().insert("insertLikes", dto);
+		
+	}
+	
+	@Override
+	public void likesUpdate(int review_id) {
+		getSqlSession().update("likesUpdate", review_id);
+		
+	}
+	
+	@Override
+	public void unLikesUpdate(int review_id) {
+		getSqlSession().update("unLikesUpdate", review_id);
+		
 	}
 
 }

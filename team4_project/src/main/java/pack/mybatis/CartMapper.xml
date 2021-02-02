@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+ 
+ <!-- 장바구니 데이터 가져오기 --> 
+ <select id="selectCartListAll" parameterType="string" resultType="c_dto">
+  select cart.goods_id, goods_name, goods_price, goods_img, goods_state, goods_discountRate, cart_goods_cont 
+   from cart inner join goods on cart.goods_id = goods.goods_id
+   where user_id = #{user_id}
+ </select>
+ 
+ <!-- 장바구니 중복 검사 -->
+ <select id="checkCartGoods" parameterType="c_bean" resultType="c_dto">
+  select cart_id, user_id, goods_id
+  from cart
+  where user_id = #{user_id} and goods_id = ${goods_id}
+ </select>
+ 
+ <!-- 장바구니 데이터 입력하기 -->
+ <insert id="insertCartGoods" parameterType="c_bean">
+ 	insert into cart(user_id, goods_id, cart_goods_cont) 
+ 	value(#{user_id}, #{goods_id}, #{cart_goods_cont}) 
+ </insert>
+ 
+ <!-- 장바구니 데이터 삭제하기 -->
+ <delete id="deleteCartGoods" parameterType="c_bean">
+ 	delete from cart 
+ 	where user_id = #{user_id} and goods_id = ${goods_id}
+ </delete>
+ 
+ <!-- 장바구니에서 데이터 수정하기  -->
+ <update id="updateCartGoods" parameterType="c_bean">
+ 	update cart 
+ 	set cart_goods_cont = #{cart_goods_cont}
+ 	where user_id = #{user_id} and goods_id = ${goods_id}
+ </update>
+ 
+</mapper>

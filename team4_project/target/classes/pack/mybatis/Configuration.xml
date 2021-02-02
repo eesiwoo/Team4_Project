@@ -4,12 +4,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 <typeAliases>
-	<typeAlias type="pack.model.GoodsDto" alias="g_dto"/>
-	<typeAlias type="pack.model.CategoryDto" alias="cg_dto"/>
-	<typeAlias type="pack.model.UserDto" alias="u_dto"/>
 	<typeAlias type="pack.controller.CartBean" alias="c_bean"/>
 	<typeAlias type="pack.controller.GoodsBean" alias="g_bean"/>
 	<typeAlias type="pack.controller.UserBean" alias="u_bean"/>
+	<typeAlias type="pack.controller.OrdersBean" alias="o_bean"/>
+	<typeAlias type="pack.controller.OrdersGoodsBean" alias="og_bean"/>
+	<typeAlias type="pack.model.GoodsDto" alias="g_dto"/>
+	<typeAlias type="pack.model.CategoryDto" alias="cg_dto"/>
+	<typeAlias type="pack.model.UserDto" alias="u_dto"/>
+	<typeAlias type="pack.model.CartDto" alias="c_dto"/>
+	<typeAlias type="pack.model.OrdersDto" alias="o_dto"/>
 	<typeAlias type="pack.model.ReviewDto" alias="ReviewDto"/>
 	<typeAlias type="pack.model.LikesDto" alias="LikesDto"/>
 </typeAliases>
@@ -18,6 +22,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  <mappers>
   <mapper resource="pack/mybatis/GoodsMapper.xml"/>
   <mapper resource="pack/mybatis/UserMapper.xml"/>
-  <mapper resource="pack/mybatis/review.xml" />
+  <mapper resource="pack/mybatis/CartMapper.xml"/>
+  <mapper resource="pack/mybatis/OrdersMapper.xml"/>
+  <mapper resource="pack/mybatis/review.xml"/>
  </mappers>
 </configuration>
