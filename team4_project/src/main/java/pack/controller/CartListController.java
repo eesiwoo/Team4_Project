@@ -51,16 +51,12 @@ public class CartListController {
 	public Map<String, Object> insertCartGoods(HttpServletRequest request,
 			@RequestParam("goods_id") int goods_id, @RequestParam("cart_goods_cont") int cart_goods_cont) {
 //		System.out.println("cartbean.getCart_id() : "+ cartBean.getCart_id());
-		/* 
-		 * cart_id =user_id +'_'+ goods_id;  
-		 */
+
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id"); 
 		cartBean.setCart_goods_cont(cart_goods_cont);
 		cartBean.setUser_id(user_id);
 		cartBean.setGoods_id(goods_id);
-		cartBean.setCart_id(cartBean.getUser_id()+"_"+cartBean.getGoods_id());
-		System.out.println("Cart_id : " + cartBean.getCart_id());
 		System.out.println("user_id : " + cartBean.getUser_id());
 		System.out.println("goods_id : " + cartBean.getGoods_id());
 		System.out.println("cart_goods_cont : " + cartBean.getCart_goods_cont());
@@ -78,6 +74,24 @@ public class CartListController {
 		return isSuccess;
 		
 		
+	}
+	
+	@RequestMapping(value = "deleteCartGoods", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> deleteCartGoods(CartBean cartBean){
+		// db에서 삭제하기
+		System.out.println("user_id : " + cartBean.getUser_id());
+		System.out.println("goods_id : " + cartBean.getGoods_id());
+		Boolean result = cartDaoInter.deleteCartGoods(cartBean);
+		Map<String, Object> obj = new HashMap<String, Object>();
+		if (result) {
+			System.out.println("삭제 성공");
+		} else {
+			System.out.println("삭제 실패");
+		}
+		obj.put("isSuccess", result);
+		
+		return obj;
 	}
 	
 }

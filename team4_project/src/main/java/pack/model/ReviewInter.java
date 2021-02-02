@@ -43,4 +43,9 @@ public interface ReviewInter {
  	
  	//좋아요 데이터 삭제
  	public void deleteLikes(LikesDto dto);
+ 	
+ 	//좋아요 갯수 업데이트
+ 	public void likesUpdate(int review_id);
+ 	
+ 	public void unLikesUpdate(int review_id);
 }

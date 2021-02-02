@@ -96,19 +96,8 @@
 	<div class="js-goToTop">
 		<button class="goToTopButton">페이지 맨 위로</button>
 	</div>
-</body>
-<script>
-	const btn = document.querySelector('.goToTopButton');
+	<script src="resources/js/index.js"></script>
 
-	const top2 = function() {
-		window.scrollTo({
-			top : 0,
-			left : 0,
-			behavior : 'smooth'
-		});
-	};
-	btn.addEventListener('click', top2);
-</script>
 <!-- 
 	bottom은 top과 마찬가지로 모든 페이지에 include 할것 
 	bottom에서 구현해야할 기본내용

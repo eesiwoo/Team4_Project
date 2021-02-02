@@ -28,4 +28,11 @@ public class CartDaoImpl extends SqlSessionDaoSupport implements CartDaoInter{
 		if (re == 1) return true; 
 		else return false;
 	}
+	
+	@Override
+	public Boolean deleteCartGoods(CartBean cartBean) {
+		int re = getSqlSession().delete("deleteCartGoods", cartBean);
+		if (re == 1) return true;
+		else return false;
+	}
 }

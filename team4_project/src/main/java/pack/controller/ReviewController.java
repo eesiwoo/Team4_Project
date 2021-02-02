@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,10 +68,13 @@ public class ReviewController {
 										  @RequestParam("page")int page,
 										  @RequestParam("howAsc")String howAsc,
 										  HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("page", page);
+		session.setAttribute("howAsc", howAsc);
 		
+		//어떤 순서로 조회할지 확인
 		List<ReviewDto> reviewList = null;
 		ReviewDto dto = new ReviewDto();
-		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
 		dto.setUser_id(user_id);
 		dto.setGoods_id(goods_id);
@@ -90,13 +91,19 @@ public class ReviewController {
 		totalReview = reviewList.size();
 		List<Map<String, String>> dataList = setReview(afterPageList);
 		List<Map<String, String>> noticeList = setReview(notice);
+		int review_id = -1;
+		
+		if(session.getAttribute("review_id") != null)
+			review_id = (int) session.getAttribute("review_id");
 		
 		Map<String, Object> datas = new HashMap<String, Object>();
+		System.out.println(review_id);
 		
 		datas.put("datas", dataList);
 		datas.put("page", page);
 		datas.put("totalPage", totalPage());
 		datas.put("noticeList", noticeList);
+		datas.put("review_id",  review_id);
 		return datas;
 	}
 
@@ -106,9 +113,6 @@ public class ReviewController {
 		Map<String, String> data = null;
 		
 		for(ReviewDto r:afterPageList) {
-			ArrayList<LikesDto> likesList = inter.countLikes(r.getReview_id());
-			r.setLikes_count(likesList.size());
-			
 			data = new HashMap<String, String>();
 			data.put("review_id", Integer.toString(r.getReview_id()));
 			data.put("review_asc", Integer.toString(r.getReview_asc()));
@@ -129,10 +133,13 @@ public class ReviewController {
 	
 	//조회수 증가
 	@RequestMapping("view_count")
-	public void test01(@RequestParam("review_id")String id,
-			           @CookieValue(name="view")String cookie,
-			           HttpServletResponse response) {
+	@ResponseBody
+	public Map<String, Object> test01(@RequestParam("review_id")String id,
+			           				  @CookieValue(name="view")String cookie,
+			           				  HttpServletResponse response,
+			           				  HttpServletRequest request) {
 		int x = id.indexOf("_");
+		System.out.println("id");
 		int review_id = Integer.parseInt(id.substring(0, x));
 		
 		if (!(cookie.contains(String.valueOf(review_id)))) {
@@ -144,8 +151,21 @@ public class ReviewController {
 		cg.setCookieName("view");
 		cg.setCookieMaxAge(60*60*24*365);
 		cg.addCookie(response, cookie);
+		
+		//글 상세보기를 위함
+		HttpSession session = request.getSession();
+		session.setAttribute("review_id", review_id);
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		int page = (int) session.getAttribute("page");
+		String howAsc = (String) session.getAttribute("howAsc");
+		data.put("page", page);
+		data.put("howAsc", howAsc);
+		
+		return data;
 
 	}
+	
 
 
 	//좋아요 버튼
@@ -173,13 +193,20 @@ public class ReviewController {
 			String already = inter.selectLikes(dto);
 			if(already == null) {
 				inter.insertLikes(dto);
+				inter.likesUpdate(review_id);
 				result = "like";
+				
 				} else {
 				inter.deleteLikes(dto);
+				inter.unLikesUpdate(review_id);
 				result = "unlike";	
 			}
 		}
+		int page = (int) session.getAttribute("page");
+		String howAsc = (String) session.getAttribute("howAsc");
 		data.put("result", result);
+		data.put("page", page);
+		data.put("howAsc", howAsc);
 		return data;  //좋아요 처리 완료
 	}
 }

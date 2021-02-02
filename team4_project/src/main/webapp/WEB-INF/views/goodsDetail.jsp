@@ -85,7 +85,7 @@
           <img src="resources/images/location.png" alt="”package" GPS” />
         </div>
         <div class="cart">
-          <a href="#" class="cart" aria-label="Go to cart">
+          <a href="cartGoods" class="cart" aria-label="Go to cart">
             <img src="resources/images/cart.png" alt="”장바구니”"
           /></a>
         </div>
@@ -105,9 +105,10 @@
           <div class="goods_price">
             <div class="dc">
               <span class="dc_price">
-                ${goods.goods_price}
-                <span class="won">원</span>
+            	<c:out value="${goods.goods_price * (100 - goods.goods_discountRate)/100}"/>  
               </span>
+              <span class="won">원</span>
+              
               <span class="dc_percent">${goods.goods_discountRate}%</span>
             </div>
             <div class="original_price">
@@ -158,7 +159,7 @@
                   <div class="price">
                     <strong class="tit">총 상품 금액: </strong>
                     <span class="sum">
-                      <span class="num">5,500</span>
+                      <span class="num">${goods.goods_price}</span>
                       <span class="won">원</span>
                     </span>
                   </div>
@@ -367,15 +368,23 @@
   			}
   		})
   	});
-  
+  	 
+  	function calPrice(num){
+  		let dc_price = $(".dc_price").text();
+  		$(".num").text(num * dc_price); 
+  	}
+  	
   	/* 구매 수량 변동 */
   	$(document).on('click', '.btn_down_on',function(){
   		let num = $(".inp").val();
   		if (num > 0) $(".inp").val(--num);
+  		calPrice(num); 		
+  		
 	  });
     $(document).on('click', '.btn_down_up',function(){
   		let num = $(".inp").val();
   		if (num < 1000) $(".inp").val(++num);
+  		calPrice(num);
 	  });
 
 
@@ -396,20 +405,29 @@
   
   /* 리뷰 상세내용 표시 */
   $(document).on('click', '.view_content',function(){
-		var id = this.id + "_content";
-		if(document.getElementById(id).style.display === 'block') {
-			document.getElementById(id).style.display = 'none';
-		}else {
-			document.getElementById(id).style.display = 'block';
-		};
+	  var id = this.id;
 		$.ajax({
 			type : "get",
 			url : "view_count",
-			data : {"review_id" : this.id},
-			dataType : "json"
-		})
-		
+			data : {"review_id" : id},
+			dataType : "json",
+			async: false,
+			success : function(data) {
+				var content = id+"_content";
+				if($('#'+content).css("display") == "none"){
+					let howAsc = data.howAsc;
+					 let pageId = data.page;
+					 callReview(pageId, howAsc);
+				}else{
+					$('#'+content).toggle();
+				 }
+			},
+			error : function(){
+			     alert("내용표시 오류발생");  
+			}
+		});
 	  });
+
   
   /* 좋아요 버튼 클릭 */
   $(document).on('click', '.like_btn',function(){
@@ -421,30 +439,35 @@
 		   dataType : "json",
 		   success : function(data) {
 			   let result = data.result;
+			   let howAsc = data.howAsc;
+			   let pageId = data.page;
 			  if(result == "fail")
 				  alert("로그인 후 이용해 주세요.")
-			  else if(result == "like")
+			  else if(result == "like"){
 				  alert("추천해 주셔서 감사합니다.")
-			  else
+				  callReview(pageId, howAsc);			  
+			  }else{
 				  alert("추천이 취소되었습니다.")
+				  callReview(pageId, howAsc);	  
+			  }
 		   },
 		   error : function(){
-			   alert("오류발생");
-			   
+			   alert("오류발생");  
 		   }
 	 }); 
 	  
   });
   
+  
   /* 페이지 변경 */
-  $(document).on('click', '.pagebtn', function(){
+  $(document).on('click', '.pagebtn', function page(){
 	  var pageId = this.id;
 	  var howAsc = $("#howAsc").val();
 	  callReview(pageId, howAsc);
   });		
   
   /* 리뷰 정렬하기 */
-  $(document).on('change', '#howAsc', function(){
+  $(document).on('change', '#howAsc', function asc(){
 	  var pageId = 1;
 	  var howAsc = $("#howAsc").val();
 	  callReview(pageId, howAsc);
@@ -453,7 +476,6 @@
 
   /* 리뷰목록 불러오기 */
   function callReview(pageId, howAsc) {
-	 $("#review").empty(); 
 	 var goods_id = getParameterByName('goods_id');
 	 
 	   $.ajax({
@@ -486,14 +508,17 @@
 					str += "<tr>";
 					if(nl.review_img != null){
 						str += "<td class='tb_content'><div class='review_content' id='"
-						     + nl.review_id +"_review_content'><br/>" + "<img src='" + nl.review_img +"'><br/>"
+						     + nl.review_id +"_review_content'><br/>"
+						     + "<img src='" + nl.review_img +"'><br/>"
 						     + nl.review_content + "</div></td>";
 					}else{
 						str += "<td class='tb_content'><div class='review_content' id='"
-						     + nl.review_id +"_review_content'>" + nl.review_content + "</div></td>";
-					
+						     + nl.review_id +"_review_content'><br/>"
+						     + nl.review_content + "</div></td>";
+						
 					}
 					str += "</tr>";
+					
 				});
 					
 				let list = review.datas;
@@ -509,6 +534,7 @@
 					str += "</tr>";
 					/* 리뷰 내용 */
 					str += "<tr>";
+					/* 이미지 여부 체크 */
 					if(rd.review_img != null){
 						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>";
@@ -522,12 +548,14 @@
 					}
 					
 					str += "</tr>"
+					
 				});
 					/* 리뷰 추가 */
 					str += "<tr>";
 					str += "<td><a href='insertReview?goods_id="+goods_id+"'> 리뷰 쓰기 </a></td>";
 					str += "</tr>";
-					
+				    str += "</table>";
+				    
 					/* 페이징 */
 					str += "<tr>";
 					str += "<td>";
@@ -543,11 +571,11 @@
 				}
 					str += "</td>";
 					str += "</tr>";
-				    str += "</table>";
-				    
-				    
 				    
 				    $("#review").html(str);
+				    $('.review_content').hide();
+				    var content =review.review_id + "_review_content";
+				    $('#'+content).toggle();
 		},
 		   error : function(){
 			   alert("오류발생");
