@@ -105,7 +105,7 @@ function del(){
 </script>
 </head>
 <body>
-
+<jsp:include page="top.jsp"></jsp:include>
 <h1>** 장바구니 **</h1>
 	<form action="cartList" name="myform" method="post">
 		<div class="inner_check">
@@ -153,6 +153,6 @@ function del(){
 
 
 
-
+<jsp:include page="bottom.jsp"></jsp:include>
 </body>
 </html>
