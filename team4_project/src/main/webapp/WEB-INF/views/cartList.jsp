@@ -61,11 +61,6 @@
 
 <script type="text/javascript">
 
-	$(document).on('click', '.btn_clear', function() {
-		// db에 다녀오는거 구현
-		$(this).parent().remove();
-	});
-
 
 function del(){
 	if (confirm("정말 삭제하시겠습니까?") == true){
@@ -160,11 +155,6 @@ function del(){
 		let num = $(this).next().val();
 		if (num > 1) {
 			$(this).next().val(--num);
-			let totalPrice = $(this).parent().next().text();
-			totalPrice *= num / (num + 1);
-			// class goods_price_calc 이거에 값 넣기
-			$(this).parent().next().text(totalPrice);
-		}
 
 			let afterPrice = $(this).parent().next().text();
 			afterPrice *= num / (num + 1);
@@ -179,8 +169,6 @@ function del(){
 			updateCart(user_id, goods_id, num)
 			
 		}
-
-		calc();
 
 	});
 	
@@ -197,10 +185,6 @@ function del(){
 		/* alert(num) */
 		if (num < 1000) {
 			$(this).prev().val(++num);
-
-			let totalPrice = $(this).parent().next().text();
-			if (num != 1) {
-				totalPrice *= num / (num - 1)
 
 			let afterPrice = $(this).parent().next().text();
 
