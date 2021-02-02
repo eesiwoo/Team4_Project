@@ -15,12 +15,13 @@
 				</div>
 				<%
 				if(session.getAttribute("user_id") != null){
-					out.print("<div class='menu'><a href='logout' class='link_menu center' aria-label='Go to login page'>로그아웃</a></div>");
+					out.print("<div class='menu'><a href='logout' class='link_menu center' aria-label='Go to login page'> 로그아웃 </a></div>");
+					out.print("<div class='menu'><a href='mypage' class='link_menu center' aria-label='Go to login page'> 마이페이지 </a></div>");
 					if(((String)session.getAttribute("user_code")).equals("admin")){
-						out.print("<div class='menu'><a href='admin' class='link_menu' aria-label='Go to service center'>관리자</a></div></div>");	
+						out.print("<div class='menu'><a href='admin' class='link_menu' aria-label='Go to service center'> 관리자 </a></div></div>");	
 					} 
 				} else {
-					out.print("<div class='menu'><a href='login' class='link_menu center' aria-label='Go to login page'>로그인</a></div>");
+					out.print("<div class='menu'><a href='login' class='link_menu center' aria-label='Go to login page'> 로그인 </a></div>");
 				}
 				%>
 				<div class="menu">
