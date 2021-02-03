@@ -316,7 +316,7 @@
 					$(list).each(function(idx, dto) {
 										// alert(idx); 0 ~ 17
 					idx++;
-					let img = "resources/images/goods/"+ dto["goods_img"]+ ".jpg";					
+					let img = "resources/images/goods/"+ dto["goods_img"];					
 					let resultPrice = Number(dto["goods_price"])* (100 - Number(dto["goods_discountRate"]))/ 100;					
 					let link = "goods?goods_id="+ dto["goods_id"];resultPrice += "원";					
 

@@ -16,7 +16,7 @@
 	<div class="boxList">
 			<c:forEach var="c_dto" items="${cartList}">
 				<table><tr>
-					<td><img width="100" width="100" src="resources/images/goods/${c_dto.goods_img}.jpg"></td> 
+					<td><img width="100" width="100" src="resources/images/goods/${c_dto.goods_img}"></td> 
 					<td><span class="goods_name">${c_dto.goods_name}</span><input type="hidden" name="goods_id" value="${c_dto.goods_id}"/></td>
 					<td><span class="goods_cont">${c_dto.cart_goods_cont}</span><input type="hidden" name="goods_cont" value="${c_dto.cart_goods_cont}"/></td>
 					<td><span class="goods_price_calc"> ${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span></td>

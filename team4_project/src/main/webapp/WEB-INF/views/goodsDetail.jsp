@@ -93,7 +93,7 @@
     </nav>
      <main>
        <div class="section_view">
-         <img id="section_img" src="resources/images/goods/${goods.goods_img}.jpg">
+         <img id="section_img" src="resources/images/goods/${goods.goods_img}">
          <div id="section_info">
           <div class="goods_name">
             <strong class="name">${goods.goods_name}</strong><br>
@@ -200,7 +200,7 @@
           <div class="goods_wrap">
             <div class="goods_intro">
               <div class="goods_intro_pic">
-                <img src="resources/images/goods/${goods.goods_img}.jpg" alt="${goods.goods_name}">
+                <img src="resources/images/goods/${goods.goods_img}" alt="${goods.goods_name}">
               </div>
               <div class="goods_intro_context">
                 <h3>

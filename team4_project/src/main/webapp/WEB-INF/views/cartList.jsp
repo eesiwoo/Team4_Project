@@ -23,7 +23,7 @@
 				<c:set var="goods" value="${c_dto.goods_id}" />
 				<div class="box">
 					<input type="checkbox" class="goods_check" id="${goods}" name="goods_check" value="${goods}"/> 
-					<img width="100" width="100" src="resources/images/goods/${c_dto.goods_img}.jpg"> 
+					<img width="100" width="100" src="resources/images/goods/${c_dto.goods_img}"> 
 						<span class="goods_name">${c_dto.goods_name}</span> 
 						<span class="count">
 						<button type="button" id="${goods}_down" class="btn_down">-</button>
