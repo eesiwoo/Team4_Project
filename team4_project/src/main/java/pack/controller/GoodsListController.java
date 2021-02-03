@@ -1,5 +1,6 @@
 package pack.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,6 +31,16 @@ public class GoodsListController {
 		
 		
 		Collections.shuffle(list);
+		ModelAndView mav = new ModelAndView("goodsList");
+		mav.addObject("list", list);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "goodsListSpec", method=RequestMethod.GET)
+	public ModelAndView goodsListSpec(@RequestParam("num") int num) {
+		ArrayList<GoodsDto> list = (ArrayList<GoodsDto>)goodsDaoInter.getSepcGoodsList(num);
+		
 		ModelAndView mav = new ModelAndView("goodsList");
 		mav.addObject("list", list);
 		

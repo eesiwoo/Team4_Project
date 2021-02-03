@@ -16,8 +16,8 @@ public interface GoodsDaoInter {
 	// index에 보여질 상품 무작위로 num개 가져오기 
 	public List<GoodsDto> getGoodsRandomList(int num);
 	
-//	// index에 보여질 상품 무작위로 num개 가져오기 
-//	public List<GoodsDto> getGoodsRandomList(int num);
+// 	index에 보여질 특정 상품 유형 가져오기 
+	public List<GoodsDto> getSepcGoodsList(int num);
 	
 	// goods에 상품 추가하기   
 	public Boolean insertGoods(GoodsBean bean);

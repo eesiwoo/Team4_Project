@@ -28,7 +28,7 @@
 					<a class="link_menu" aria-label="Go to service center ">고객센터</a>
 				</div>
 			<div class="bottom">
-				<img src="resources/images/kurly.jpg" alt="logo" />
+				<a href="index.jsp"><img src="resources/images/kurly.jpg" alt="logo" /></a>
 			</div>
 			</div>
 		</header>
@@ -36,17 +36,16 @@
 			<div class="dropdown">
 				<button class="dropbtn">전체 카테고리</button>
 				<div class="dropdown-content">
-					<a href="#">전체</a>
-					<a href="#">채소</a> <a href="#">과일*견과*쌀</a> <a href="#">수산*해산*건어물</a>
-					<a href="#">정육*계란</a><a href="#">샐러드*간편식</a><a href="#">면*양념*오일</a><a href="#">간식*과자*떡</a>
-					<a href="#">베이커리*치즈*델리</a><a href="#">건강식품</a><a href="#">주방용품</a>
+					<a href="goodsListSpec?num=1">채소</a> <a href="goodsListSpec?num=2">과일*견과*쌀</a> <a href="goodsListSpec?num=3">수산*해산*건어물</a>
+					<a href="goodsListSpec?num=4">정육*계란</a><a href="goodsListSpec?num=5">샐러드*간편식</a><a href="goodsListSpec?num=6">면*양념*오일</a><a href="goodsListSpec?num=7">간식*과자*떡</a>
+					<a href="goodsListSpec?num=8">베이커리*치즈*델리</a><a href="goodsListSpec?num=9">건강식품</a><a href="goodsListSpec?num=10">주방용품</a>
 				</div>
 			</div>
 			<ul class="list">
 				<li><a href="goodsList" aria-label="New products">신상품</a></li>
 				<li><a href="goodsList" aria-label="Best products">베스트</a></li>
 				<li><a href="goodsList" aria-label="Wise Consumption">알뜰쇼핑</a></li>
-				<li id="last"><a href="#" aria-label="Benefits of the week">금주의 혜택</a></li>
+				<!-- <li id="last"><a href="#" aria-label="Benefits of the week">금주의 혜택</a></li> -->
 			</ul>
 			<div class="tools">
 				<div id="search" class="search">
