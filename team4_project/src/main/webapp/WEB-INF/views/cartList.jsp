@@ -10,13 +10,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-<<<<<<< HEAD
+
 	$(document).on('click', '.btn_clear', function() {
 		// db에 다녀오는거 구현
 		$(this).parent().remove();
 	});
-
-=======
 
 function del(){
 	if (confirm("정말 삭제하시겠습니까?") == true){
@@ -85,24 +83,17 @@ function del(){
 
 	$(document).on('click', '.btn_clear', del);
 
->>>>>>> 2a6e2e4a536d43d4e9ee301b868d47a5b8ae2ace
+
 	$(document).on('click', '.btn_down', function() {
 		let num = $(this).next().val();
 		if (num > 0) {
 			$(this).next().val(--num);
-<<<<<<< HEAD
-			let totalPrice = $(this).parent().next().text();
-			totalPrice *= num / (num + 1);
-			$(this).parent().next().text(totalPrice);
-		}
-
-=======
 			let afterPrice = $(this).parent().next().text();
 			afterPrice *= num / (num + 1);
 			$(this).parent().next().text(afterPrice);
 		}
 		calc();
->>>>>>> 2a6e2e4a536d43d4e9ee301b868d47a5b8ae2ace
+
 	});
 
 	$(document).on('click', '.btn_up', function() {
@@ -110,25 +101,16 @@ function del(){
 		/* alert(num) */
 		if (num < 1000) {
 			$(this).prev().val(++num);
-<<<<<<< HEAD
-			let totalPrice = $(this).parent().next().text();
-			if (num != 1) {
-				totalPrice *= num / (num - 1)
-=======
 			let afterPrice = $(this).parent().next().text();
 			if (num != 1) {
 				afterPrice *= num / (num - 1)
->>>>>>> 2a6e2e4a536d43d4e9ee301b868d47a5b8ae2ace
 			} else {
 				afterPrice = $(this).parent().next().attr("value");
 			}
 			$(this).parent().next().text(afterPrice);
 		}
-<<<<<<< HEAD
-
-=======
 		calc();
->>>>>>> 2a6e2e4a536d43d4e9ee301b868d47a5b8ae2ace
+
 	});
 </script>
 </head>
@@ -138,23 +120,15 @@ function del(){
 	</div>
 
 
-<<<<<<< HEAD
 	<form action="cartList" method="post">
 		<div class="inner_check">
 			<label><input type="checkbox" name="checkAll"><span>전체선택</span></label>
 			<a href="#none" class="btn_delete">선택삭제</a>
-=======
-<h1>** 장바구니 **</h1>
-	<form action="cartList" name="myform" method="post">
-		<div class="inner_check">
-			<label><input type="checkbox" name="goods_checkAll" id="checkAll" ><span>전체선택</span></label>
-			<!-- <a href="#none" class="btn_delete">선택삭제</a> -->
->>>>>>> 2a6e2e4a536d43d4e9ee301b868d47a5b8ae2ace
+
 		</div>
 		<hr />
 		<div class="boxList">
 			<c:forEach var="c_dto" items="${cartList}">
-<<<<<<< HEAD
 				<c:set var="goods" value="${c_dto.goods_id}" />
 				<div class="box">
 					<input type="checkbox" class="check" id="${goods}" name="${goods}" />
@@ -173,40 +147,10 @@ function del(){
 					</span>
 					<button type="button" id="${goods}_clear" class="btn_clear">x</button>
 				</div>
-=======
-				<c:set var="goods" value="${c_dto.goods_id}"/>
-					<div class="box">
-						<input type="checkbox" class="goods_check" id="${goods}" name="goods_check" /> <img
-							width="100" width="100" src="resources/images/goods/${c_dto.goods_img}.jpg">
-						<span class="goods_name">${c_dto.goods_name}</span>
-						<span class="count">
-							<button type="button" id="${goods}_down" class="btn_down">-</button>
-							<input type="number" name="cart_cont"
-							 readonly="readonly" onfocus="this.blur()" class="inp"
-							value="${c_dto.cart_goods_cont}">
-							<button type="button" id="${goods}_up" class="btn_up">+</button>
-						</span>
-						<span class="goods_price_calc">
-						${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span>
-						<input type="hidden" name="goods_price" class="goods_price" value="${c_dto.goods_price}">
-						<input type="hidden" name="goods_discountRate" class="goods_discountRate" value="${c_dto.goods_discountRate}">
-						<button type="button" id="${goods}_clear" class="btn_clear" value="${c_dto.goods_id}">x</button>
-					</div>
->>>>>>> 2a6e2e4a536d43d4e9ee301b868d47a5b8ae2ace
 			</c:forEach>
 		</div>
 		<span>결제 예정 금액 : </span><span class="totalprice"></span><span>원</span>
 	</form>
 
-	<!--   
-	cartList에서 구현해야할 기본 내용  
-	- 장바구니에 담은 객체 보여주기.(db 에서 가져와야함)  
-	- 전체체크 및 체크를 할때마다 결제예정금액 보여주기
-	- 장바구니에서 객체 뺴기(db delete)   
-	
-	추가내용 
-	- 주소 검색 api연동 
-
- -->
 </body>
 </html>
