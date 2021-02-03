@@ -41,6 +41,7 @@
 		</div>
 	
 	<h2>결제 정보</h2><hr>
+	
 	<table>
 	<tr>
 	<td><span>상품금액 : </span><span>${orderInfo.goodsPrice}</span></td>
