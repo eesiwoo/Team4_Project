@@ -7,18 +7,20 @@ import java.util.Date;
 public class OrdersBean {
 	private String orders_id, user_id, orders_name, orders_tel, orders_addr; 
 	private String orders_comment, orders_state, orders_date;
-	private String orders_price, goodsPrice, discountprice, goods_id, goods_cont;
+	private String orders_price, goodsPrice, discountprice;
+	private int goods_id, goods_cont;
 	
-	public String getGoods_id() {
+	
+	public int getGoods_id() {
 		return goods_id;
 	}
-	public void setGoods_id(String goods_id) {
+	public void setGoods_id(int goods_id) {
 		this.goods_id = goods_id;
 	}
-	public String getGoods_cont() {
+	public int getGoods_cont() {
 		return goods_cont;
 	}
-	public void setGoods_cont(String goods_cont) {
+	public void setGoods_cont(int goods_cont) {
 		this.goods_cont = goods_cont;
 	}
 	public String getOrders_id() {
