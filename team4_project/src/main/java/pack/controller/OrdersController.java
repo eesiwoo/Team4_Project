@@ -84,7 +84,7 @@ public class OrdersController {
 	
 	
 	@RequestMapping(value="orders", method=RequestMethod.POST)
-	public String DoOrderGoods(HttpServletRequest request, HttpServletResponse response, 
+	public ModelAndView DoOrderGoods(HttpServletRequest request, HttpServletResponse response, 
 			OrdersBean bean, @RequestParam("goods_id") String[] goods_id, 
 			@RequestParam("goods_cont") String[] goods_cont) {
 		HttpSession session = request.getSession();
@@ -120,6 +120,18 @@ public class OrdersController {
 			}
 		} 	
 		
+		ArrayList<OrdersGoodsDto> orderList = ordersDaoInter.getOrdersGoods(orders_id);
+		ArrayList<GoodsDto> goodslist = new ArrayList<GoodsDto>();
+		for(OrdersGoodsDto ogdto: orderList) {
+			GoodsDto goodsDto = goodsDaoInter.getGoodsSearch(ogdto.getGoods_id());
+			goodslist.add(goodsDto);
+		}
+		ModelAndView mav  = new ModelAndView("order_result");
+		mav.addObject("orderInfo", bean);
+		mav.addObject("orderList", orderList);
+		mav.addObject("goodslist", goodslist);
+		
+		
 		
 		if (result) {
 			System.out.println("result 입력 성공");
@@ -141,7 +153,7 @@ public class OrdersController {
 			}
 		}
 		
-		return "mypage";
+		return mav;
 	}
 	
 	@RequestMapping(value="showOrders", method=RequestMethod.GET)
@@ -162,28 +174,11 @@ public class OrdersController {
 			}
 			oglist.add(ordersDaoInter.getOrdersGoods(orders_id));
 		}
-//		System.out.println(olist);
-//		System.out.println(oglist);
-//		System.out.println(oglist.get(0));
-//		System.out.println(goodslist);
+
 		mav.addObject("olist", olist);
 		mav.addObject("oglist", oglist);
 		mav.addObject("goodslist", goodslist);
-//		System.out.println("olist.get(0).getOrders_id() : "+ olist.get(0).getOrders_id());
-//		System.out.println("oglist.get(0).get(0).getGoods_id() : "+oglist.get(0).get(0).getGoods_id());
-//		for(int i=0; i<oglist.size();i++) {
-//			for(int j=0; j<oglist.get(i).size();j++) {
-//				System.out.println("oglist.oglist() : " + oglist.get(i).size());
-//			}
-//		}
-//		
-//		for (int i =0; i<goodslist.size(); i++) {
-//			System.out.println("goodslist.goodslist : " + goodslist.get(i).getGoods_id());
-//		}
-//		System.out.println("goodslist.get(0).getGoods_id() : " + goodslist.get(0).getGoods_id());
-//		System.out.println("olist.size :" + olist.size());
-//		System.out.println("oglist.size :" + oglist.size());
-//		System.out.println("goodslist.size :" + goodslist.size());
+
 		return mav;
 	}
 	
