@@ -36,8 +36,10 @@
 			<div class="dropdown">
 				<button class="dropbtn">전체 카테고리</button>
 				<div class="dropdown-content">
+					<a href="#">전체</a>
 					<a href="#">채소</a> <a href="#">과일*견과*쌀</a> <a href="#">수산*해산*건어물</a>
-					<a href="#">정육*계란</a>
+					<a href="#">정육*계란</a><a href="#">샐러드*간편식</a><a href="#">면*양념*오일</a><a href="#">간식*과자*떡</a>
+					<a href="#">베이커리*치즈*델리</a><a href="#">건강식품</a><a href="#">주방용품</a>
 				</div>
 			</div>
 			<ul class="list">
