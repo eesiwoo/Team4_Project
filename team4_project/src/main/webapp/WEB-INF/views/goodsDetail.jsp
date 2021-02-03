@@ -212,18 +212,6 @@
                 </p>
               </div>
             </div>
-            <div class="goods_tip">
-              <h3>
-                <span>Kurly’s Tip</span>
-              </h3>
-              <div class="tip_box">
-                <div class="context">
-                  <div class="pic">
-                    <img src="resources/images/kurly_tip.png" alt="kurly_tip">
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

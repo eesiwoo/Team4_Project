@@ -37,4 +37,10 @@ public class OrdersDaoImpl extends SqlSessionDaoSupport implements OrdersDaoInte
 		else return false;
 	}
 	
+	@Override
+	public ArrayList<OrdersGoodsDto> getOrdersGoods(String orders_id) {
+		// 
+		return (ArrayList)getSqlSession().selectList("selectOrdersGoods", orders_id);
+	}
+	
 }
