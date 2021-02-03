@@ -21,32 +21,7 @@
  -->
  
  <div id="btn_user"><a href="updateUser"> 개인정보 수정 </a></div>
- <div id="btn_orders"> 구매내역 </div><br>
- 
- 
- <div id="userInfo"></div>
- 
- <script type="text/javascript">
- 	
- 	$(document).on("click", "#btn_user", function(){
- 		let user_id = ${session.getAttribute("user_id")};		
- 		$.ajax({
- 			type:"get",
- 			url:"getUserInfo",
- 			dataType:"json",
- 			data:{"user_id":user_id},
- 			success:function(a){
- 				let str = "<table><tr><th>회원명<th></tr>" 
- 			}
- 				
- 		})
- 	});
- 	
-	$(document).on("click", "#btn_orders", function(){
-		alert(1)
- 	});
- </script>
- 
+ <div id="btn_orders"><a href="showOrders"> 주문 내역 </a></div><br> 
  
 </body>
 </html>

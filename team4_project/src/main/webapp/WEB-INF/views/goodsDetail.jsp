@@ -119,11 +119,11 @@
           <div class="goods_info">
               <div class="list fst">
                 <span class="tit">판매단위</span>
-                <span class="desc">${goods.goods_saleUnit}팩</span>
+                <span class="desc">${goods.goods_saleUnit}</span>
               </div>
               <div class="list">
                 <span class="tit">중량/용량</span>
-                <span class="desc">${goods.goods_weight}g</span>
+                <span class="desc">${goods.goods_weight}</span>
               </div>
               <div class="list">
                 <span class="tit">배송구분</span>

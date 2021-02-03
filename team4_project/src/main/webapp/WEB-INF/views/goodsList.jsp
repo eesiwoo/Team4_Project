@@ -30,7 +30,7 @@
                           "
                           ><!---->
                           <img
-                            src="resources/images/goods/${i.goods_img }.jpg"
+                            src="resources/images/goods/${i.goods_img}"
                             alt="${i.goods_id }"
                             width="308"
                             height="396"

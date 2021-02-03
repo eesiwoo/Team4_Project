@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pack.model.CartDaoInter;
 import pack.model.CartDto;
 import pack.model.OrdersDaoInter;
+import pack.model.OrdersDto;
 import pack.model.UserDaoInter;
 import pack.model.UserDto;
 
@@ -137,9 +138,25 @@ public class OrdersController {
 			} 
 		}
 		
-		
-		
-		
 		return "mypage";
 	}
+	
+	@RequestMapping(value="showOrders", method=RequestMethod.GET)
+	public ModelAndView showOrders(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(1111);
+		System.out.println(1111);
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("user_id");
+		ModelAndView mav = new ModelAndView("my_showOrders");
+		
+		ArrayList<OrdersDto> dao = ordersDaoInter.getOrders(user_id);
+		//// 여기까지 
+		System.out.println("name : " + dao.get(0).getOrders_name());
+		System.out.println(1111);
+		System.out.println(1111);
+		
+		
+		return mav;
+	}
+	
 }

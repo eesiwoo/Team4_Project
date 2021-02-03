@@ -38,6 +38,7 @@ public class LoginController {
 				session.setAttribute("user_code", dto.getUser_code());
 				//mav.setViewName("redirect:/index.jsp");
 				System.out.println("session에 저장.");
+				System.out.println("hihi");
 				
 				return "redirect:/index.jsp";
 			}

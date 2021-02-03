@@ -1,5 +1,7 @@
 package pack.model;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,9 @@ public class OrdersDaoImpl extends SqlSessionDaoSupport implements OrdersDaoInte
 	}
 	
 	@Override
-	public OrdersDto getOrders(String user_id) {
-		return getSqlSession().selectOne("selectOrders", user_id);
+	public ArrayList<OrdersDto> getOrders(String user_id) {
+		System.out.println("ArrayList<OrdersDto> getOrders(String user_id)");
+		return (ArrayList)getSqlSession().selectList("selectOrders", user_id);
 	}
 	
 	@Override
