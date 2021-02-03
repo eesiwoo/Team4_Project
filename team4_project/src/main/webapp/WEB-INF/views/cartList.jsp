@@ -8,22 +8,17 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="resources/css/cartList.css" rel="stylesheet" />
-
 </head>
 <body>
-
 </head>
 <body>
 	<div class="title">
 		<h1>장바구니</h1>
 	</div>
-
-
 	<form action="preOrders" name="myform" method="post">
 		<div class="inner_check">
 			<label><input type="checkbox" id="checkAll" name="goods_checkAll"><span>전체선택</span></label>
 			<!-- <a href="#none" class="btn_delete">선택삭제</a> -->
-
 		</div>
 		<hr />
 		<div class="boxList">
