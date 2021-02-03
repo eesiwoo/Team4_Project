@@ -17,4 +17,6 @@ public class MyPageController {
 		ModelAndView mav = new ModelAndView("mypage"); 
 		return mav;
 	}
+
+	
 }

@@ -11,6 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    where user_id = #{user_id}
  </select>
  
+ <!-- 장바구니 중복 검사 -->
+ <select id="checkCartGoods" parameterType="c_bean" resultType="c_dto">
+  select cart_id, user_id, goods_id
+  from cart
+  where user_id = #{user_id} and goods_id = ${goods_id}
+ </select>
+ 
  <!-- 장바구니 데이터 입력하기 -->
  <insert id="insertCartGoods" parameterType="c_bean">
  	insert into cart(user_id, goods_id, cart_goods_cont) 
@@ -22,5 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	delete from cart 
  	where user_id = #{user_id} and goods_id = ${goods_id}
  </delete>
+ 
+ <!-- 장바구니에서 데이터 수정하기  -->
+ <update id="updateCartGoods" parameterType="c_bean">
+ 	update cart 
+ 	set cart_goods_cont = #{cart_goods_cont}
+ 	where user_id = #{user_id} and goods_id = ${goods_id}
+ </update>
  
 </mapper>

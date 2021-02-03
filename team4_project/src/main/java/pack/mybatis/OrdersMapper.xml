@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orders">
+ 
+ <!-- 주문테이블 입력하기 -->
+ <insert id="insertOrders" parameterType="o_bean">
+ 	insert into orders(orders_id, user_id, orders_price, orders_name, 
+ 	orders_tel, orders_addr, orders_comment, orders_state, orders_date) 
+ 	value(#{orders_id}, #{user_id}, #{orders_price}, #{orders_name}, #{orders_tel}, 
+ 	#{orders_addr}, #{orders_comment}, #{orders_state}, #{orders_date}) 
+ </insert>
+ 
+ <!-- 주문에 필요한 정보 가져오기 -->
+ <insert id="insertOrdersGoods" parameterType="og_bean">
+ 	insert into orders_goods 
+ 	value(#{orders_id}, #{goods_id}, #{goods_cont}) 
+ </insert>
+ 
+ <!-- 주문 정보 가져오기 -->
+ <select id="selectOrders" parameterType="string" resultType="o_dto">
+ 	select * from orders where user_id = #{user_id}
+ </select>
+ 
+ <!-- 주문 내역(상품) 가져오기 -->
+ <select id="selectOrdersGoods" parameterType="string" resultType="og_dto">
+ 	select * from orders_goods where orders_id = #{orders_id}
+ </select>
+</mapper>

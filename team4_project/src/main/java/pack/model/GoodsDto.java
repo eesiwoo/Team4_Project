@@ -4,22 +4,22 @@ import java.sql.Timestamp;
 
 public class GoodsDto {
 	
-	private int goods_id, category_id, goods_price, goods_discountRate, goods_saleUnit, goods_weight;
+	private int goods_id, category_id, goods_price, goods_discountRate;
 	private String goods_name, goods_detail, goods_delivery, goods_img, goods_reg, goods_state;
-	private String goods_shortDesc, goods_shelfLife, goods_allergy, goods_info;
+	private String goods_shortDesc, goods_shelfLife, goods_allergy, goods_info, goods_saleUnit, goods_weight;
 	private Timestamp goods_saleBegin, goods_saleEnd, goods_regDate;
 	
 	
-	public int getGoods_saleUnit() {
+	public String getGoods_saleUnit() {
 		return goods_saleUnit;
 	}
-	public void setGoods_saleUnit(int goods_saleUnit) {
+	public void setGoods_saleUnit(String goods_saleUnit) {
 		this.goods_saleUnit = goods_saleUnit;
 	}
-	public int getGoods_weight() {
+	public String getGoods_weight() {
 		return goods_weight;
 	}
-	public void setGoods_weight(int goods_weight) {
+	public void setGoods_weight(String goods_weight) {
 		this.goods_weight = goods_weight;
 	}
 	public String getGoods_shortDesc() {

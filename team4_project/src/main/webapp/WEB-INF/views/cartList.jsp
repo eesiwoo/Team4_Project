@@ -6,15 +6,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/cartList.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="resources/css/cartList.css" rel="stylesheet" />
 
-	$(document).on('click', '.btn_clear', function() {
-		// db에 다녀오는거 구현
-		$(this).parent().remove();
-	});
+</head>
+<body>
+
+</head>
+<body>
+	<div class="title">
+		<h1>장바구니</h1>
+	</div>
+
+
+	<form action="preOrders" name="myform" method="post">
+		<div class="inner_check">
+			<label><input type="checkbox" id="checkAll" name="goods_checkAll"><span>전체선택</span></label>
+			<!-- <a href="#none" class="btn_delete">선택삭제</a> -->
+
+		</div>
+		<hr />
+		<div class="boxList">
+			<c:forEach var="c_dto" items="${cartList}">
+				<c:set var="goods" value="${c_dto.goods_id}" />
+				<div class="box">
+					<input type="checkbox" class="goods_check" id="${goods}" name="goods_check" value="${goods}"/>
+					<img width="100" width="100" src="resources/images/goods/${c_dto.goods_img}"> 
+					<span class="goods_name">${c_dto.goods_name}</span> 
+					<span class="count">
+						<button type="button" id="${goods}_down" class="btn_down">-</button>
+						<input type="number" name="goods_cont" readonly="readonly"
+						onfocus="this.blur()" class="inp" value="${c_dto.cart_goods_cont}">
+						<button type="button" id="${goods}_up" class="btn_up">+</button>
+					</span><span class="goods_price_calc" id="${goods}_price">${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span>
+					<input type="hidden" name="goods_price" class="goods_price" value="${c_dto.goods_price}"> 
+					<input type="hidden" name="goods_discountRate" class="goods_discountRate" value="${c_dto.goods_discountRate}">
+					<button type="button" id="${goods}_clear" class="btn_clear">x</button>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="bill">
+		<div>
+		<span>상품금액 : </span>
+		<span class="goodsPrice"></span><span>원</span>
+		<input type="hidden" name="goodsPrice" id="goodsPrice">
+		</div>
+		<div>
+		<span>상품할인금액 : </span>
+		<span class="discountprice"></span><span>원</span>
+		<input type="hidden" name="discountprice" id="discountprice">
+		</div>
+		<div>
+		<span>결제 예정 금액 : </span>
+		<span class="orders_price"></span><span>원</span>
+		<input type="hidden" name="orders_price" id="orders_price">
+		</div>
+		<input type="submit" id="btn_order" value="구매하기">
+		</div>
+	</form>
+
+
+<script type="text/javascript">
 
 function del(){
 	if (confirm("정말 삭제하시겠습니까?") == true){
@@ -51,7 +103,9 @@ function del(){
 		let countArr = $(".inp")
 		let priceArr = $(".goods_price")
 
-		let totalPrice = 0; //전체 금액의 합계를 저장할 변수
+		let totalPrice = 0; 
+		let discountprice = 0
+		let totalDisPrice = 0
 		let price = 0;
 		//화면에 출력된 전체 상품목록에서 체크된 상품의 가격과 수량을 곱해서 금액 구하고 totalPrice에 누적
 		$("input[name=goods_check]:checkbox").each(function(idx, mychklist) {
@@ -60,13 +114,33 @@ function del(){
 			let goods_price = $(".goods_price")[idx].value;
 
 			if (mychklist.checked) {
-				price = goods_price * num * (100 - rate) / 100
-				totalPrice += price
+				discountprice -= goods_price * num * (rate) / 100
+				totalPrice += goods_price * num;
+				totalDisPrice += goods_price * num * (100 - rate) / 100;
 			}
 		});
 
-		$(".totalprice").text(totalPrice);
+		$(".goodsPrice").text(totalPrice);
+		$("#goodsPrice").val(totalPrice);
+		$(".discountprice").text(discountprice);
+		$("#discountprice").val(discountprice);
+		$(".orders_price").text(totalDisPrice);
+		$("#orders_price").val(totalDisPrice);
 
+	}
+	
+	function updateCart(user_id, goods_id, num){
+		$.ajax({
+			type : "get",
+			url : "updateCartGoods",
+			dataType :"json",
+			data : {"goods_id":goods_id, "user_id":user_id, "cart_goods_cont":num},
+			success:function(item){
+				if (!item.isSuccess) {
+					alert("해당 상품의 구매갯수를 변경할 수 없습니다.")
+				} 
+			}
+		}) 
 	}
 	
 	$(document).on("click", "#checkAll", function() {
@@ -80,19 +154,26 @@ function del(){
 
 	// 체크시 금액 변동 
 	$(document).on("click", ".goods_check", calc);
-
 	$(document).on('click', '.btn_clear', del);
-
 
 	$(document).on('click', '.btn_down', function() {
 		let num = $(this).next().val();
-		if (num > 0) {
+		if (num > 1) {
 			$(this).next().val(--num);
+			
 			let afterPrice = $(this).parent().next().text();
 			afterPrice *= num / (num + 1);
+			
+			// 변경된 숫자 및 금액 반영 
 			$(this).parent().next().text(afterPrice);
+			calc();
+			
+			// 변경된 수량 ajax를 통해 db로 전달
+			let user_id = "<%=session.getAttribute("user_id")%>";
+			let goods_id = $(this).attr("id").split("_down")[0];
+			updateCart(user_id, goods_id, num)
+
 		}
-		calc();
 
 	});
 
@@ -102,55 +183,34 @@ function del(){
 		if (num < 1000) {
 			$(this).prev().val(++num);
 			let afterPrice = $(this).parent().next().text();
-			if (num != 1) {
-				afterPrice *= num / (num - 1)
-			} else {
-				afterPrice = $(this).parent().next().attr("value");
-			}
-			$(this).parent().next().text(afterPrice);
+			alert(afterPrice)
+			afterPrice *= num / (num - 1)
+			
+			// 변경된 숫자 및 금액 반영
+			$(this).parent().next().text(afterPrice);		
+			calc();
+			
+			// 변경된 수량 ajax를 통해 db로 전달
+			let user_id = "<%=session.getAttribute("user_id")%>";
+			let goods_id = $(this).attr("id").split("_up")[0];
+			updateCart(user_id, goods_id, num)
 		}
-		calc();
 
 	});
+	
+	$(document).on('click', '.btn_clear', function() {
+		// db에 다녀오는거 구현
+		$(this).parent().remove();
+	});
+	
+	$(document).on('click', '#btn_order', function(){
+		if(confirm("정말 주문하시겠습니까?")){		
+		myform.submit(); 
+		} else {
+			return false;
+		}
+	})
 </script>
-</head>
-<body>
-	<div class="title">
-		<h1>장바구니</h1>
-	</div>
-
-
-	<form action="cartList" method="post">
-		<div class="inner_check">
-			<label><input type="checkbox" name="checkAll"><span>전체선택</span></label>
-			<a href="#none" class="btn_delete">선택삭제</a>
-
-		</div>
-		<hr />
-		<div class="boxList">
-			<c:forEach var="c_dto" items="${cartList}">
-				<c:set var="goods" value="${c_dto.goods_id}" />
-				<div class="box">
-					<input type="checkbox" class="check" id="${goods}" name="${goods}" />
-					<img src="resources/images/goods/${c_dto.goods_img}.jpg"> <span
-						class="goods_name">${c_dto.goods_name}</span> <span class="count">
-						<button type="button" id="${goods}_down" class="btn_down">-</button>
-						<input type="number" name="cart_${goods}_cont" readonly="readonly"
-						onfocus="this.blur()" class="inp" value="${c_dto.cart_goods_cont}">
-						<button type="button" id="${goods}_up" class="btn_up">+</button>
-					</span> 
-					<span>
-					<span class="goods_price" value="${c_dto.goods_price}">
-						${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}
-					</span>
-					<span>원</span>
-					</span>
-					<button type="button" id="${goods}_clear" class="btn_clear">x</button>
-				</div>
-			</c:forEach>
-		</div>
-		<span>결제 예정 금액 : </span><span class="totalprice"></span><span>원</span>
-	</form>
 
 </body>
 </html>

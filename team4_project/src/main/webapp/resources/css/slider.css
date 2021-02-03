@@ -28,7 +28,7 @@ h6 {
 	outline: 0;
 	width: 52px;
 	height: 52px;
-	background: url(./image/previous.png) no-repeat 50% 50%;
+	background: url(../images/previous.png) no-repeat 50% 50%;
 	background-size: 52px 52px;
 	opacity: 0.2;
 	transition: opacity 0.5s;
@@ -50,7 +50,7 @@ h2 {
 	height: 52px;
 	border: 0;
 	outline: 0;
-	background: url(./image/next.png) no-repeat 50% 50%;
+	background: url(../images/next.png) no-repeat 50% 50%;
 	background-size: 52px 52px;
 	transform: translate(0%, -50%);
 	opacity: 0.2;

@@ -35,7 +35,6 @@ public class GoodsDetailController {
 		System.out.println("session : " + session);
 		ArrayList<GoodsDto> goodsList;
 		GoodsDto goods = goodsDaoInter.getGoodsSearch(goods_id);
-		
 		// db에 상품이 없으면 
 		if (goods == null) {
 			mav.setViewName("goodserror");

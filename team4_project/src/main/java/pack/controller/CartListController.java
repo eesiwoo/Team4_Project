@@ -25,12 +25,8 @@ public class CartListController {
 	@Autowired
 	private CartDaoInter cartDaoInter;
 	
-	@Autowired 
-	CartBean cartBean;
-	
 	@RequestMapping(value = "cartGoods", method=RequestMethod.GET)
 	public ModelAndView showCartGoods(HttpServletRequest request, HttpServletResponse response) {
-		//로그인 후, 세션 검사 로직 필요. 
 		//DB에서 장바구니 데이터를 가져오기
 		System.out.println("showCartGoods 시작");
 		HttpSession session = request.getSession();
@@ -49,20 +45,28 @@ public class CartListController {
 	@RequestMapping(value = "insertCartGoods", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> insertCartGoods(HttpServletRequest request,
-			@RequestParam("goods_id") int goods_id, @RequestParam("cart_goods_cont") int cart_goods_cont) {
+			@RequestParam("goods_id") int goods_id, @RequestParam("cart_goods_cont") int cart_goods_cont, 
+			CartBean bean) {
 //		System.out.println("cartbean.getCart_id() : "+ cartBean.getCart_id());
 
 		HttpSession session = request.getSession();
 		String user_id = (String)session.getAttribute("user_id"); 
-		cartBean.setCart_goods_cont(cart_goods_cont);
-		cartBean.setUser_id(user_id);
-		cartBean.setGoods_id(goods_id);
-		System.out.println("user_id : " + cartBean.getUser_id());
-		System.out.println("goods_id : " + cartBean.getGoods_id());
-		System.out.println("cart_goods_cont : " + cartBean.getCart_goods_cont());
+		bean.setCart_goods_cont(cart_goods_cont);
+		bean.setUser_id(user_id);
+		bean.setGoods_id(goods_id);
+		System.out.println("user_id : " + bean.getUser_id());
+		System.out.println("goods_id : " + bean.getGoods_id());
+		System.out.println("cart_goods_cont : " + bean.getCart_goods_cont());
 		Map<String, Object> isSuccess = new HashMap<String, Object>();
 		
-		if(cartDaoInter.insertCartGoods(cartBean)) {
+		// 장바구니 중복검사
+		if (cartDaoInter.getCartGoods(bean) != null) {
+			System.out.println("이미 장바구니에 담긴 물품입니다.");
+			isSuccess.put("msg", "이미 담긴 물품입니다");
+			return isSuccess;
+		}
+		
+		if(cartDaoInter.insertCartGoods(bean)) {
 			// 성공
 			System.out.println("장바구니 담기 성공");
 			isSuccess.put("msg", "장바구니 담기 성공");
@@ -91,6 +95,24 @@ public class CartListController {
 		}
 		obj.put("isSuccess", result);
 		
+		return obj;
+	}
+	
+	@RequestMapping(value="updateCartGoods", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> updateCartGoods(CartBean bean){
+		System.out.println("user_id : " + bean.getUser_id());
+		System.out.println("goods_id : " + bean.getGoods_id());
+		System.out.println("cart_goods_cont : " + bean.getCart_goods_cont());
+		
+		Map<String, Object> obj = new HashMap<String, Object>();
+		Boolean result = cartDaoInter.updateCartGoods(bean);
+		if (result) {
+			System.out.println("수정 성공");
+		} else {
+			System.out.println("수정 실패");
+		}
+		obj.put("isSuccess", result);
 		return obj;
 	}
 	

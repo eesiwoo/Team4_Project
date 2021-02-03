@@ -7,7 +7,7 @@ import java.util.Date;
 public class UserBean {
 	private String user_id, user_name, user_pwd, user_tel; 
 	private String user_addr, user_email, user_bDate, user_joinDate;
-	// user_gen = 1은 남자, 0은 여자. 
+	// user_gen = 1은 남자, 0은 여자. 2는 성소수자
 	private int user_gen;
 	
 	public String getUser_id() {

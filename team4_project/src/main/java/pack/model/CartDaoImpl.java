@@ -23,6 +23,11 @@ public class CartDaoImpl extends SqlSessionDaoSupport implements CartDaoInter{
 	}
 	
 	@Override
+	public CartDto getCartGoods(CartBean cartBean) {
+		return getSqlSession().selectOne("checkCartGoods", cartBean);
+	}
+	
+	@Override
 	public Boolean insertCartGoods(CartBean cartBean) {
 		int re = getSqlSession().insert("insertCartGoods", cartBean);
 		if (re == 1) return true; 
@@ -32,6 +37,13 @@ public class CartDaoImpl extends SqlSessionDaoSupport implements CartDaoInter{
 	@Override
 	public Boolean deleteCartGoods(CartBean cartBean) {
 		int re = getSqlSession().delete("deleteCartGoods", cartBean);
+		if (re == 1) return true;
+		else return false;
+	}
+	
+	@Override
+	public Boolean updateCartGoods(CartBean cartBean) {
+		int re = getSqlSession().update("updateCartGoods", cartBean);
 		if (re == 1) return true;
 		else return false;
 	}
