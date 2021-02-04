@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="resources/css/dropdown.css">
+	<link rel="stylesheet" href="resources/css/top.css">
+	<link rel="stylesheet" href="resources/css/insertReview.css">
+	
 	<script type="text/javascript">
 	$(document).on('change', '#review_isPrivate', function(){
 	if($('#review_isPrivate').prop('checked')){
@@ -17,6 +21,17 @@
 	</script>	
 </head>
 <body>
+	<jsp:include page="top.jsp"></jsp:include>
+	<div class="main">
+		<div class="field_head">
+			<h3 class="tit">QnA 작성</h3>
+			<p class="sub">
+			<span class="ico">*</span>
+			"필수입력사항"
+			</p>
+		</div>
+
+
 	<form action="insertReview" method="post" id="insertForm" enctype="multipart/form-data">
 	<input type="hidden" name="goods_id" value=${goods_id }>
 	
@@ -50,5 +65,7 @@
 	  </tr>
 	</table>
 	</form>
+	
+	</div>
 </body>
 </html>

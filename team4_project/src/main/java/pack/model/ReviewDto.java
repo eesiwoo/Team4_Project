@@ -37,7 +37,7 @@ public class ReviewDto {
 	}
 	
 	public String getReview_date() {
-		return review_date;
+		return review_date.substring(0, 10);
 	}
 	
 	public void setReview_date() {

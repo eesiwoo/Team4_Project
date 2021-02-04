@@ -125,7 +125,7 @@
           <li class="goods-view-information-tab">상품이미지</li>
           <li class="goods-view-information-tab">상세정보</li>
           <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
-          <li class="goods-view-information-tab">상품문의</li>
+          <li class="goods-view-information-tab"><a href="#qna">상품문의</li>
         </ul>
         <div class="goods-view-information-content">
           <div class="goods_wrap">
@@ -533,7 +533,7 @@
 					
 				});
 				} else {
-					str += "<tr><td>등록된 리뷰가 없습니다.</td></tr>"
+					str += "<tr><td>등록된 "+ RorQ +"가 없습니다.</td></tr>"
 				}
 					/* 리뷰 추가 */
 					str += "<tr>";

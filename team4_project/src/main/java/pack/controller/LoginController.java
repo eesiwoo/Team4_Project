@@ -53,6 +53,7 @@ public class LoginController {
 	public String loginOut(HttpSession session) {
 		session.removeAttribute("user_id");
 		session.removeAttribute("user_code");
+		session.removeAttribute("review_id");
 		return "redirect:/index.jsp";
 	}
 }
