@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+body {
+	width: auto;
+}
+
+a {
+	text-decoration: none;
+	font-weight: 700;
+    color: #5f0080;
+}
+
+.main {
+	margin: auto;
+	width: 1050px;
+	display: flex;
+	gap: 40px
+}
+
+/* 마이컬리 */
+.mypage {
+	width: 200px;
+}
+
+.tit_snb {
+	padding: 8px 0 33px 1px;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 34px;
+	color: #333;
+	letter-spacing: -.5px;
+}
+
+.list {
+	background: #fafafa;
+	border: 1px solid #f2f2f2;
+	width: 200px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* 주문내역 타이틀 */
+.tit {
+	height: 36px;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 36px;
+	color: #333;
+	letter-spacing: -.5px;
+}
+
+.tit_sub {
+	padding-left: 11px;
+	font-size: 14px;
+	color: #999;
+	line-height: 20px;
+	letter-spacing: -.3px;
+	vertical-align: 3px;
+}
+
+/* 주문 내역 테이블 */
+.tab {
+	padding-top: 10px;
+	border-top: 2px solid #333;
+	border-bottom: 1px solid #dddfe1;
+}
+
+th {
+	padding: 0 50px 20px 50px;
+}
+
+td {
+	text-align: center;
+}
+
+/*
+.inner_snb {
+    border: 1px solid #f2f2f2;
+    border-bottom: 0;
+}
+.list_menu li {
+    border-bottom: 1px solid #f2f2f2;
+} */
