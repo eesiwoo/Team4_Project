@@ -11,35 +11,22 @@
 	src="resources/js/jquery-3.5.1.min.js"></script>
 
 <link href="resources/css/slick.css" rel="stylesheet" type="text/css" />
-<link href="resources/css/slick-theme.css" rel="stylesheet"
-	type="text/css" />
+<link href="resources/css/slick-theme.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/index.css" rel="stylesheet" />
 <link href="resources/css/slider.css" rel="stylesheet" />
 <link href="resources/css/footer.css" rel="stylesheet" />
 <link href="resources/css/multipleImageSlider.css" rel="stylesheet" />
 <link href="resources/css/earlyBirdContainer.css" rel="stylesheet" />
-<link href="resources/css/test.css" rel="stylesheet" />
 <link href="resources/css/dropdown.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/kurlyTop.png" />
 
 </head>
 <body>
-	<a href="right">사이드</a>
-
-	<!--   
-	index에서 구현해야할 기본 내용  
-	- jquery 이미지 슬라이드   
-	- 상품 추천, 이벤트 소식, 알뜰상품(시작할때 무작위 4개 상품 가져오기)
-	- 설 얼리버드 특가 레이아웃  
-	- (4개 무작위 상품추천과 같음)
 	
-	추가내용 
-	- 설 얼리버드 특가 레이아웃에 시간 줄어드는거 표시 
- -->
-
+	
 	<div id="container">
-		<jsp:include page="WEB-INF/views/top.jsp"></jsp:include>
-
+	<jsp:include page="WEB-INF/views/top.jsp"></jsp:include>	
+		
 		<div class="main">
 			<div class="carousel-container">
 				<div class="carousel-slide">
@@ -52,8 +39,9 @@
 				<button id="prevBtn"></button>
 				<button id="nextBtn"></button>
 			</div>
-
+			
 			<div class="howAbout">
+			
 				<h2>이 상품 어때요?</h2>
 				<section class="regular slider">
 					<div>
@@ -292,8 +280,8 @@
 				<br /> <br /> <br />
 			</div>
 		</div>
-
-
+	</div>
+	<jsp:include page="WEB-INF/views/right.jsp"></jsp:include>
 		<jsp:include page="WEB-INF/views/bottom.jsp"></jsp:include>
 
 		<script type="text/javascript"
@@ -347,7 +335,7 @@
 		</script>
 		<script src="resources/js/slider.js"></script>
 
-	</div>
+	
 
 </body>
 </html>
