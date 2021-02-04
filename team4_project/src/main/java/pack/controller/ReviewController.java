@@ -79,6 +79,8 @@ public class ReviewController {
 		dto.setUser_id(user_id);
 		dto.setGoods_id(goods_id);
 		dto.setReview_orQna(review_orQna);
+		System.out.println("howAsc : " + howAsc);
+		System.out.println("test");
 		//어떤 순서로 조회할지 확인
 		if( howAsc.equals("recently") )
 			reviewList = inter.selectReview(dto);
