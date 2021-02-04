@@ -24,19 +24,6 @@
 
 </head>
 <body>
-	<a href="right">사이드</a>
-
-	<!--   
-	index에서 구현해야할 기본 내용  
-	- jquery 이미지 슬라이드   
-	- 상품 추천, 이벤트 소식, 알뜰상품(시작할때 무작위 4개 상품 가져오기)
-	- 설 얼리버드 특가 레이아웃  
-	- (4개 무작위 상품추천과 같음)
-	
-	추가내용 
-	- 설 얼리버드 특가 레이아웃에 시간 줄어드는거 표시 
- -->
-
 	<div id="container">
 		<jsp:include page="WEB-INF/views/top.jsp"></jsp:include>
 
@@ -110,19 +97,19 @@
 
 			<div class="earlyBirdContainer">
 				<div class="earlyBirdText">
-					<br /> <strong>설 얼리버드 특가</strong><br /> <br /> ㅡ<br /> <br />
-					<br /> <span>설날까지 매일 진행되는 24시간 한정 특가</span><br /> <br /> <br />
-					⏰ 망설이면 늦어요!<br />
+					<br/><strong>설 얼리버드 특가</strong><br/><br/>ㅡ<br/><br/>
+					<br/><span>설날까지 매일 진행되는 24시간 한정 특가</span><br/><br/><br />
+					⏰ 망설이면 늦어요!<br/>
 				</div>
 				<div class="earlyBirdPic">
 					<a id="index_a25" href="#"><img id="index_image25"
-						src="http://placehold.it/600x400?text=1" /></a>
+						src="http://placehold.it/600x400?text=1"/></a>
 					<div id="index_goods_name25">상품명</div>
 					<del id="index_goods_Bprice25">원래가격 : </del>
-					<br />
+					<br/>
 					<div id="index_goods_Pprice25">가격</div>
 				</div>
-				<br /> <br /> <br /> <br />
+				<br/><br/><br/><br />
 			</div>
 
 			<div class="eventNews" style="background-color: #f2f2f2">
