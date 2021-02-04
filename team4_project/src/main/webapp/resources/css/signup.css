@@ -1,81 +1,11 @@
 @charset "UTF-8";
-body,
-header {
-  display: -ms-grid;
-  display: grid;
-}
+
 body {
   box-sizing: border-box;
   margin: 0 200px;
   width: auto;
 }
-header {
-  -ms-grid-rows: 1fr 2fr;
-  grid-template-rows: 1fr 2fr;
-}
-header .list_menu {
-  width: 1050px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin: 0 200px;
-  padding-top: 20px;
-}
-header .list_menu .menu_join {
-  color: #5f0080;
-}
-header .bottom img {
-  display: block;
-  width: 115px;
-  height: 75px;
-  margin: 0 auto;
-}
-nav {
-  position: -webkit-sticky;
-  position: sticky;
-  top: -0.5px;
-  background-color: #fff;
-  z-index: 1;
-  border-bottom: 1px solid #f4f4f4;
-  height: 40px;
-  gap: 85px;
-  font-weight: 700;
-  color: #000;
-  padding-top: 10px;
-}
-nav a {
-  text-decoration: none;
-  color: #000;
-}
-nav .list {
-  padding-left: 0;
-  list-style-type: none;
-  display: flex;
-  gap: 30px;
-  margin: 0;
-  padding-top: 5px;
-  font-size: 16px;
-  line-height: 20px;
-}
-nav .list li {
-  margin-right: 70px;
-  padding-right: 20px;
-}
-nav .list #last {
-  margin-right: 0;
-}
-nav .tools {
-  margin-right: 60px;
-  display: flex;
-  gap: 30px;
-}
-nav .tools .search {
-  padding-top: 5px;
-}
-nav .tools img {
-  width: 27px;
-  height: 27px;
-}
+
 .main {
   width: 640px;
   margin: auto;

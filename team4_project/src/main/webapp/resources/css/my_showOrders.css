@@ -1,3 +1,5 @@
+my_showOrders.css
+
 @charset "UTF-8";
 
 body {
@@ -31,7 +33,7 @@ a {
 	letter-spacing: -.5px;
 }
 
-.list {
+.mypage_list {
 	background: #fafafa;
 	border: 1px solid #f2f2f2;
 	width: 200px;
