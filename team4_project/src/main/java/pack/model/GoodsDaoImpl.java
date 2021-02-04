@@ -47,5 +47,10 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 		else return false;
 	}
 	
+	@Override
+	public List<GoodsDto> getSepcGoodsList(int num) {
+		
+		return getSqlSession().selectList("selectSpecGoods", num);
+	}
 	
 }

@@ -49,10 +49,12 @@
 		<div>
 		<span>상품금액 : </span>
 		<span class="goodsPrice">${goodsPrice}</span><span>원</span>
+		<input type="hidden" name="goodsPrice" id="goodsPrice" value="${goodsPrice}">
 		</div>
 		<div>
 		<span>상품할인금액 : </span>
 		<span class="discountprice">${discountprice}</span><span>원</span>
+		<input type="hidden" name="discountprice" id="discountprice" value="${discountprice}">
 		</div>
 		<div>
 		<span>결제 예정 금액 : </span>
