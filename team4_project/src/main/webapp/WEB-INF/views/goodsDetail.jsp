@@ -352,11 +352,14 @@
   $(document).on('click', '.view_content',function(){
 	  var id = this.id;
 	  var RorQ = $('#'+id).parent().parent().attr('name');
+	  var code = "<%=session.getAttribute("user_code") %>";
+	  var arName =  $('#'+id).children().eq(2).text();
+	  var user_id = "<%=session.getAttribute("user_id") %>";
 	  
 	  /* 목차를 누른건지 체크 */
 	  if(id != 'tr_first'){
 	  /* 비밀글 체크 후 조회여부 결정  (0이면 비밀글)*/
-	  if($('#'+id).attr("value") != "0"){
+	  if($('#'+id).attr("value") != "0" || code == "admin" || arName =user_id ){
 		$.ajax({
 			type : "get",
 			url : "view_count",
