@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+<jsp:include page="top.jsp"></jsp:include>
 ** 마이페이지 ** 
 <!--   
 	mypage에서 구현해야할 기본 내용  
@@ -18,5 +20,9 @@
 	- 회원 정보 수정 
 	 
  -->
+ 
+ <div id="btn_user"><a href="updateUser"> 개인정보 수정 </a></div>
+ <div id="btn_orders"><a href="showOrders"> 주문 내역 </a></div><br> 
+ 
 </body>
 </html>

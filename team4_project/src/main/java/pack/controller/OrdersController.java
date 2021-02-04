@@ -16,7 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pack.model.CartDaoInter;
 import pack.model.CartDto;
+import pack.model.GoodsDaoInter;
+import pack.model.GoodsDto;
 import pack.model.OrdersDaoInter;
+import pack.model.OrdersDto;
+import pack.model.OrdersGoodsDto;
 import pack.model.UserDaoInter;
 import pack.model.UserDto;
 
@@ -30,7 +34,10 @@ public class OrdersController {
 	UserDaoInter userDaoInter; 
 	
 	@Autowired
-	CartDaoInter cartDaoInter; 
+	CartDaoInter cartDaoInter;
+	
+	@Autowired
+	GoodsDaoInter goodsDaoInter; 
 	
 	@Autowired
 	OrdersGoodsBean ordersGoodsBean;
@@ -77,7 +84,7 @@ public class OrdersController {
 	
 	
 	@RequestMapping(value="orders", method=RequestMethod.POST)
-	public String DoOrderGoods(HttpServletRequest request, HttpServletResponse response, 
+	public ModelAndView DoOrderGoods(HttpServletRequest request, HttpServletResponse response, 
 			OrdersBean bean, @RequestParam("goods_id") String[] goods_id, 
 			@RequestParam("goods_cont") String[] goods_cont) {
 		HttpSession session = request.getSession();
@@ -95,26 +102,38 @@ public class OrdersController {
 		bean.setUser_id(user_id);
 		System.out.println("orders_id : " + bean.getOrders_id()); 
 		
+		// db 다녀오기
+		Boolean result = ordersDaoInter.insertOrders(bean);
+		
 		// ordersGoodsBean 및 cartBean 값 셋팅하기 
 		for (int i=0; i<goods_id.length; i++) {
-			System.out.println(goods_id[i]);
-			System.out.println(goods_cont[i]);
+//			System.out.println(goods_id[i]);
+//			System.out.println(goods_cont[i]);
 			ordersGoodsBean.setOrders_id(orders_id);
 			ordersGoodsBean.setGoods_id(Integer.parseInt(goods_id[i]));
 			ordersGoodsBean.setGoods_cont(Integer.parseInt(goods_cont[i]));
+			Boolean result2 = ordersDaoInter.insertOrdersGoods(ordersGoodsBean);
+			if (result2) {
+				System.out.println(goods_id[i] + " 입력성공(result2)");
+			} else {
+				System.out.println(goods_id[i] + " 입력실패(result2)");
+			}
+		} 	
+		
+		ArrayList<OrdersGoodsDto> orderList = ordersDaoInter.getOrdersGoods(orders_id);
+		ArrayList<GoodsDto> goodslist = new ArrayList<GoodsDto>();
+		for(OrdersGoodsDto ogdto: orderList) {
+			GoodsDto goodsDto = goodsDaoInter.getGoodsSearch(ogdto.getGoods_id());
+			goodslist.add(goodsDto);
 		}
-		
-		// cartBean 데이터 입력
-		
-		
-		// db 다녀오기
-		Boolean result = ordersDaoInter.insertOrders(bean);
-		Boolean result2 = ordersDaoInter.insertOrdersGoods(ordersGoodsBean);
-		
-		// cart 수정하기 	
+		ModelAndView mav  = new ModelAndView("order_result");
+		mav.addObject("orderInfo", bean);
+		mav.addObject("orderList", orderList);
+		mav.addObject("goodslist", goodslist);
 		
 		
-		if (result & result2) {
+		
+		if (result) {
 			System.out.println("result 입력 성공");
 			for (int i=0; i<goods_id.length; i++) {
 				cartBean.setGoods_id(Integer.parseInt(goods_id[i]));
@@ -132,14 +151,35 @@ public class OrdersController {
 			if(!result) {
 			System.out.println("result 입력 실패");
 			}
-			if (!result2) {
-			System.out.println("result2 입력 실패");
-			} 
 		}
 		
-		
-		
-		
-		return "mypage";
+		return mav;
 	}
+	
+	@RequestMapping(value="showOrders", method=RequestMethod.GET)
+	public ModelAndView showOrders(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String user_id = (String)session.getAttribute("user_id");
+		ModelAndView mav = new ModelAndView("my_showOrders");
+		
+		ArrayList<OrdersDto> olist = ordersDaoInter.getOrders(user_id);
+		ArrayList<ArrayList<OrdersGoodsDto>> oglist = new ArrayList<ArrayList<OrdersGoodsDto>>();
+		ArrayList<GoodsDto> goodslist = new ArrayList<GoodsDto>();
+		for(OrdersDto dto : olist) {
+			String orders_id = dto.getOrders_id();
+			ArrayList<OrdersGoodsDto> ogd = ordersDaoInter.getOrdersGoods(orders_id);
+			for(OrdersGoodsDto ogdto: ogd) {
+				GoodsDto goodsDto = goodsDaoInter.getGoodsSearch(ogdto.getGoods_id());
+				goodslist.add(goodsDto);
+			}
+			oglist.add(ordersDaoInter.getOrdersGoods(orders_id));
+		}
+
+		mav.addObject("olist", olist);
+		mav.addObject("oglist", oglist);
+		mav.addObject("goodslist", goodslist);
+
+		return mav;
+	}
+	
 }

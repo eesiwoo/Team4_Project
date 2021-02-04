@@ -18,4 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	value(#{orders_id}, #{goods_id}, #{goods_cont}) 
  </insert>
  
+ <!-- 주문 정보 가져오기 -->
+ <select id="selectOrders" parameterType="string" resultType="o_dto">
+ 	select * from orders where user_id = #{user_id}
+ </select>
+ 
+ <!-- 주문 내역(상품) 가져오기 -->
+ <select id="selectOrdersGoods" parameterType="string" resultType="og_dto">
+ 	select * from orders_goods where orders_id = #{orders_id}
+ </select>
 </mapper>

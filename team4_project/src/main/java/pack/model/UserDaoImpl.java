@@ -26,4 +26,11 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDaoInter{
 	public UserDto selectUser(String user_id) {
 		return getSqlSession().selectOne("selectUser", user_id);
 	}
+	
+	@Override
+	public Boolean updateUser(UserBean bean) {
+		int re = getSqlSession().update("updateUser", bean);
+		if(re==1) return true;
+		else return false; 
+	}
 }

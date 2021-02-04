@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="pack.model.UserDto" alias="u_dto"/>
 	<typeAlias type="pack.model.CartDto" alias="c_dto"/>
 	<typeAlias type="pack.model.OrdersDto" alias="o_dto"/>
+	<typeAlias type="pack.model.OrdersGoodsDto" alias="og_dto"/>
 	<typeAlias type="pack.model.ReviewDto" alias="ReviewDto"/>
 	<typeAlias type="pack.model.LikesDto" alias="LikesDto"/>
 </typeAliases>

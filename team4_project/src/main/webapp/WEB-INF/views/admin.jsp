@@ -70,8 +70,7 @@
 				})
 	</script>
 
-
-
+	<jsp:include page="top.jsp"></jsp:include>
 	<div class="main">
 		<div class="field_head">
 			<h3 class="tit">ADMIN</h3>
@@ -145,11 +144,11 @@
 				</tr>
 				<tr>
 					<th>판매단위</th>
-					<td><input type="number" name="goods_saleUnit" /></td>
+					<td><input type="text" name="goods_saleUnit" /></td>
 				</tr>
 				<tr>
 					<th>중량</th>
-					<td><input type="number" name="goods_weight" /></td>
+					<td><input type="text" name="goods_weight" /></td>
 				</tr>
 				<tr>
 					<th>유통기한</th>

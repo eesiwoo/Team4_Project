@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"  />
 <link rel="stylesheet" href="resources/css/signup.css">
@@ -22,10 +22,15 @@ jQuery.browser = {};
     }
 })();
 </script>
- 
- <script type="text/javascript">
+<script type="text/javascript">
  $(document).ready(function(){
 		
+	    var msg = "<%=request.getAttribute("msg1")%>"
+		console.log(msg)
+		if(msg != "null"){
+			alert(msg);
+		}
+	 
 		$.datepicker.setDefaults({
 			dateFormat: 'yy-mm-dd',
 			changeMonth : true, changeYear : true,
@@ -37,24 +42,37 @@ jQuery.browser = {};
 			showMonthAfterYear: true,
 
 		})
+	
+		// 비밀번호 확인 - 추가 
+		$(document).on("change", "#user_pwd1", function(){
+			
+		})
 		
 	$(function(){
 		$("#datepicker").datepicker({}); 
 	});
 		
 		$("#submitBtn").click(function(){
+			if($("#user_pwd").val()== "" || $("#user_pwd1").val()== "" || $("#user_pwd2").val()== "" 
+				|| $("#user_name").val()== "" || $("#user_email").val()== "" || $("#user_addr").val()== "" || $("#user_tel").val()== "" 
+					|| $("#datepicker").val()== "" )  {
+				alert("필수 입력란이 비었습니다. 확인해주세요.");
+				return false;
+			}
 			form.submit();
 		})
 	})
     </script>
-    <jsp:include page="top.jsp"></jsp:include>
-    <div class="main">
-      <div class="field_head">
-        <h3 class="tit">회원가입</h3>
-        <p class="sub"><span class="ico">*</span>필수입력사항</p>
-      </div>
 
-      <form action="signup" method="post" name="form">
+</head>
+<body>
+<jsp:include page="top.jsp"></jsp:include>
+<div class="main">
+      <div class="field_head">
+        <h3 class="tit">개인 정보 수정</h3>
+      </div><p/>
+
+      <form action="updateUser" method="post" name="form">
         <table>
           <tr>
             <th>아이디<span class="ico">*</span></th>
@@ -62,16 +80,44 @@ jQuery.browser = {};
               <input
                 type="text"
                 name="user_id"
-                placeholder="아이디를 입력하세요"
+                placeholder="${userInfo.user_id}"
+                id="user_id"
+                readonly="readonly"
+                value="${userInfo.user_id}"
               />
             </td>
           </tr>
           <tr>
-            <th>비밀번호<span class="ico">*</span></th>
+            <th>현재 비밀번호<span class="ico">*</span></th>
             <td>
               <input
                 type="password"
                 name="user_pwd"
+                id="user_pwd"
+                maxlength="15"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>새 비밀번호<span class="ico">*</span></th>
+            <td>
+              <input
+                type="password"
+                name="user_pwd1"
+                id="user_pwd1"
+                maxlength="15"
+                placeholder="비밀번호를 입력하세요(15자리 이하)"
+              />
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <th>새 비밀번호 확인<span class="ico">*</span></th>
+            <td>
+              <input
+                type="password"
+                id="user_pwd2"
+                id="user_pwd2"
                 maxlength="15"
                 placeholder="비밀번호를 입력하세요(15자리 이하)"
               />
@@ -83,7 +129,8 @@ jQuery.browser = {};
               <input
                 type="text"
                 name="user_name"
-                placeholder="이름을 입력하세요"
+                id="user_name"
+                value="${userInfo.user_id}"
               />
             </td>
           </tr>
@@ -93,7 +140,8 @@ jQuery.browser = {};
               <input
                 type="text"
                 name="user_email"
-                placeholder="이메일 주소를 입력하세요"
+                id="user_email"
+                value="${userInfo.user_email}"
               />
             </td>
           </tr>
@@ -103,7 +151,8 @@ jQuery.browser = {};
               <input
                 type="text"
                 name="user_addr"
-                placeholder="주소를 입력하세요"
+                id="user_addr"
+                value="${userInfo.user_addr}"
               />
             </td>
           </tr>
@@ -113,7 +162,8 @@ jQuery.browser = {};
               <input
                 type="tel"
                 name="user_tel"
-                placeholder="숫자만 입력해주세요"
+                id="user_tel"
+                value="${userInfo.user_tel}"
                 pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}"
                 maxlength="13"
               />
@@ -129,26 +179,16 @@ jQuery.browser = {};
             </td>
           </tr>
           <tr>
-            <th>생년월일</th>
+            <th>생년월일<span class="ico">*</span></th>
             <td>
               <input type="text" id="datepicker" name="user_bDate" />
             </td>
           </tr>
         </table>
         <div id="submit">
-          <input type="button" id="submitBtn" value="가입하기" />
+          <input type="button" id="submitBtn" value="수정하기" />
         </div>
       </form>
     </div>
-    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
