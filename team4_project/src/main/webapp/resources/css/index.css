@@ -1,75 +1,138 @@
 body {
-  display: grid;
-  box-sizing: border-box;
-  margin: 0 200px;
+	display: grid;
+	box-sizing: border-box;
+	margin: 0 200px;
 }
+
 header {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 1fr 2fr;
-  grid-template-rows: 1fr 2fr;
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-rows: 1fr 2fr;
+	grid-template-rows: 1fr 2fr;
 }
+
 header .list_menu {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin: 0 200px;
-  padding-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin: 0 200px;
+	padding-top: 20px;
 }
+
 header .list_menu .menu_join {
-  color: #5f0080;
+	color: #5f0080;
 }
+
 header .bottom img {
-  display: block;
-  width: 115px;
-  height: 75px;
-  margin: 0 auto;
+	display: block;
+	width: 115px;
+	height: 75px;
+	margin: 0 auto;
 }
+
 nav {
-  position: -webkit-sticky;
-  position: sticky;
-  top: -0.5px;
-  background-color: #fff;
-  z-index: 1;
-  border-bottom: 1px solid #f4f4f4;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 85px;
-  font-weight: 700;
-  color: #000;
-  padding-top: 10px;
+	position: -webkit-sticky;
+	position: sticky;
+	top: -0.5px;
+	background-color: #fff;
+	z-index: 1;
+	border-bottom: 1px solid #f4f4f4;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	gap: 85px;
+	font-weight: 700;
+	color: #000;
+	padding-top: 10px;
 }
+
 nav a {
-  text-decoration: none;
-  color: #000;
+	text-decoration: none;
+	color: #000;
 }
+
 nav .list {
-  padding-left: 0;
-  list-style-type: none;
-  display: flex;
-  gap: 30px;
-  margin: 0;
-  padding-top: 5px;
-  font-size: 16px;
-  line-height: 20px;
+	padding-left: 0;
+	list-style-type: none;
+	display: flex;
+	gap: 30px;
+	margin: 0;
+	padding-top: 5px;
+	font-size: 16px;
+	line-height: 20px;
 }
+
 nav .list li {
-  margin-right: 70px;
-  padding-right: 20px;
+	margin-right: 70px;
+	padding-right: 20px;
 }
+
 nav .list #last {
-  margin-right: 0;
+	margin-right: 0;
 }
+
 nav .tools {
-  margin-right: 60px;
-  display: flex;
-  gap: 30px;
+	margin-right: 60px;
+	display: flex;
+	gap: 30px;
 }
+
 nav .tools .search {
-  padding-top: 5px;
+	padding-top: 5px;
 }
+
 nav .tools img {
-  width: 27px;
-  height: 27px;
+	width: 27px;
+	height: 27px;
+}
+
+/* 이 상품 어때요? */
+.how {
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 32px;
+	letter-spacing: -0.3px;
+	text-align: center;
+}
+
+#index_goods_name1, #index_goods_name2, #index_goods_name3,
+	#index_goods_name4, #index_goods_name5, #index_goods_name6,
+	#index_goods_name7, #index_goods_name8, #index_goods_name9,
+	#index_goods_name10, #index_goods_name11, #index_goods_name12,
+	#index_goods_name13, #index_goods_name14, #index_goods_name15,
+	#index_goods_name16, #index_goods_name17, #index_goods_name18,
+	#index_goods_name19, #index_goods_name20, #index_goods_name21,
+	#index_goods_name22, #index_goods_name23, #index_goods_name24 {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+#index_goods_Bprice1, #index_goods_Bprice2, #index_goods_Bprice3,
+	#index_goods_Bprice4, #index_goods_Bprice5, #index_goods_Bprice6,
+	#index_goods_Bprice7, #index_goods_Bprice8, #index_goods_Bprice9,
+	#index_goods_Bprice10, #index_goods_Bprice11, #index_goods_Bprice12,
+	#index_goods_Bprice13, #index_goods_Bprice14, #index_goods_Bprice15,
+	#index_goods_Bprice16, #index_goods_Bprice17, #index_goods_Bprice18,
+	#index_goods_Bprice19, #index_goods_Bprice20, #index_goods_Bprice21,
+	#index_goods_Bprice22, #index_goods_Bprice23, #index_goods_Bprice24 {
+	padding-left: 4px;
+	font-size: 14px;
+	color: #999;
+	line-height: 30px;
+	text-decoration: line-through;
+}
+
+#index_goods_Pprice1, #index_goods_Pprice2, #index_goods_Pprice3,
+	#index_goods_Pprice4, #index_goods_Pprice5, #index_goods_Pprice6,
+	#index_goods_Pprice7, #index_goods_Pprice8, #index_goods_Pprice9,
+	#index_goods_Pprice10, #index_goods_Pprice11, #index_goods_Pprice12,
+	#index_goods_Pprice13, #index_goods_Pprice14, #index_goods_Pprice15,
+	#index_goods_Pprice16, #index_goods_Pprice17, #index_goods_Pprice18,
+	#index_goods_Pprice19, #index_goods_Pprice20, #index_goods_Pprice21,
+	#index_goods_Pprice22, #index_goods_Pprice23, #index_goods_Pprice24 {
+	display: block;
+	padding-top: 9px;
+	font-weight: 800;
+	font-size: 16px;
+	line-height: 20px;
 }

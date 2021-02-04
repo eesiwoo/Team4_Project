@@ -36,7 +36,7 @@
 			</div>
 
 			<div class="howAbout">
-				<h2>이 상품 어때요?</h2>
+				<h2 class="how">이 상품 어때요?</h2>
 				<section class="regular slider">
 					<div>
 						<a id="index_a1" href="#"><img id="index_image1"

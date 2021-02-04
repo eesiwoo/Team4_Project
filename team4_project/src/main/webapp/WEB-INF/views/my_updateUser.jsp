@@ -28,8 +28,8 @@ jQuery.browser = {};
 <script type="text/javascript">
  $(document).ready(function(){
 		
-	    var msg = "<%=request.getAttribute("msg1")%>
-	"
+	    var msg = "<%=request.getAttribute("msg1")%>"
+	
 				console.log(msg)
 				if (msg != "null") {
 					alert(msg);

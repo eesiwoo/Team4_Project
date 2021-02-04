@@ -14,7 +14,7 @@ header {
   grid-template-rows: 1fr 2fr;
 }
 header .list_menu {
-  width: 1050px;
+ /*  width: 1050px; */
   display: flex;
   justify-content: flex-end;
   gap: 10px;
@@ -23,6 +23,12 @@ header .list_menu {
 }
 header .list_menu .menu_join {
   color: #5f0080;
+}
+header .list_menu .link_menu{
+	text-decoration: none;
+}
+.center{
+	color:black;
 }
 header .bottom img {
   display: block;
