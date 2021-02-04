@@ -17,6 +17,7 @@
 <link href="resources/css/dropdown.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/kurlyTop.png" />
 
+
 </head>
 <body>
 	<div id="container">
