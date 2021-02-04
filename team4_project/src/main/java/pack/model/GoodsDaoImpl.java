@@ -53,4 +53,9 @@ public class GoodsDaoImpl extends SqlSessionDaoSupport implements GoodsDaoInter{
 		return getSqlSession().selectList("selectSpecGoods", num);
 	}
 	
+	@Override
+	public List<String> getGoodsSearchKeyword(String keyword) {
+		return getSqlSession().selectList("selectGoodsSuggst","keyword");
+	}
+	
 }

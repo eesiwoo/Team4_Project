@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="resources/css/top.css">
 </head>
 <body>
+<%
+String keyword = request.getParameter("keyword");
+%>
+
 	<header>
 		<div class="list_menu">
 			<div class="menu menu_join">

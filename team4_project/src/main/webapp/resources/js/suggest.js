@@ -5,7 +5,7 @@ var lastKeyword = "";
 function sijak() {
     if (checkFirst == false) {
     	//1초뒤 sendKeyword() 수행
-        setTimeout("sendKeyword()", 1000);
+        setTimeout("sendKeyword()", 500);
         loopSend = true;
     }
 }
@@ -24,12 +24,12 @@ function sendKeyword() {
         } else if (keyWord !== lastKeyword) {
             lastKeyword = keyWord;
 
-            var para = "keyword=" + keyWord;
+            var keyword = "keyword=" + keyWord;
             $.ajax({
             	type : "post",
-            	url : "",
+            	url : "searchGoods",
             	dataType:"json",
-            	data : {"para" : para},
+            	data : {"keyword" : keyword},
             	success : function(dbdata){
             		process(dbdata)
             	}

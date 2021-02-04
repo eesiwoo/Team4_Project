@@ -10,6 +10,9 @@ public interface GoodsDaoInter {
 	// product를 클릭하게 되면 해당 상품을 가져오기 
 	public GoodsDto getGoodsSearch(int goods_id);
 	
+	// 검색을 통해 얻은 데이터  
+	public List<String> getGoodsSearchKeyword(String keyword);
+	
 	// productList에 보여질 상품 모두 가져오기  
 	public List<GoodsDto> getGoodsList();
 	
