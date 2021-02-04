@@ -1,6 +1,7 @@
 package pack.controller;
  
 import java.io.File;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,7 @@ import pack.model.ReviewInter;
 
 @Controller
 public class InsertReviewController {
-	private static final String FILE_PATH = "C:\\Users\\acorn\\git\\Team4_Project\\team4_project\\src\\main\\webapp\\resources\\review_img";
+	
 	
 	@Autowired
 	private ReviewInter inter;
@@ -29,7 +30,6 @@ public class InsertReviewController {
 								   @RequestParam("RorQ")String RorQ,
 								   HttpServletRequest request,
 								   HttpServletResponse response) throws Exception {
-		System.out.println(RorQ);
 		
 		request.setAttribute("goods_id", goods_id);
 		HttpSession session = request.getSession();
@@ -62,6 +62,12 @@ public class InsertReviewController {
 			dto.setReview_asc(Integer.parseInt(asc)+1);
 		
 		//파일 업로드
+	    String root_path = request.getSession().getServletContext().getRealPath("resources/review_img");  
+	    String attach_path = "/";
+	    String FILE_PATH = root_path + attach_path;
+	    System.out.println("제바바아아ㅏ라ㅏ라라라라ㅏ" + FILE_PATH);
+		
+		
 		String orgName = file.getOriginalFilename();
 		String fileName = dto.getGoods_id() + "_" + dto.getReview_asc() + "_" + orgName;
 		if(!orgName.isEmpty()) {
