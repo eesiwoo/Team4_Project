@@ -36,13 +36,9 @@
 								value="${goods}" /><span class="ico"></span> </label><img width="100"
 								width="100" src="resources/images/goods/${c_dto.goods_img}">
 							<span class="goods_name">${c_dto.goods_name}</span> <span
-								class="count">
-								<button type="button" id="${goods}_down" class="btn_down">-</button>
-								<input type="number" name="goods_cont" id="${goods}_cont"
+								class="count"><button type="button" id="${goods}_down" class="btn_down">-</button><input type="number" name="goods_cont" id="${goods}_cont"
 								readonly="readonly" onfocus="this.blur()" class="inp"
-								value="${c_dto.cart_goods_cont}">
-								<button type="button" id="${goods}_up" class="btn_up">+</button>
-							</span>
+								value="${c_dto.cart_goods_cont}" size="4" style="text-align:center; width:30px;"><button type="button" id="${goods}_up" class="btn_up">+</button></span>
 
 							<!-- span으로 묶음 -->
 							<span class="price_sum"> <span class="goods_price_calc" id="${goods}_price"> ${c_dto.goods_price * c_dto.cart_goods_cont * (100 - c_dto.goods_discountRate)/100}</span><span>원</span></span> 

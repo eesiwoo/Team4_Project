@@ -21,14 +21,9 @@ public class GoodsListController {
 	private GoodsDaoInter goodsDaoInter;
 	
 	@RequestMapping(value = "goodsList", method=RequestMethod.GET)
-	public ModelAndView productList(@RequestParam("num") int num) {
+	public ModelAndView productList() {
 		List<GoodsDto> list;
-		if(num == 0) {
-			list = goodsDaoInter.getGoodsList();
-		} else {
-			list = goodsDaoInter.getGoodsList();
-		}
-		
+		list = goodsDaoInter.getGoodsList();
 		
 		Collections.shuffle(list);
 		ModelAndView mav = new ModelAndView("goodsList");
