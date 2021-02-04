@@ -6,19 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
 	<script type="text/javascript">
-	$( document ).ready(function() {
-		$("#review_isPrivate").change(function(){
-	        if($("#review_isPrivate").is(":checked")){
-	        	$('#review_isPrivate').val("1");
-	        }else{
-	        	$('#review_isPrivate').val("0");
-	        }
-	    });
+	$(document).on('change', '#review_isPrivate', function(){
+	if($('#review_isPrivate').prop('checked')){
+		$("#val").val('0');
+	}else{
+		$("#val").val('1');
+	}
 	});
-	</script>
-	
+	</script>	
 </head>
 <body>
 	<form action="insertReview" method="post" id="insertForm" enctype="multipart/form-data">
@@ -27,7 +23,7 @@
 	<table border="1" style="width: 80%">
 	  <tr>
 	  	<td>숨김여부</td>
-	  	<td>글 숨기기 <input type="checkbox" id="review_isPrivate" name="review_isPrivate" value="0"></td>
+	  	<td>글 숨기기 <input type="checkbox" id="review_isPrivate"checked></td>
 	  	
 	  </tr>
 	  <tr>
@@ -47,12 +43,12 @@
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
 	  	<input type="hidden" name="review_orQna" value="qna">
+	  	<input type="hidden" id="val" name="review_isPrivate" value="0" >
 	  		<input type="submit" value="등록" id="btnIns">
 	  	
 	  	</td>
 	  </tr>
 	</table>
 	</form>
-
 </body>
 </html>

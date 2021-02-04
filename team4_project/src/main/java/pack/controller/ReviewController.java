@@ -85,7 +85,7 @@ public class ReviewController {
 		if( howAsc.equals("recently") )
 			reviewList = inter.selectReview(dto);
 		else if( howAsc.equals("likes") )
-			reviewList = inter.selectReviewOrderbyLikes(goods_id);
+			reviewList = inter.selectReviewOrderbyLikes(dto);
 		else if ( howAsc.equals("myReview") )
 			reviewList = inter.selectReviewOrderbyUserId(dto);
 			

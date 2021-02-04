@@ -68,7 +68,7 @@
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
 	  	<input type="hidden" name="review_orQna" value="review">
-	  	<input type="hidden" id="review_isPrivate" value="0">
+	  	<input type="hidden" id="review_isPrivate" name="review_isPrivate" value="1">
 	  		<input type="submit" value="등록" id="btnIns">
 	  	
 	  	</td>

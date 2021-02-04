@@ -328,7 +328,16 @@
 		var pageId = 1;
 		callReview(pageId, "recently" ,"review");
 		callReview(pageId, "recently" ,"qna");
+		
+		var log = getParameterByName("log")
+		if(log == "x"){
+			alert("로그인 후 이용해주세요")
+		}else{
+			
+		}	
+		
 	 });  
+  
   
  	 
   /* url에서 goods_id 가져오기 */
@@ -343,9 +352,11 @@
   $(document).on('click', '.view_content',function(){
 	  var id = this.id;
 	  var RorQ = $('#'+id).parent().parent().attr('name');
-	  alert(RorQ)
-	  /* 비밀글 체크 후 조회여부 결정 */
-	  if($('#'+id).attr("value") == "0"){
+	  
+	  /* 목차를 누른건지 체크 */
+	  if(id != 'tr_first'){
+	  /* 비밀글 체크 후 조회여부 결정  (0이면 비밀글)*/
+	  if($('#'+id).attr("value") != "0"){
 		$.ajax({
 			type : "get",
 			url : "view_count",
@@ -369,6 +380,10 @@
 	  }
 	  else
 		  alert("비밀글 입니다.");
+	  
+	  } 
+	  /* 목차면 아무것도 하지 않음 */
+	  else {}
 	  });
 
   
@@ -407,7 +422,6 @@
 	  var pageId = this.id;
 	  var howAsc = $("#howAsc").val();
 	  var RorQ = $('.pagebtn').parent().attr('name');
-	  alert(RorQ)
 	  callReview(pageId, howAsc, RorQ);
   });		
   
@@ -443,6 +457,7 @@
 					str += "</tr>";
 				let notice = review.noticeList;
 				$(notice).each(function(i, nl){
+					/* 공지목록 */
 					str += "<tr class='view_content' id='" + nl.review_id + "_review' value='"+nl.review_isPrivate+"'>";
 					str += "<td class='tb_no'>공  지</td>"
 					str += "<td class='tb_tit'>" + nl.review_title + "</td>";

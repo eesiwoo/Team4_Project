@@ -1,7 +1,6 @@
 package pack.controller;
  
 import java.io.File;
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,11 +34,9 @@ public class InsertReviewController {
 		request.setAttribute("goods_id", goods_id);
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
-		response.setContentType("text/html; charset=UTF-8");
 		if(user_id == null) {
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 후 이용해주세요');</script>");
-			return "redirect:/goods?goods_id=" + goods_id ;
+
+			return "redirect:/goods?goods_id=" + goods_id + "&log=x";
 		} else {
 			if(RorQ.equals("review"))
 				return "insertReviewForm";
@@ -57,7 +54,7 @@ public class InsertReviewController {
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
 		int goods_id = dto.getGoods_id();
-		String asc = inter.currentReview_asc(goods_id);
+		String asc = inter.currentReview_asc(dto);
 		dto.setUser_id(user_id);
 		if(asc == null)
 			dto.setReview_asc(1);

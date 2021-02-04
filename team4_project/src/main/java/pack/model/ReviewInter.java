@@ -6,9 +6,8 @@ public interface ReviewInter {
 
 	//굿즈 디테일에서 보이는 리뷰 창 (goods_id를 가져와 글 목록 조회)
 	public ArrayList<ReviewDto> selectReview(ReviewDto dto);
-	public ArrayList<ReviewDto> selectReviewOrderbyLikes(int goods_id);
-
-	public ArrayList<ReviewDto> selectReviewOrderbyUserId(int goods_id);
+	
+	public ArrayList<ReviewDto> selectReviewOrderbyLikes(ReviewDto dto);
 
 	public ArrayList<ReviewDto> selectReviewOrderbyUserId(ReviewDto dto);
 
@@ -27,7 +26,7 @@ public interface ReviewInter {
  	public int currentReview_id();
  	
  	//상품글 번호 증가를 위해 현재 번호를 가져옴 / 댓글 작성 시에도 사용함
- 	public String currentReview_asc(int goods_id);
+ 	public String currentReview_asc(ReviewDto dto);
  	
  	//댓글이 메인 글 아래 달리도록 하기 위해 사용
  	public int currentReview_answer();

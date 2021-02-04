@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 공지글 조회 -->
  <select id="selectNotice" parameterType="string" resultType="ReviewDto">
   	select * from review
-  	where goods_id = 0 and review_orQna = #{review_orQna}
+  	where review_asc = 9999999 and review_orQna = #{review_orQna}
   	order by review_asc desc
  </select>
 
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </insert>
  
   <!-- MaxReview_asc 조회 -->
- <select id="MaxReview_asc" resultType="String">
+ <select id="currentReview_asc" resultType="string" parameterType="ReviewDto">
   	select max(review_asc)
   	from review
   	where goods_id = #{goods_id} and review_orQna = #{review_orQna}
