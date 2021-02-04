@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="resources/css/cartList.css">
 </head>
 <body>
+	<jsp:include page="top.jsp"></jsp:include>
 	<div class="main">
 		<div class="title">
 			<h1>장바구니</h1>

@@ -70,8 +70,7 @@
 				})
 	</script>
 
-
-
+	<jsp:include page="top.jsp"></jsp:include>
 	<div class="main">
 		<div class="field_head">
 			<h3 class="tit">ADMIN</h3>

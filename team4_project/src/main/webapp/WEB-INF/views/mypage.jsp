@@ -8,6 +8,7 @@
 <script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+<jsp:include page="top.jsp"></jsp:include>
 ** 마이페이지 ** 
 <!--   
 	mypage에서 구현해야할 기본 내용  

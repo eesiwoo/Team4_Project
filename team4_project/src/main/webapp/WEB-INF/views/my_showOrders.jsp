@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="top.jsp"></jsp:include>
 <table>
 	<tr><th>주문번호</th><th>주문일시</th><th>상품이미지</th><th>상품이름</th><th>주문수량</th><th>배송지</th></tr>
 	<c:forEach var="og" items="${oglist}">

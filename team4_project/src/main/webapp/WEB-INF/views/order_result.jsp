@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="top.jsp"></jsp:include>
 <h1>${orderList.size()}개 상품 주문이 완료되었습니다.</h1>
 
 	<h2>상품 및 배송 정보</h2><hr/>

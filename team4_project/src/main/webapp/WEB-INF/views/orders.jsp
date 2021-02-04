@@ -14,6 +14,7 @@
 
 </head>
 <body>
+<jsp:include page="top.jsp"></jsp:include>
 	<div class="main">
 		<!-- 주문서 -->
 		<div class="title">
