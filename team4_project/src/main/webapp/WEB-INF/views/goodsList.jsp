@@ -56,7 +56,7 @@
         </div>
       </div>
     </main>
-    
+    <jsp:include page="bottom.jsp"></jsp:include>
 	
 <!-- 
 	productList에서 구현해야할 기본 내용  

@@ -171,5 +171,6 @@
 			</div>
 		</form>
 	</div>
+	<jsp:include page="bottom.jsp"></jsp:include>
 </body>
 </html>

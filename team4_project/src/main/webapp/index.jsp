@@ -7,18 +7,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
-<script type="text/javascript"
-	src="resources/js/jquery-3.5.1.min.js"></script>
-
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
 <link href="resources/css/slick.css" rel="stylesheet" type="text/css" />
-<link href="resources/css/slick-theme.css" rel="stylesheet"
-	type="text/css" />
+<link href="resources/css/slick-theme.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/index.css" rel="stylesheet" />
 <link href="resources/css/slider.css" rel="stylesheet" />
-<link href="resources/css/footer.css" rel="stylesheet" />
 <link href="resources/css/multipleImageSlider.css" rel="stylesheet" />
 <link href="resources/css/earlyBirdContainer.css" rel="stylesheet" />
-<link href="resources/css/test.css" rel="stylesheet" />
 <link href="resources/css/dropdown.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/kurlyTop.png" />
 
