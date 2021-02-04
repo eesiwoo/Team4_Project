@@ -62,8 +62,10 @@
 		</ul>
 		<div class="tools">
 			<div id="search" class="search">
-				<form>
-					<input type="text" />
+				<form name="frm">
+					<input type="text" name="keyword" id="keyword" onkeydown="sijak()"/>
+					<div id="suggest" style="display: position:absolute; lefr:100px; top:30px;"></div>
+					Selected Name: <input type="text" name="sel" size="10" readonly="readonly">
 				</form>
 			</div>
 			<div>
