@@ -9,7 +9,7 @@
 <title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
 <script type="text/javascript"
 	src="resources/js/jquery-3.5.1.min.js"></script>
-
+<link href="resources/css/sideBar.css" rel="stylesheet" />
 <link href="resources/css/slick.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/slick-theme.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/index.css" rel="stylesheet" />
@@ -19,10 +19,14 @@
 <link href="resources/css/earlyBirdContainer.css" rel="stylesheet" />
 <link href="resources/css/dropdown.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/kurlyTop.png" />
-
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('#sidebar').containedStickyScroll();
+	});
+</script>
 </head>
 <body>
-	
+	<a href="right">사이드바</a>
 	
 	<div id="container">
 	<jsp:include page="WEB-INF/views/top.jsp"></jsp:include>	
@@ -41,7 +45,29 @@
 			</div>
 			
 			<div class="howAbout">
-			
+			<div class="sideBarContainer" id="sidebar">
+		<div class="sideBarImg">
+			<a href="#" aria-label="event"><img alt="sideBarImage"
+				src="https://res.kurly.com/pc/service/main/2101/bnr_quick.png"></a>
+		</div>
+		<div class="sideBarA">
+			<a href="#" aria-label="Grade Benefits">등급별 혜택</a> <a href="#"
+				aria-label="Recipes">레시피</a> <a href="#" aria-label="Best Reviews">베스트
+				후기</a>
+		</div>
+		<div class="recentProducts">
+			<button class="sideUpBtn"></button>
+			<strong>최근 본 상품</strong>
+			<ul>
+				<li><a href="" aria-label="recently viewed product"> <img
+						src="http://placehold.it/60x77?text=1">
+				</a></li>
+			</ul>
+
+
+			<button class="sideDownBtn"></button>
+		</div>
+	</div>
 				<h2>이 상품 어때요?</h2>
 				<section class="regular slider">
 					<div>
@@ -281,7 +307,7 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="WEB-INF/views/right.jsp"></jsp:include>
+	<%-- <jsp:include page="WEB-INF/views/right.jsp"></jsp:include> --%>
 		<jsp:include page="WEB-INF/views/bottom.jsp"></jsp:include>
 
 		<script type="text/javascript"

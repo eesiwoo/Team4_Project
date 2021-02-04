@@ -19,7 +19,7 @@
 	padding: 10px;
 	color: #fff;
 	background-color: #ff6000
-}
+} 
 </style>
 </head>
 <body>
@@ -48,11 +48,11 @@
 			<button class="sideDownBtn"></button>
 		</div>
 	</div>
-	<!-- <script type="text/javascript">
+ <script type="text/javascript">
 	jQuery(document).ready(function() {
 		jQuery('#sidebar').containedStickyScroll();
 	});
-</script> -->
+</script> 
 
 <script> $(function(){ 
 	var $win = $(window); 
