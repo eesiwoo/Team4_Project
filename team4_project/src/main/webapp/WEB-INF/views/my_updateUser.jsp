@@ -10,7 +10,8 @@
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"  />
 <link rel="stylesheet" href="resources/css/signup.css">
 <link rel="stylesheet" href="resources/css/dropdown.css">
-<link rel="stylesheet" href="resources/css/top.css">
+<link rel="stylesheet" href="resources/css/my_showOrders.css">
+
 <script>
 jQuery.browser = {};
 (function () {
@@ -67,8 +68,16 @@ jQuery.browser = {};
 </head>
 <body>
 <jsp:include page="top.jsp"></jsp:include>
+
 <div class="main">
-      <div class="field_head">
+<div class="mypage">
+			<h2 class="tit_snb">마이컬리</h2>
+			<div class="inner_snb">
+				<div class="list"><a href="showOrders">주문내역</a></div>
+				<div class="list"><a href="updateUser">개인정보 수정</a></div>
+			</div>
+		</div>
+      <div class="title">
         <h3 class="tit">개인 정보 수정</h3>
       </div><p/>
 

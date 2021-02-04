@@ -14,7 +14,7 @@ public class MyPageController {
 			db에서 mypage에 관련된 데이터 가져오기.	
 		*/
 		
-		ModelAndView mav = new ModelAndView("mypage"); 
+		ModelAndView mav = new ModelAndView("my_showOrders"); 
 		return mav;
 	}
 
