@@ -153,7 +153,7 @@
           <li class="goods-view-information-tab">상품이미지</li>
           <li class="goods-view-information-tab">상세정보</li>
           <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
-          <li class="goods-view-information-tab">상품문의</li>
+          <li class="goods-view-information-tab"><a href="#qna">상품문의</li>
         </ul>
         </div>
 		<div class="board">
@@ -161,7 +161,7 @@
 				<h2>PRODUCT REVIEW</h2>
 				<div class="sort-wrap clearfix">
 					<ul>
-						<li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
+						<li>상품에 대한 후기를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
 							이동될 수 있습니다.</li>
 						<li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1 문의에 남겨주세요.</li>
 					</ul>
@@ -175,10 +175,22 @@
 			<div class="board_table" id="review">
 			</div>
 		</div>   
+		<br/><br/><br/><br/><br/><br/>
+		<div class="goods-view-information">
+    	<ul class="goods-view-information-tab-group">
+          <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
+          <li class="goods-view-information-tab">상품이미지</li>
+          <li class="goods-view-information-tab">상세정보</li>
+          <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
+          <li class="goods-view-information-tab"><a href="#qna">상품문의</li>
+        </ul>
+        </div>
+		
+		
 		
 				<div class="board">
 			<div class="board_tit">
-				<h2>PRODUCT REVIEW</h2>
+				<h2>Q n A</h2>
 				<div class="sort-wrap clearfix">
 					<ul>
 						<li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로
@@ -356,10 +368,11 @@
 	  var arName =  $('#'+id).children().eq(2).text();
 	  var user_id = "<%=session.getAttribute("user_id") %>";
 	  
+	  
 	  /* 목차를 누른건지 체크 */
 	  if(id != 'tr_first'){
 	  /* 비밀글 체크 후 조회여부 결정  (0이면 비밀글)*/
-	  if($('#'+id).attr("value") != "0" || code == "admin" || arName =user_id ){
+	  if($('#'+id).attr("value") != "0" || code == "admin" || arName == user_id  ){
 		$.ajax({
 			type : "get",
 			url : "view_count",
@@ -524,7 +537,7 @@
 				}
 					/* 리뷰 추가 */
 					str += "<tr>";
-					str += "<td><a href='insertReview?goods_id="+goods_id+"&RorQ="+RorQ+"'> 리뷰 쓰기 </a></td>";
+					str += "<td><a href='insertReview?goods_id="+goods_id+"&RorQ="+RorQ+"'> "+ RorQ +" 쓰기 </a></td>";
 					str += "</tr>";
 				    str += "</table>";
 				    
