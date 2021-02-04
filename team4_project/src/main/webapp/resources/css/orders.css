@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+body {
+	width: auto;
+}
+
+.main {
+	width: 1050px;
+	margin: auto;
+}
+
+.tit {
+	font-weight: 800;
+	font-size: 30px;
+	color: #333;
+	line-height: 50px;
+	text-align: center;
+	letter-spacing: -.5px;
+}
+
+.tit_section {
+	padding: 74px 0 16px;
+	font-weight: bold;
+	font-size: 20px;
+	color: #333;
+	line-height: 29px;
+	clear: both;
+}
+
+form {
+	border-top: 1px solid #333;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+}
+
+/* 주문 상품 */
+.boxList {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.boxList td {
+	padding: 10px;
+}
+
+.goods_name {
+	margin-right: 500px;
+}
+
+.goods_cont {
+	margin-right: 50px;
+}
+
+/* 주문자 정보 */
+.user_info {
+	border-top: 1px solid #333;
+	width: 100%;
+}
+
+.user_info th {
+	text-align: left;
+	width: 190px;
+	padding: 8px 0 0;
+	font-weight: bold;
+	font-size: 14px;
+	color: #333;
+	line-height: 24px;
+	letter-spacing: -0.32px;
+	vertical-align: top;
+}
+
+.user_info td {
+	position: relative;
+	padding: 8px 0;
+	font-size: 14px;
+	color: #333;
+	line-height: 24px;
+	vertical-align: top;
+}
+
+/* 배송 정보 */
+.tit_section .desc {
+	padding-left: 13px;
+	font-size: 14px;
+	color: #666;
+	vertical-align: 3px;
+}
+
+.delivery {
+	border-top: 1px solid #333;
+	width: 100%;
+}
+
+.delivery th {
+	text-align: left;
+	width: 190px;
+	padding: 8px 0 0;
+	font-weight: bold;
+	font-size: 14px;
+	color: #333;
+	line-height: 24px;
+	letter-spacing: -0.32px;
+	vertical-align: top;
+}
+
+.delivery td {
+	position: relative;
+	padding: 8px 0;
+	font-size: 14px;
+	color: #333;
+	line-height: 24px;
+	vertical-align: top;
+}
+
+.delivery td input {
+	border: 0;
+}
+
+/* 결제 */
+
+.bill {
+	width: 100%;
+    padding: 17px 16px 18px 18px;
+    background: #fafafa;
+    border: 2px solid #f2f2f2;
+}
+.pay th{
+	text-align: left;
+	width: 190px;
+	padding: 8px 0 0;
+	font-weight: bold;
+	font-size: 14px;
+	color: #333;
+	line-height: 24px;
+	letter-spacing: -0.32px;
+	vertical-align: top;
+}
+.pay td{
+	position: relative;
+	padding: 8px 0;
+	font-size: 14px;
+	color: #333;
+	line-height: 24px;
+	vertical-align: top;
+}
+/* 결제 버튼 */
+#btn_order{
+	display: block;
+    width: 240px;
+    height: 56px;
+    margin: 40px auto 0;
+    border: 0 none;
+    border-radius: 3px;
+    background-color: #5f0080;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+}
