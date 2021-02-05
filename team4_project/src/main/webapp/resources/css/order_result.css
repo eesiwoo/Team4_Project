@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+body{
+	width: auto;
+}
+/* 최상위 부모 div */
+.result_main{
+	width: 1050px;
+	margin:auto;
+}
+.result_title{
+	
+}
+/* 상품 주문이 완료되었습니다. */
+.result_tit{
+	font-weight: 700;
+    font-size: 32px;
+    line-height: 48px;
+    letter-spacing: -0.3px;
+    text-align: center;
+}
+/* 상품 및 배송 정보 */
+.result_tab{
+	border-top: 1px solid #333;
+	width:100%
+}
+.boxList{
+	border-top: 1px solid #333;
+	padding: 10px;
+}
+.boxList_tab{
+	width:100%;
+	text-align: center;
+}
+.boxList_tab th{
+	padding-bottom: 10px;
+}
+
+/* 결제 정보 */
+.pay_title{
+	padding: 74px 0 16px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #333;
+    line-height: 29px;
+    clear: both;
+}
+.pay_info{
+	border-top: 1px solid #333;
+	width: 100%;
+    padding: 17px 16px 18px 18px;
+    background: #fafafa;
+    border: 2px solid #f2f2f2;
+}
+.pay_tab{
+	
+}
+.pay_tab th{
+	text-align: left;
+    width: 190px;
+    padding: 8px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    line-height: 24px;
+    letter-spacing: -0.32px;
+    vertical-align: top;
+}
+.pay_tab td{
+	position: relative;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+    line-height: 24px;
+    vertical-align: top;
+}

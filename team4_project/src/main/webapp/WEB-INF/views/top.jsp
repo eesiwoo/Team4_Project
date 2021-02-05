@@ -6,8 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/top.css">
+<script type="text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
+<script src="resources/js/suggest.js"></script>
 </head>
 <body>
+<%
+String keyword = request.getParameter("keyword");
+%>
+
 	<header>
 		<div class="list_menu">
 			<div class="menu menu_join">
@@ -62,8 +68,10 @@
 		</ul>
 		<div class="tools">
 			<div id="search" class="search">
-				<form>
-					<input type="text" />
+				<form name="search_frm" action="searchGoods" method="post">
+					<input type="text" name="searchKeyword" id="keyword" />
+					<div id="suggest" style="display: position:absolute; lefr:100px; top:30px;"></div>
+					<input type="button" id="searchBtn" value="검색">
 				</form>
 			</div>
 			<div>
