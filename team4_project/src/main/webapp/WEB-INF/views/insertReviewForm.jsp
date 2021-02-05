@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/review.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="resources/css/dropdown.css">
 	<link rel="stylesheet" href="resources/css/top.css">
@@ -52,7 +53,7 @@
 	<form action="insertReview" method="post" id="insertForm" enctype="multipart/form-data">
 	<input type="hidden" name="goods_id" value=${goods_id }>
 	
-	<table border="1" style="width: 80%">
+	<table >
 	  <tr>
 	  	<td>별점</td>
 	  	<td class="star_rating">
@@ -80,10 +81,12 @@
 	  </tr>
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
+
+	  	<div class="btnbox">
 	  	<input type="hidden" name="review_orQna" value="review">
 	  	<input type="hidden" id="review_isPrivate" name="review_isPrivate" value="1">
-	  		<input type="submit" value="등록" id="btnIns">
-	  	
+	  	<input type="submit" value="등록" id="btnIns">
+	  	</div>
 	  	</td>
 	  </tr>
 	</table>

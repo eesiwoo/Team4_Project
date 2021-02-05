@@ -326,9 +326,14 @@ main
   .goods_wrap
   .goods_intro
   .goods_intro_pic {
+  margin:auto;
   width: 1000;
   height: 670;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
+
 main
   .goods-view-information
   .goods-view-information-content
