@@ -2,11 +2,9 @@ var checkFirst = loopSend = false;
 var lastKeyword = "";
 
 // 1초 텀 두기 
-$(document).on("change", "keyword", function(){
-	alert(checkFirst)
+$(document).on("keydown", "#keyword", function(){
 	if (checkFirst == false) {
     	//1초뒤 sendKeyword() 수행
-		alert("if")
         setTimeout("sendKeyword()", 500);
         loopSend = true;
     }

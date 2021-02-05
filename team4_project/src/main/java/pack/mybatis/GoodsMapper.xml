@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- suggest 기능 -->
  <select id="selectGoodsSuggst" parameterType="string" resultType="s_dto">
-  select goods_name from goods where goods_name like concat(#(keyword), '%')
+  select goods_name from goods where goods_name like concat('%', #(keyword), '%')
  </select>
  
  
