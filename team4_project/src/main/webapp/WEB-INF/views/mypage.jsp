@@ -23,6 +23,6 @@
  
  <div id="btn_user"><a href="updateUser"> 개인정보 수정 </a></div>
  <div id="btn_orders"><a href="showOrders"> 주문 내역 </a></div><br> 
- 
+ <jsp:include page="bottom.jsp"></jsp:include>
 </body>
 </html>

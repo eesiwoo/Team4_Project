@@ -49,7 +49,7 @@
 	<td><span>결제 예정 금액 : </span><span>${orderInfo.orders_price}</span></td>
 	</tr>
 	</table>
-	
+	<jsp:include page="bottom.jsp"></jsp:include>
 
 </body>
 </html>

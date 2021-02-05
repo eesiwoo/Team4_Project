@@ -20,11 +20,11 @@
 					out.print("<a href='logout' class='link_menu center' aria-label='Go to login page'> 로그아웃 </a>");
 					out.print("</div>");
 					out.print("<div class='menu'>");
-					out.print("<a href='mypage' class='link_menu center' aria-label='Go to login page'> 마이페이지 </a>");
+					out.print("<a href='showOrders' class='link_menu center' aria-label='Go to login page'> 마이페이지 </a>");
 					out.print("</div>");
 					if (((String) session.getAttribute("user_code")).equals("admin")) {
 						out.print("<div class='menu'>");
-						out.print("<a href='admin' class='link_menu' aria-label='Go to service center'> 관리자 </a></div></div>");
+						out.print("<a href='admin' class='link_menu' aria-label='Go to service center'> 관리자 </a>");
 						out.print("</div>");
 					}
 				} else {

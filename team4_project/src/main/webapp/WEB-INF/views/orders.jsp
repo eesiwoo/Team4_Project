@@ -123,7 +123,7 @@
 			<input type="button" id="btn_order" value="구매하기">
 		</form>
 	</div>
-
+<jsp:include page="bottom.jsp"></jsp:include>
 	<script type="text/javascript">
 		$(document).on("click", "#btn_order", function() {
 			if (confirm("정말 주문하시겠습니까?")) {
