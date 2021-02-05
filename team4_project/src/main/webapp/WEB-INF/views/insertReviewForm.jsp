@@ -81,6 +81,7 @@
 	  </tr>
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
+
 	  	<div class="btnbox">
 	  	<input type="hidden" name="review_orQna" value="review">
 	  	<input type="hidden" id="review_isPrivate" name="review_isPrivate" value="1">

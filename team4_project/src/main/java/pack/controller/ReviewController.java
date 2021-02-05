@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.CookieGenerator;
-
 import pack.model.LikesDto;
 import pack.model.ReviewDto;
 import pack.model.ReviewInter;
@@ -62,11 +61,12 @@ public class ReviewController {
 	}
 	
 	//GoodsDtail에서 리뷰 리스트 불러오기
-	@RequestMapping(value = "reviewList", method=RequestMethod.GET)
+	@RequestMapping(value = {"review", "qna"})
 	@ResponseBody
 	public Map<String, Object> reviewList(@RequestParam("goods_id")int goods_id,
 										  @RequestParam("page")int page,
 										  @RequestParam("howAsc")String howAsc,
+										  @RequestParam("RorQ")String review_orQna,
 										  HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.setAttribute("page", page);
@@ -78,23 +78,28 @@ public class ReviewController {
 		String user_id = (String) session.getAttribute("user_id");
 		dto.setUser_id(user_id);
 		dto.setGoods_id(goods_id);
+		dto.setReview_orQna(review_orQna);
+		System.out.println("howAsc : " + howAsc);
+		System.out.println("test");
 		//어떤 순서로 조회할지 확인
 		if( howAsc.equals("recently") )
-			reviewList = inter.selectReview(goods_id);
+			reviewList = inter.selectReview(dto);
 		else if( howAsc.equals("likes") )
-			reviewList = inter.selectReviewOrderbyLikes(goods_id);
+			reviewList = inter.selectReviewOrderbyLikes(dto);
 		else if ( howAsc.equals("myReview") )
 			reviewList = inter.selectReviewOrderbyUserId(dto);
 			
-		List<ReviewDto> notice = inter.selectNotice();
+		List<ReviewDto> notice = inter.selectNotice(review_orQna);
 		List<ReviewDto> afterPageList = setPage(reviewList, page);
 		totalReview = reviewList.size();
 		List<Map<String, String>> dataList = setReview(afterPageList);
 		List<Map<String, String>> noticeList = setReview(notice);
+
 		int review_id = -1;
 		
 		if(session.getAttribute("review_id") != null)
 			review_id = (int) session.getAttribute("review_id");
+
 		
 		Map<String, Object> datas = new HashMap<String, Object>();
 		System.out.println(review_id);
@@ -104,6 +109,7 @@ public class ReviewController {
 		datas.put("totalPage", totalPage());
 		datas.put("noticeList", noticeList);
 		datas.put("review_id",  review_id);
+
 		return datas;
 	}
 
@@ -123,7 +129,7 @@ public class ReviewController {
 			data.put("likes_count",Integer.toString(r.getLikes_count()));
 			data.put("review_viewCount",Integer.toString(r.getReview_viewCount()));
 			data.put("review_img", r.getReview_img());
-			
+			data.put("review_isPrivate",Integer.toString(r.getReview_isPrivate()));
 			dataList.add(data);
 		}
 		
@@ -163,10 +169,8 @@ public class ReviewController {
 		data.put("howAsc", howAsc);
 		
 		return data;
-
 	}
 	
-
 
 	//좋아요 버튼
 	@RequestMapping("clickLikes")

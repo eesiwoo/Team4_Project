@@ -15,13 +15,13 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	}
 
 	@Override
-	public ArrayList<ReviewDto> selectReview(int goods_id) {
-		return (ArrayList)getSqlSession().selectList("selectReview", goods_id);
+	public ArrayList<ReviewDto> selectReview(ReviewDto dto) {
+		return (ArrayList)getSqlSession().selectList("selectReview", dto);
 	}
 	
 	@Override
-	public ArrayList<ReviewDto> selectReviewOrderbyLikes(int goods_id) {
-		return (ArrayList)getSqlSession().selectList("selectReviewOrderbyLikes", goods_id);
+	public ArrayList<ReviewDto> selectReviewOrderbyLikes(ReviewDto dto) {
+		return (ArrayList)getSqlSession().selectList("selectReviewOrderbyLikes", dto);
 	}
 	
 	@Override
@@ -30,10 +30,9 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	}
 	
 	@Override
-	public ArrayList<ReviewDto> selectNotice() {
-		return (ArrayList)getSqlSession().selectList("selectNotice");
+	public ArrayList<ReviewDto> selectNotice(String review_orQna) {
+		return (ArrayList)getSqlSession().selectList("selectNotice", review_orQna);
 	}
-
 
 	@Override
 	public boolean insertReview(ReviewDto dto) {
@@ -64,8 +63,8 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	}
 
 	@Override
-	public String currentReview_asc(int goods_id) {
-		return getSqlSession().selectOne("MaxReview_asc", goods_id);
+	public String currentReview_asc(ReviewDto dto) {
+		return getSqlSession().selectOne("currentReview_asc",dto);
 	}
 
 	@Override
@@ -111,6 +110,12 @@ public class ReviewImpl extends SqlSessionDaoSupport implements ReviewInter {
 	@Override
 	public void unLikesUpdate(int review_id) {
 		getSqlSession().update("unLikesUpdate", review_id);
+		
+	}
+
+	@Override
+	public void updateLikes(ReviewDto dto) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -6,11 +6,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReviewDto {
-	private int review_id, goods_id, review_viewCount, review_asc, review_answer,  likes_count;
+	private int review_id, goods_id, review_viewCount, review_asc, review_answer,  likes_count, review_isPrivate;
 	private String user_id, review_title, review_content;
 	private float review_star;
-	private boolean review_isPrivate;
-	private String review_date, review_img;
+	private String review_date, review_img, review_orQna;
+	
+	public String getReview_orQna() {
+		return review_orQna;
+	}
+	
+	public void setReview_orQna(String review_orQna) {
+		this.review_orQna = review_orQna;
+	}
+	
 	
 	public void setReview_img(String review_img) {
 		this.review_img = review_img;
@@ -29,7 +37,7 @@ public class ReviewDto {
 	}
 	
 	public String getReview_date() {
-		return review_date;
+		return review_date.substring(0, 10);
 	}
 	
 	public void setReview_date() {
@@ -94,10 +102,10 @@ public class ReviewDto {
 	public void setReview_star(float review_star) {
 		this.review_star = review_star;
 	}
-	public boolean isReview_isPrivate() {
+	public int getReview_isPrivate() {
 		return review_isPrivate;
 	}
-	public void setReview_isPrivate(boolean review_isPrivate) {
+	public void setReview_isPrivate(int review_isPrivate) {
 		this.review_isPrivate = review_isPrivate;
 	}
 	

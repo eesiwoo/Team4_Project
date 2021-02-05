@@ -1,8 +1,10 @@
 package pack.controller;
  
 import java.io.File;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import pack.model.ReviewInter;
 
 @Controller
 public class InsertReviewController {
-	private static final String FILE_PATH = "C:\\Users\\acorn\\git\\Team4_Project\\team4_project\\src\\main\\webapp\\resources\\review_img";
+	
 	
 	@Autowired
 	private ReviewInter inter;
@@ -25,15 +27,22 @@ public class InsertReviewController {
 	//리뷰 작성 페이지로 이동
 	@RequestMapping(value = "insertReview", method = RequestMethod.GET)
 	public String insertReviewForm(@RequestParam("goods_id")String goods_id,
-								   HttpServletRequest request) {
+								   @RequestParam("RorQ")String RorQ,
+								   HttpServletRequest request,
+								   HttpServletResponse response) throws Exception {
+		
 		request.setAttribute("goods_id", goods_id);
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
-		
-		if(user_id == null)
-			return "redirect:/goods?goods_id=" + goods_id ;
-		else
-			return "insertReviewForm";
+		if(user_id == null) {
+
+			return "redirect:/goods?goods_id=" + goods_id + "&log=x";
+		} else {
+			if(RorQ.equals("review"))
+				return "insertReviewForm";
+			else
+				return "insertQnaForm";
+		}
 	}
 	
 	//리뷰 작성
@@ -45,7 +54,7 @@ public class InsertReviewController {
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("user_id");
 		int goods_id = dto.getGoods_id();
-		String asc = inter.currentReview_asc(goods_id);
+		String asc = inter.currentReview_asc(dto);
 		dto.setUser_id(user_id);
 		if(asc == null)
 			dto.setReview_asc(1);
@@ -53,6 +62,12 @@ public class InsertReviewController {
 			dto.setReview_asc(Integer.parseInt(asc)+1);
 		
 		//파일 업로드
+	    String root_path = request.getSession().getServletContext().getRealPath("resources/review_img");  
+	    String attach_path = "/";
+	    String FILE_PATH = root_path + attach_path;
+	    System.out.println("제바바아아ㅏ라ㅏ라라라라ㅏ" + FILE_PATH);
+		
+		
 		String orgName = file.getOriginalFilename();
 		String fileName = dto.getGoods_id() + "_" + dto.getReview_asc() + "_" + orgName;
 		if(!orgName.isEmpty()) {

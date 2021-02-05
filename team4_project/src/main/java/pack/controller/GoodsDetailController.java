@@ -74,15 +74,13 @@ public class GoodsDetailController {
 					cg.setCookieMaxAge(60*60*24*365);
 					cg.addCookie(response, null);
 				}
-				else { }
 			}
 		}
 		else {
 			cg.setCookieName("view");
 			cg.setCookieMaxAge(60*60*24*365);
 			cg.addCookie(response, null);
-		}
-		
+		}	
 		return mav;
 	}
 	

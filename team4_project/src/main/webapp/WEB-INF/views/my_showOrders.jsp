@@ -36,15 +36,18 @@
 						<c:forEach var="ogdto" items="${og}">
 							<tr>
 								<td>${ogdto.orders_id}</td>
+								<!-- 중복체크 --> 
+								<c:set var="check" value="unuse"/>
 								<c:forEach var="gdto" items="${ goodslist}">
-									<c:choose>
-										<c:when test="${ogdto.goods_id == gdto.goods_id}">
-											<td><img src="resources/images/goods/${gdto.goods_img}"
-												width="100" height="100"></td>
-											<td>${gdto.goods_name}</td>
-											<td>${ogdto.goods_cont}</td>
-										</c:when>
-									</c:choose>
+										<c:if test="${ogdto.goods_id == gdto.goods_id}">
+											<c:if test="${check eq 'unuse'}">
+												<c:set var="check" value="use"/>
+												<td><a href="goods?goods_id=${ogdto.goods_id}"><img src="resources/images/goods/${gdto.goods_img}"
+												width="100" height="100"></a></td>
+												<td>${gdto.goods_name}</td>
+												<td>${ogdto.goods_cont}</td>
+											</c:if>
+										</c:if>
 								</c:forEach>
 							</tr>
 						</c:forEach>
