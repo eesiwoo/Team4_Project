@@ -380,6 +380,7 @@
   /* 리뷰목록 불러오기 */
   function callReview(pageId, howAsc, RorQ) {
 	 var goods_id = getParameterByName('goods_id');
+	 var code = "<%=session.getAttribute("user_code") %>";
 	 
 	   $.ajax({
 		   type : "get",
@@ -431,8 +432,15 @@
 				$(list).each(function(i, rd){
 					/* 리뷰목록 */
 					str += "<tr class='view_content' id='" + rd.review_id + "_review' value='"+rd.review_isPrivate+"'>";
-					str += "<td class='tb_no'>" + rd.review_asc + "</td>";	
-					str += "<td class='tb_tit'>" + rd.review_title + "</td>";
+					str += "<td class='tb_no'>" + rd.review_asc + "</td>";
+					
+					/* 비밀글 체크 */
+					if(rd.review_isPrivate  !="0"){
+						str += "<td class='tb_tit'>" + rd.review_title + "</td>";
+					}else{
+						str += "<td class='tb_tit'><img src='resources/images/lock.png' style=' width: 15px; height: 15px;'>" + rd.review_title + "</td>";
+					}
+				
 					str += "<td class='tb_name'>" + rd.user_id + "</td>";
 					str += "<td class='tb_date'>" + rd.review_date + "</td>";
 					str += "<td class='tb_help'>"+rd.likes_count+"</td>";
@@ -440,7 +448,7 @@
 					str += "</tr>";
 					/* 리뷰 내용 */
 					str += "<tr>";
-					/* 이미지 여부 체크 */
+					/* 이미지 여부 체크 */ /* 글 종류에 따라 좋아요 버튼 출력 */
 					if(rd.review_img != null){
 						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>";
@@ -449,12 +457,17 @@
 						if(RorQ == "review"){
 							str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
 						}
+						else if (RorQ == "qna" && code == "admin"){
+							str += "<br/><button> 답변 달기 </button></td>";
+						}	
 					}else{
 						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'>" + rd.review_content;
 						if(RorQ == "review"){
 							str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
-						}   
+						}else if (RorQ == "qna" && code == "admin"){
+							str += "<br/><button> 답변 달기 </button></td>";
+						}	
 					}
 					
 					str += "</div>" + "</tr>";
