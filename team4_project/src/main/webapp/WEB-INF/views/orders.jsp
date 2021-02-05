@@ -82,12 +82,12 @@
 				<tr>
 					<th><span>배송시 요청사항</span></th>
 					<td><input type="text" name="orders_name"
-						placeholder="${userInfo.user_name}"></td>
+						placeholder="ex)경비실에 놔주세요!"></td>
 				</tr>
 				<tr>
 					<th><span>받으실 분</span></th>
 					<td><input type="text" name="orders_comment"
-						placeholder="ex)경비실에 놔주세요!"></td>
+						placeholder="${userInfo.user_name}"></td>
 				</tr>
 			</table>
 
