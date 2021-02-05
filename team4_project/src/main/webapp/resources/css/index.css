@@ -1,8 +1,12 @@
+@charset "UTF-8";
+* {
+	font-family: noto sans;
+}
+
 body {
 	display: grid;
 	box-sizing: border-box;
 	margin: 0 200px;
-	font-family: noto sans;
 }
 
 header {
@@ -106,6 +110,14 @@ nav .tools img {
 	#index_goods_name22, #index_goods_name23, #index_goods_name24 {
 	font-size: 16px;
 	line-height: 24px;
+	font-weight:700;
+	overflow: hidden;
+    max-height: 58px;
+    color: #333;
+    line-height: 29px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 #index_goods_Bprice1, #index_goods_Bprice2, #index_goods_Bprice3,
@@ -136,4 +148,5 @@ nav .tools img {
 	font-weight: 800;
 	font-size: 16px;
 	line-height: 20px;
+	color:#333;
 }
