@@ -1,5 +1,8 @@
 package pack.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SeachDto {
 	private String goods_name;
 
