@@ -119,26 +119,25 @@
               </div>
           </div>
        </div>
-      <div class="goods-view-information">
+      <div class="goods-view-information"  id="goods_intro_context">
         <ul class="goods-view-information-tab-group">
-          <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
-          <li class="goods-view-information-tab">상품이미지</li>
-          <li class="goods-view-information-tab">상세정보</li>
-          <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
-          <li class="goods-view-information-tab"><a href="#qna">상품문의</li>
+          <li class="goods-view-information-tab"><a href="#goods_intro_context">상품설명</a></li>
+          <li class="goods-view-information-tab"><a href="#goods_imgb">상품이미지</a></li>
+          <li class="goods-view-information-tab"><a href="#reviewb">고객후기</a></li>
+          <li class="goods-view-information-tab"><a href="#qnab">상품문의</a></li>
         </ul>
         <div class="goods-view-information-content">
           <div class="goods_wrap">
             <div class="goods_intro">
               <div class="goods_intro_pic">
-                <img src="resources/images/goods/${goods.goods_img}" alt="${goods.goods_name}">
+                <img id="goods_imgb" src="resources/images/goods/${goods.goods_img}" alt="${goods.goods_name}">
               </div>
               <div class="goods_intro_context">
                 <h3>
                   <small>${goods.goods_shortDesc}</small>
                   ${goods.goods_name}
                 </h3>
-                <p class="words">
+                <p id="goods_detail" class="words">
                   ${goods.goods_detail } 
                 </p>
               </div>
@@ -147,13 +146,12 @@
         </div>
       </div>
 
-    	<div class="goods-view-information">
+    	<div class="goods-view-information" id="reviewb">
     	<ul class="goods-view-information-tab-group">
-          <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
-          <li class="goods-view-information-tab">상품이미지</li>
-          <li class="goods-view-information-tab">상세정보</li>
-          <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
-          <li class="goods-view-information-tab"><a href="#qna">상품문의</li>
+          <li class="goods-view-information-tab"><a href="#goods_intro_context">상품설명</a></li>
+          <li class="goods-view-information-tab"><a href="#goods_imgb">상품이미지</a></li>
+          <li class="goods-view-information-tab"><a href="#reviewb">고객후기</a></li>
+          <li class="goods-view-information-tab"><a href="#qnab">상품문의</a></li>
         </ul>
         </div>
 		<div class="board">
@@ -176,13 +174,13 @@
 			</div>
 		</div>   
 		<br/><br/><br/><br/><br/><br/>
-		<div class="goods-view-information">
+		<div class="goods-view-information" id="qnab">
     	<ul class="goods-view-information-tab-group">
           <li class="goods-view-information-tab"><a href="#goods_detail">상품설명</a></li>
-          <li class="goods-view-information-tab">상품이미지</li>
-          <li class="goods-view-information-tab">상세정보</li>
+          <li class="goods-view-information-tab"><a href="#goods_imgb">상품이미지</a></li>
+          <li class="goods-view-information-tab"><a href="#goods_detail">상세정보</a></li>
           <li class="goods-view-information-tab"><a href="#review">고객후기</a></li>
-          <li class="goods-view-information-tab"><a href="#qna">상품문의</li>
+          <li class="goods-view-information-tab"><a href="#qnab">상품문의</a></li>
         </ul>
         </div>
 		
