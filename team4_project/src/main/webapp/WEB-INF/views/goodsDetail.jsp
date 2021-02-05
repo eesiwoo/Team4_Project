@@ -486,7 +486,7 @@
 					if(nl.review_img != null){
 						str += "<td class='tb_content'><div class='review_content' id='"
 						     + nl.review_id +"_review_content'><br/>"
-						     + "<img src='" + nl.review_img +"'><br/>"
+						     + "<img src='" + nl.review_img +"' style =' width: 300px; height: 200px;'><br/>"
 						     + nl.review_content + "</div></td>";
 					}else{
 						str += "<td class='tb_content'><div class='review_content' id='"
@@ -516,7 +516,7 @@
 					if(rd.review_img != null){
 						str += "<td class='tb_content' colspan='6'><div class='review_content' id='"
 						     + rd.review_id +"_review_content'><br/>";
-						str += "<img src='" + rd.review_img +"'><br/>";
+						str += "<img src='" + rd.review_img +"' style =' width: 300px; height: 200px;'><br/>";
 						str += rd.review_content
 						if(RorQ == "review"){
 							str += "<br/><button class='like_btn' id='" + rd.review_id + "_likes'>좋아요</button></td>";
