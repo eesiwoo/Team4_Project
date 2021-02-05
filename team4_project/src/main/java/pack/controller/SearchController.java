@@ -22,10 +22,14 @@ public class SearchController {
 	@RequestMapping(value = "searchGoods", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> searchGoods(@RequestParam("keyword") String keyword) {
+		System.out.println("searchGoods 시작");
 		ArrayList<String> list = (ArrayList<String>)goodsDaoInter.getGoodsSearchKeyword(keyword);
+		System.out.println("list : " + list);
 		Map<String, Object> obj = new HashMap<String, Object>();
 		
 		obj.put("data", list);
+		System.out.println("obj : " + obj);
+		System.out.println("searchGoods 완료");
 		return obj;
 	}
 }

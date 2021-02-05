@@ -2,13 +2,15 @@ var checkFirst = loopSend = false;
 var lastKeyword = "";
 
 // 1초 텀 두기 
-function sijak() {
-    if (checkFirst == false) {
+$(document).on("change", "keyword", function(){
+	alert(checkFirst)
+	if (checkFirst == false) {
     	//1초뒤 sendKeyword() 수행
+		alert("if")
         setTimeout("sendKeyword()", 500);
         loopSend = true;
     }
-}
+})
 
 //Ajax
 function sendKeyword() {

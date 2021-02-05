@@ -1,9 +1,7 @@
 package pack.model;
 
-import org.springframework.stereotype.Component;
 
-@Component
-public class SeachDto {
+public class SearchDto {
 	private String goods_name;
 
 	public String getGoods_name() {
