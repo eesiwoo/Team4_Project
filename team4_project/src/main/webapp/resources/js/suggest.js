@@ -30,8 +30,8 @@ function sendKeyword() {
             	url : "searchGoods",
             	dataType:"json",
             	data : {"keyword" : keyword},
-            	success : function(dbdata){
-            		process(dbdata)
+            	success : function(data){
+            		process(data)
             	}
             })
 
@@ -43,19 +43,16 @@ function sendKeyword() {
 
 //Ajax의 결과를 받고 처리하는 공간이다.
 //Ajax에게 받은 Data(이름)에 링크를 건 뒤 Output-Suggest에 보여지는 형식이다.
-function process(dbdata) {
-    var data = dbdata
-    var result = data.split("|");
-    var tot = result[0];
-    if (tot > 0) {
-        var datas = result[1].split(",");
-        var imsi = "";
+function process(data) {
+    var data = data;
+	if (data.length > 0) {
+        var tmp = "";
         //각각의 이름에 링크 걸기 각각의 이름은 func(자기이름)이 들어가 있다.
-        for (var i = 0; i < datas.length; i++) {
-            imsi += "<a href=\"javascript:func('" + datas[i] + "')\">" + datas[i] + "</a><br>";
-        }
+        $(data).each(function(idx,dto){
+        	tmp += "<a href=\"javascript:func('" + dto + "')\">" + dto + "</a><br>";
+        })
         //Output-Suggest에 결과 보여주기
-        var listView = $("#suggest").text(imsi);
+        var listView = $("#suggest").text(tmp);
     }
 
 }
