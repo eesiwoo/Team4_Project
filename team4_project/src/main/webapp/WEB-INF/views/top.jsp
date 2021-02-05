@@ -24,7 +24,7 @@
 					out.print("</div>");
 					if (((String) session.getAttribute("user_code")).equals("admin")) {
 						out.print("<div class='menu'>");
-						out.print("<a href='admin' class='link_menu' aria-label='Go to service center'> 관리자 </a></div></div>");
+						out.print("<a href='admin' class='link_menu' aria-label='Go to service center'> 관리자 </a>");
 						out.print("</div>");
 					}
 				} else {
