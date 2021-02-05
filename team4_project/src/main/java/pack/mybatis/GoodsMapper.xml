@@ -10,15 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- 검색된 상품 모두 가져오기 -->
  <select id="selectGoodsSearch" parameterType="string" resultType="g_dto">
-  select * from goods where goods_name like concat('%', #(searchKeyword), '%')
+  select * from goods where goods_name like concat('%', #{searchKeyword}, '%')
  </select>
  
  <!-- suggest 기능 -->
  <select id="selectGoodsSuggst" parameterType="string" resultType="s_dto">
-  select goods_name from goods where goods_name like concat('%', #(keyword), '%')
+  select goods_name from goods where goods_name LIKE concat('%', #{keyword}, '%')
  </select>
- 
- 
  
  
  <!-- 상품 하나 가져오기 --> 

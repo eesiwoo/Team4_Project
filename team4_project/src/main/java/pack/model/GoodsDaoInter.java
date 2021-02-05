@@ -10,8 +10,11 @@ public interface GoodsDaoInter {
 	// product를 클릭하게 되면 해당 상품을 가져오기 
 	public GoodsDto getGoodsSearch(int goods_id);
 	
-	// 검색을 통해 얻은 데이터  
-	public List<String> getGoodsSearchKeyword(String keyword);
+	// ajax suggest 검색 도우미 기능  
+	public List<String> getGoodsSearchKeywordSuggest(String keyword);
+	
+	// 특정 상품 검색하기  
+	public List<GoodsDto> getGoodsSearchKeyword(String searchKeyword);
 	
 	// productList에 보여질 상품 모두 가져오기  
 	public List<GoodsDto> getGoodsList();

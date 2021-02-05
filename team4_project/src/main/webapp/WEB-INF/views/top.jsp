@@ -68,10 +68,10 @@ String keyword = request.getParameter("keyword");
 		</ul>
 		<div class="tools">
 			<div id="search" class="search">
-				<form name="frm">
-					<input type="text" name="keyword" id="keyword" />
+				<form name="search_frm" action="searchGoods" method="post">
+					<input type="text" name="searchKeyword" id="keyword" />
 					<div id="suggest" style="display: position:absolute; lefr:100px; top:30px;"></div>
-					Selected Name: <input type="text" name="sel" size="10" readonly="readonly">
+					<input type="button" id="searchBtn" value="검색">
 				</form>
 			</div>
 			<div>

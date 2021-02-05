@@ -5,7 +5,7 @@ var lastKeyword = "";
 $(document).on("keydown", "#keyword", function(){
 	if (checkFirst == false) {
     	//1초뒤 sendKeyword() 수행
-        setTimeout("sendKeyword()", 500);
+        setTimeout("sendKeyword()", 2000);
         loopSend = true;
     }
 })
@@ -15,7 +15,7 @@ function sendKeyword() {
     if (loopSend == false)
         return;
     else {
-        var keyWord = document.frm.keyword.value;
+        var keyWord = document.search_frm.keyword.value;
         //키워드가 hide 함수를 불러 검색어 창 숨기기
         if (keyWord === "") {
             lastKeyword = "";
@@ -24,16 +24,16 @@ function sendKeyword() {
         } else if (keyWord !== lastKeyword) {
             lastKeyword = keyWord;
 
-            var keyword = "keyword=" + keyWord;
             $.ajax({
             	type : "post",
-            	url : "searchGoods",
+            	url : "searchGoodsSuggest",
             	dataType:"json",
-            	data : {"keyword" : keyword},
-            	success : function(data){
-            		process(data)
+            	data : {"keyword" : keyWord},
+            	success : function(obj){
+            		process(obj)
             	}
             })
+            
 
 
 
@@ -43,28 +43,28 @@ function sendKeyword() {
 
 //Ajax의 결과를 받고 처리하는 공간이다.
 //Ajax에게 받은 Data(이름)에 링크를 건 뒤 Output-Suggest에 보여지는 형식이다.
-function process(data) {
-    var data = data;
-	if (data.length > 0) {
-        var tmp = "";
+function process(obj) {
+
+	let list = obj.datas
+	if (list.length > 0) {
+        
+		var tmp = "";
         //각각의 이름에 링크 걸기 각각의 이름은 func(자기이름)이 들어가 있다.
-        $(data).each(function(idx,dto){
-        	tmp += "<a href=\"javascript:func('" + dto + "')\">" + dto + "</a><br>";
+        $(list).each(function(idx,dto){
+        	tmp += "<a href=\"javascript:func('" + dto["goods_name"] + "')\">" + dto["goods_name"] + "</a><br>";
         })
         //Output-Suggest에 결과 보여주기
-        var listView = $("#suggest").text(tmp);
+        var listView = $("#suggest").html(tmp);
     }
 
 }
 
 //이름 클릭시 Output-Selected 에 값 넣기. Suggest창 숨기기
 function func(reData) {
-    frm.sel.value = reData;
+    $("#keyword").val(reData);
     loopSend = checkFirst = false;
     lastKeyword = "";
     hide("suggest");
-
-    frm.keyword.value="";
 
 }
 
@@ -79,3 +79,8 @@ function show(ele) {
     var e = document.getElementById(ele);
     if (e) e.style.display = "";
 }
+
+$(document).on("click", "#searchBtn", function(){		
+	search_frm.submit(); 
+});
+
