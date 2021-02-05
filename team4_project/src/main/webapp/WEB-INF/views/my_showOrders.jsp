@@ -42,8 +42,8 @@
 										<c:if test="${ogdto.goods_id == gdto.goods_id}">
 											<c:if test="${check eq 'unuse'}">
 												<c:set var="check" value="use"/>
-												<td><img src="resources/images/goods/${gdto.goods_img}"
-												width="100" height="100"></td>
+												<td><a href="goods?goods_id=${ogdto.goods_id}"><img src="resources/images/goods/${gdto.goods_img}"
+												width="100" height="100"></a></td>
 												<td>${gdto.goods_name}</td>
 												<td>${ogdto.goods_cont}</td>
 											</c:if>
