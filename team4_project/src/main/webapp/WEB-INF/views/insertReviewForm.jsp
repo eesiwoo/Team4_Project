@@ -7,22 +7,26 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/review.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="resources/css/dropdown.css">
+	<link rel="stylesheet" href="resources/css/top.css">
+	<link rel="stylesheet" href="resources/css/insertReview.css">
+	
 	<style type="text/css">
-.star_rating {font-size:0; letter-spacing:-4px;}
-.star_rating a {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#ccc;
-    text-decoration:none;
-}
-.star_rating a:first-child {margin-left:0;}
-.star_rating a.on {color:#777;}
+		.star_rating {font-size:0; letter-spacing:-4px;}
+		.star_rating a {
+		    font-size:22px;
+		    letter-spacing:0;
+		    display:inline-block;
+		    margin-left:5px;
+		    color:#ccc;
+		    text-decoration:none;
+		}
+		.star_rating a:first-child {margin-left:0;}
+		.star_rating a.on {color:#777;}
 	</style>
 	
 	<script type="text/javascript">
-	$( document ).ready(function() {
+	$( document ).ready(function() {	
 		$( ".star_rating a" ).click(function() {
 		     $(this).parent().children("a").removeClass("on");
 		     $(this).addClass("on").prevAll("a").addClass("on");
@@ -30,11 +34,21 @@
 		     $("#review_star").val(starRate);
 		     return false;
 		});
+		
 	});
 	</script>
 	
 </head>
 <body>
+	<jsp:include page="top.jsp"></jsp:include>
+	<div class="main">
+		<div class="field_head">
+			<h3 class="tit">리뷰 작성</h3>
+			<p class="sub">
+			<span class="ico">*</span>
+			"필수입력사항"
+			</p>
+		</div>
 
 	<form action="insertReview" method="post" id="insertForm" enctype="multipart/form-data">
 	<input type="hidden" name="goods_id" value=${goods_id }>
@@ -50,10 +64,6 @@
    			 <a href="#" id="5">★</a>
    			 <input type="hidden" id="review_star" name="review_star" value="3">
 		</td>
-	  </tr>
-	  <tr>
-	  	<td>숨김여부</td>
-	  	<td><input type="text" name="review_isPrivate"></td>
 	  </tr>
 	  <tr>
 	  	<td>제목</td>
@@ -72,12 +82,14 @@
 	  <tr>
 	  	<td colspan="2" style="text-align: center;">
 	  	<div class="btnbox">
-	  		<input type="submit" value="등록" id="btnIns">
+	  	<input type="hidden" name="review_orQna" value="review">
+	  	<input type="hidden" id="review_isPrivate" name="review_isPrivate" value="1">
+	  	<input type="submit" value="등록" id="btnIns">
 	  	</div>
 	  	</td>
 	  </tr>
 	</table>
 	</form>
-
+	</div>
 </body>
 </html>
