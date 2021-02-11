@@ -18,60 +18,8 @@
 
 로 나누어 개발을 진행했습니다.
 
-![](../header.png)
+![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/74635142/107606760-70d8d300-6c7a-11eb-9b6a-10d676af5ae1.gif)
 
 ## 구성
 
-├─src
-
-│  ├─main
-│  │  ├─java
-│  │  │  └─pack
-│  │  │      ├─aspect
-│  │  │      ├─controller
-│  │  │      ├─model
-│  │  │      └─mybatis
-│  │  ├─resources
-│  │  └─webapp
-│  │      ├─META-INF
-│  │      │  └─maven
-│  │      │      └─aa.bb
-│  │      │          └─cc
-│  │      ├─resources
-│  │      │  ├─css
-│  │      │  │  └─fonts
-│  │      │  ├─images
-│  │      │  │  └─goods
-│  │      │  ├─js
-│  │      │  └─review_img
-│  │      └─WEB-INF
-│  │          ├─check
-│  │          ├─spring
-│  │          │  └─appServlet
-│  │          └─views
-│  └─test
-│      └─resources
-├─target
-│  ├─classes
-│  │  └─pack
-│  │      ├─aspect
-│  │      ├─controller
-│  │      ├─model
-│  │      └─mybatis
-│  ├─m2e-wtp
-│  │  └─web-resources
-│  │      └─META-INF
-│  │          └─maven
-│  │              └─aa.bb
-│  │                  └─cc
-│  └─test-classes
-└─work
-    └─spring_source
-        └─team4_project
-            └─target
-                └─m2e-wtp
-                    └─web-resources
-                        └─META-INF
-                            └─maven
-                                └─aa.bb
-                                    └─cc
+![code](https://user-images.githubusercontent.com/74635142/107606680-37a06300-6c7a-11eb-9f58-f87d7be2ac2b.png)
